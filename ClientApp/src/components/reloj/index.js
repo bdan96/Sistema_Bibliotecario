@@ -1,0 +1,1 @@
+export { Reloj } from './Reloj';
