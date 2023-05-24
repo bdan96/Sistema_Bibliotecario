@@ -9,7 +9,8 @@
     },
     "mssql2": {
       "type": "mssql",
-      "connectionId": "ConnectionStrings:BibliotecaDBContextConnection"
+      "connectionId": "ConnectionStrings:BibliotecaDBContextConnection",
+      "dynamicId": null
     }
   }
 }
