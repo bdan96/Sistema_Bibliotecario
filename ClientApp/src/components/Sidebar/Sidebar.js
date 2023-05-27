@@ -52,21 +52,11 @@ function Sidebar(props) {
       data-color={props.bgColor}
       data-active-color={props.activeColor}
     >
-      <div className="logo">
-        <a
-          href="https://www.creative-tim.com"
-          className="simple-text logo-mini"
-        >
+      <div className="logo"> 
           <div className="logo-img">
             <img src={logo} alt="react-logo" />
           </div>
-        </a>
-        <a
-          href="https://www.creative-tim.com"
-          className="simple-text logo-normal"
-        >
-          Creative Tim
-        </a>
+        
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>
         <Nav>
