@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Sistema_Bibliotecario.Models
 {
-    public partial class Usuario 
+    public partial class Usuario : IdentityUser
     {
         public Usuario()
         {

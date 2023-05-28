@@ -34,11 +34,7 @@ namespace Sistema_Bibliotecario.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                //optionsBuilder.UseSqlServer("Server=DESKTOP-0F1VK2T\\LOCAL; DataBase=BDBiblioteca;Integrated Security=true; Trusted_Connection=True");
-                optionsBuilder.UseSqlServer(ConfigurationSettings.AppSettings["BibliotecaDBContextConnection"]);
-            }
+   
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
