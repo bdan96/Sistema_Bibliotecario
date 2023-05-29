@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Sistema_Bibliotecario.Models
 {
-    public partial class BDBibliotecaContext : DbContext
+    public partial class BibliotecaDBContext : DbContext
     {
-        public BDBibliotecaContext()
+        public BibliotecaDBContext()
         {
         }
 
-        public BDBibliotecaContext(DbContextOptions<BDBibliotecaContext> options)
+        public BibliotecaDBContext(DbContextOptions<BibliotecaDBContext> options)
             : base(options)
         {
         }
@@ -34,7 +34,7 @@ namespace Sistema_Bibliotecario.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-   
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
