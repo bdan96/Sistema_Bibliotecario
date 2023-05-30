@@ -41,9 +41,9 @@ import {
 } from "variables/charts.js";
 
 //import CarruselNew from 'components/CarruselNew.js'
-import Carrusel from 'components/Carrusel.js'
-import Carrusel2 from 'components/Carrusel2'
-import CardLibro from 'components/CardLibro'
+import Carrusel from 'components/CardComponentDashboard/Carrusel'
+import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
+import CardLibro from 'components/CardComponentDashboard/CardLibro'
 
 
 function Dashboard() {
