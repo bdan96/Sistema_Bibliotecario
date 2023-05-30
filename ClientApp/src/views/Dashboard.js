@@ -42,7 +42,7 @@ import {
 
 //import CarruselNew from 'components/CarruselNew.js'
 import Carrusel from 'components/Carrusel.js'
-//import Carrusel2 from 'components/Carrusel2'
+import Carrusel2 from 'components/Carrusel2'
 import CardLibro from 'components/CardLibro'
 
 
@@ -51,13 +51,21 @@ function Dashboard() {
         <>
 
             <div className="content">
+                <Row>
+
+                    <Col md="12" style={{ alignItems: 'center' }}>
+                        <Carrusel2 />
+                    </Col>
+
+                </Row>
 
                 <Row>
                     <Col md="12">
                         <Card className="my-2"
                             color="dark"
                             inverse
-                            >
+                            style={{ borderRadius: "15px" }}
+                        >
                             <CardBody>
                                 <CardTitle tag="h5">
                                     Libros Nuevos
@@ -67,7 +75,7 @@ function Dashboard() {
                     </Col>
 
                     <Col md="3">
-                        <Card className="rounded-3">
+                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
                             <CardImg
                                 alt="Card image cap"
                                 className="rounded-3"
@@ -75,6 +83,7 @@ function Dashboard() {
                                 top
                                 height="400"
                                 width="270"
+                                style={{ borderRadius: "20px 20px 0px 0px" }}
                             />
                             <CardBody>
                                 <CardTitle tag="h5">
@@ -96,13 +105,15 @@ function Dashboard() {
                         </Card>
                     </Col>
                     <Col md="3">
-                        <Card >
+                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
                             <CardImg
                                 alt="Card image cap"
+                                className="rounded-3"
                                 src={require("img/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
+                                style={{ borderRadius: "20px 20px 0px 0px" }}
                             />
                             <CardBody>
                                 <CardTitle tag="h5">
@@ -124,41 +135,45 @@ function Dashboard() {
                         </Card>
                     </Col>
                     <Col md="3">
-                        <Card >
+                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
                             <CardImg
                                 alt="Card image cap"
-                                src="https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg"
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card >
-                            <CardImg
-                                alt="Card image cap"
+                                className="rounded-3"
                                 src={require("img/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
+                                style={{ borderRadius: "20px 20px 0px 0px" }}
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
+                            <CardImg
+                                alt="Card image cap"
+                                className="rounded-3"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                                style={{ borderRadius: "20px 20px 0px 0px" }}
                             />
                             <CardBody>
                                 <CardTitle tag="h5">
@@ -211,7 +226,7 @@ function Dashboard() {
                         <Card className="my-2"
                             color="dark"
                             inverse>
-                            
+
                             <CardBody>
                                 <CardTitle tag="h5">
                                     Libros M&aacute;s Populares
