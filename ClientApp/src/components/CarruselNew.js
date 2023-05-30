@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Slideshow, Slide, TextoSlide } from './Slideshow.js'
 import 'assets/css/estilosCarrusel.css';
 import styled from 'styled-components';

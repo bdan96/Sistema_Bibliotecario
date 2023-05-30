@@ -28,6 +28,10 @@ import {
     CardTitle,
     Row,
     Col,
+    CardImg,
+    CardSubtitle,
+    CardText,
+    Button,
 } from "reactstrap";
 // core components
 import {
@@ -39,12 +43,431 @@ import {
 //import CarruselNew from 'components/CarruselNew.js'
 import Carrusel from 'components/Carrusel.js'
 //import Carrusel2 from 'components/Carrusel2'
+import CardLibro from 'components/CardLibro'
+
 
 function Dashboard() {
     return (
         <>
 
             <div className="content">
+
+                <Row>
+                    <Col md="12">
+                        <Card className="my-2"
+                            color="dark"
+                            inverse
+                            >
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Libros Nuevos
+                                </CardTitle>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                    <Col md="3">
+                        <Card className="rounded-3">
+                            <CardImg
+                                alt="Card image cap"
+                                className="rounded-3"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src="https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg"
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                </Row>
+
+                <Row>
+                    <Col md="12">
+                        <Card className="my-2"
+                            color="dark"
+                            inverse>
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Libros Destacados
+                                </CardTitle>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="1">
+
+                    </Col>
+                    <Col md="10">
+                        <CardLibro />
+                    </Col>
+                    <Col md="1">
+                        <br></br>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col md="12">
+                        <br></br>
+                        <Card className="my-2"
+                            color="dark"
+                            inverse>
+                            
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Libros M&aacute;s Populares
+                                </CardTitle>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                    <Col md="3">
+                        <Card className="rounded-3">
+                            <CardImg
+                                alt="Card image cap"
+                                className="rounded-3"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src="https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg"
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                </Row>
+
+                <Row>
+                    <Col md="12">
+                        <Card className="my-2"
+                            color="dark"
+                            inverse>
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Libros M&aacute;s Gustados
+                                </CardTitle>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                    <Col md="3">
+                        <Card className="rounded-3">
+                            <CardImg
+                                alt="Card image cap"
+                                className="rounded-3"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src="https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg"
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card >
+                            <CardImg
+                                alt="Card image cap"
+                                src={require("img/Las48leyes.jpg")}
+                                top
+                                height="400"
+                                width="270"
+                            />
+                            <CardBody>
+                                <CardTitle tag="h5">
+                                    Card title
+                                </CardTitle>
+                                <CardSubtitle
+                                    className="mb-2 text-muted"
+                                    tag="h6"
+                                >
+                                    Card subtitle
+                                </CardSubtitle>
+                                <CardText>
+                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                </CardText>
+                                <Button>
+                                    Button
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                </Row>
+
+                <Row>
+                    <br></br>
+                </Row>
 
                 <Row>
                     <Col lg="3" md="6" sm="6">
@@ -232,9 +655,9 @@ function Dashboard() {
                 </Row>
 
                 <Row>
-                    <Col md="4">
+                    <Col md="3">
                         <Carrusel />
-                        <Carrusel2 />
+
                     </Col>
 
                 </Row>
