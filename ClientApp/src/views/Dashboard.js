@@ -44,6 +44,8 @@ import {
 import Carrusel from 'components/CardComponentDashboard/Carrusel'
 import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
+import CardsAll from 'components/CardComponentDashboard/CardsAll'
+
 
 
 function Dashboard() {
@@ -51,8 +53,8 @@ function Dashboard() {
         <>
 
             <div className="content">
+                
                 <Row>
-
                     <Col md="12" style={{ alignItems: 'center' }}>
                         <Carrusel2 />
                     </Col>
@@ -73,127 +75,10 @@ function Dashboard() {
                             </CardBody>
                         </Card>
                     </Col>
+                    <Col>
+                        <CardsAll />
+                    </Col>
 
-                    <Col md="3">
-                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
-                            <CardImg
-                                alt="Card image cap"
-                                className="rounded-3"
-                                src={require("img/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                                style={{ borderRadius: "20px 20px 0px 0px" }}
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
-                            <CardImg
-                                alt="Card image cap"
-                                className="rounded-3"
-                                src={require("img/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                                style={{ borderRadius: "20px 20px 0px 0px" }}
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
-                            <CardImg
-                                alt="Card image cap"
-                                className="rounded-3"
-                                src={require("img/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                                style={{ borderRadius: "20px 20px 0px 0px" }}
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card className="rounded-3" style={{ borderRadius: "20px" }}>
-                            <CardImg
-                                alt="Card image cap"
-                                className="rounded-3"
-                                src={require("img/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                                style={{ borderRadius: "20px 20px 0px 0px" }}
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
 
                 </Row>
 

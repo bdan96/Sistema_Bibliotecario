@@ -66,6 +66,9 @@ function Carrusel2(args) {
     });
 
     return (
+        <div className="justify-content-center align-items-center h-100">
+
+        
         <Carousel
             activeIndex={activeIndex}
             next={next}
@@ -88,7 +91,8 @@ function Carrusel2(args) {
                 directionText="Next"
                 onClickHandler={next}
             />
-        </Carousel>
+            </Carousel>
+        </div>
     );
 }
 
