@@ -3,6 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using Sistema_Bibliotecario.Areas.Identity.Data;
 using Sistema_Bibliotecario.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+    {
+
+        options.AddPolicy("Policy1", policy =>
+        {
+            policy.AllowAnyOrigin();
+        });
+
+    }
+);
+
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
 
 builder.Services.AddDbContext<BibliotecaDBContext>(options =>
@@ -24,6 +36,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors();
+
 
 
 app.MapControllerRoute(
@@ -31,6 +45,6 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html"); ;
-app.UseAuthentication();;
+app.UseAuthentication(); ;
 
 app.Run();

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CardAll from "./CardAll";
-
+//import axios from "axios"
 import hoyEsImportante from "assets/imgDashboard/hoyEsImportante.jpg";
 import Las48leyes from "assets/imgDashboard/Las48leyes.jpg";
 import Mate4 from "assets/imgDashboard/Mate4.jpg";
+import axios from "axios";
 
 const cards = [
     {
@@ -28,14 +29,42 @@ const cards = [
 ];
 
 function CardsAll() {
+
+    const [libros, setLibros] = useState([])
+    //const { createProxyMiddleware } = require('http-proxy-middleware');
+
+
+
+
+    useEffect(() => {
+        axios.get('http://localhost:5006/api/dashboard')
+            .then(response => {
+                setLibros(response.data)
+            })
+            .catch(error => console.error(error));
+    }, [])
+
+
+
+
+
     return (
         <div className="container d-flex justify-content-center align-items-center h-100">
             <div className="row">
                 {cards.map(({ title, image, url, id }) => (
                     <div className="col-md-4" key={id}>
-                        <CardAll imageSource={image} title={title} url={url}  />
+                        <CardAll imageSource={image} title={title} url={url} />
                     </div>
                 ))}
+            </div>
+            <div className="row">
+                {
+                    libros.map((libro, index) => (
+                        <h4 key={index}>
+                            {libro}
+                        </h4>
+                    ))
+                }
             </div>
         </div>
     );

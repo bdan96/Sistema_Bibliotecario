@@ -6,6 +6,7 @@ import {
     CarouselIndicators,
     CarouselCaption,
 } from 'reactstrap';
+import "assets/css/Carrusel2.css";
 
 const items = [
     {
@@ -54,9 +55,10 @@ function Carrusel2(args) {
             <CarouselItem
                 onExiting={() => setAnimating(true)}
                 onExited={() => setAnimating(false)}
-                key={item.src}               
+                key={item.src}
+                
             >
-                <img src={item.src} alt={item.altText} height="500" width="350"  />
+                <img src={item.src} alt={item.altText} height="500" width="350"/>
                 <CarouselCaption
                     captionText={item.caption}
                     captionHeader={item.caption}
