@@ -12,6 +12,8 @@ var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBCo
 builder.Services.AddDbContext<Sistema_Bibliotecario.Data.BibliotecaDBContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddScoped<Sistema_Bibliotecario.Models.BibliotecaDBContext>();
+
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();  
 
 builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -28,7 +30,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+    var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
