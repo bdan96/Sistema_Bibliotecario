@@ -1,21 +1,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Sistema_Bibliotecario.Models;
-using Sistema_Bibliotecario.Servicios.Contrato;
-using Sistema_Bibliotecario.Servicios.Implementacion;
+//using Sistema_Bibliotecario.Models;
+//using Sistema_Bibliotecario.Servicios.Contrato;
+//using Sistema_Bibliotecario.Servicios.Implementacion;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
 
-builder.Services.AddDbContext<Sistema_Bibliotecario.Data.BibliotecaDBContext>(options =>
-    options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<Sistema_Bibliotecario.Data.BibliotecaDBContext>(options =>
+//options.UseSqlServer(connectionString));
 
-builder.Services.AddScoped<IUsuarioService, UsuarioService>();  
+//builder.Services.AddScoped<IUsuarioService, UsuarioService>();  
 
-builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<Sistema_Bibliotecario.Data.BibliotecaDBContext>();
+//builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
+//.AddEntityFrameworkStores<Sistema_Bibliotecario.Data.BibliotecaDBContext>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Sistema_Bibliotecario.Models
 {
-    public partial class BibliotecaDBContext : DbContext
+    public partial class BDBibliotecaContext : DbContext
     {
-        public BibliotecaDBContext()
+        public BDBibliotecaContext()
         {
         }
 
-        public BibliotecaDBContext(DbContextOptions<BibliotecaDBContext> options)
+        public BDBibliotecaContext(DbContextOptions<BDBibliotecaContext> options)
             : base(options)
         {
         }
@@ -27,6 +26,7 @@ namespace Sistema_Bibliotecario.Models
         public virtual DbSet<Mora> Moras { get; set; } = null!;
         public virtual DbSet<Prestamo> Prestamos { get; set; } = null!;
         public virtual DbSet<RegistrosCostoIngreso> RegistrosCostoIngresos { get; set; } = null!;
+        public virtual DbSet<ReservaLibro> ReservaLibros { get; set; } = null!;
         public virtual DbSet<Telefono> Telefonos { get; set; } = null!;
         public virtual DbSet<TipoRegistro> TipoRegistros { get; set; } = null!;
         public virtual DbSet<TipoUsuario> TipoUsuarios { get; set; } = null!;
@@ -34,7 +34,11 @@ namespace Sistema_Bibliotecario.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=BDBiblioteca;Integrated Security=True;Trusted_Connection=True");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -107,12 +111,11 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.ToTable("GENERO");
 
-                entity.Property(e => e.IdGenero).HasColumnName("ID_GENERO");
-
-                entity.Property(e => e.NombreGenero)
-                    .HasMaxLength(30)
+                entity.Property(e => e.IdGenero)
+                    .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("NOMBRE_GENERO");
+                    .HasColumnName("ID_GENERO")
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<Idioma>(entity =>
@@ -154,7 +157,11 @@ namespace Sistema_Bibliotecario.Models
                     .HasColumnType("numeric(20, 0)")
                     .HasColumnName("CANTIDAD_INSTANCIA_LIBRO");
 
-                entity.Property(e => e.IdGenero).HasColumnName("ID_GENERO");
+                entity.Property(e => e.IdGenero)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("ID_GENERO")
+                    .IsFixedLength();
 
                 entity.Property(e => e.IdIdioma).HasColumnName("ID_IDIOMA");
 
@@ -267,9 +274,9 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.HasIndex(e => e.IdUsuario, "REALIZA_FK");
 
-                entity.Property(e => e.IdPrestamo).HasColumnName("ID_PRESTAMO");
+                entity.HasIndex(e => e.Idreservalibro, "SE_CONVIERTE_FK");
 
-                entity.Property(e => e.EstadoReserva).HasColumnName("ESTADO_RESERVA");
+                entity.Property(e => e.IdPrestamo).HasColumnName("ID_PRESTAMO");
 
                 entity.Property(e => e.FechaEntrega)
                     .HasColumnType("datetime")
@@ -281,10 +288,17 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
 
+                entity.Property(e => e.Idreservalibro).HasColumnName("IDRESERVALIBRO");
+
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Prestamos)
                     .HasForeignKey(d => d.IdUsuario)
                     .HasConstraintName("FK_PRESTAMO_REALIZA_USUARIO");
+
+                entity.HasOne(d => d.IdreservalibroNavigation)
+                    .WithMany(p => p.Prestamos)
+                    .HasForeignKey(d => d.Idreservalibro)
+                    .HasConstraintName("FK_PRESTAMO_SE_CONVIE_RESERVA_");
             });
 
             modelBuilder.Entity<RegistrosCostoIngreso>(entity =>
@@ -316,6 +330,47 @@ namespace Sistema_Bibliotecario.Models
                     .WithMany(p => p.RegistrosCostoIngresos)
                     .HasForeignKey(d => d.IdTipoRegistro)
                     .HasConstraintName("FK_REGISTRO_DIVIDEN_TIPO_REG");
+            });
+
+            modelBuilder.Entity<ReservaLibro>(entity =>
+            {
+                entity.HasKey(e => e.Idreservalibro)
+                    .IsClustered(false);
+
+                entity.ToTable("RESERVA_LIBRO");
+
+                entity.HasIndex(e => e.IdUsuario, "REALIZARESERVA_FK");
+
+                entity.HasIndex(e => e.IdPrestamo, "SE_CONVIERTE2_FK");
+
+                entity.HasIndex(e => e.IdInvInst, "TIENEMUCHASRESERVAS_FK");
+
+                entity.Property(e => e.Idreservalibro).HasColumnName("IDRESERVALIBRO");
+
+                entity.Property(e => e.FechaVencimientoreserva)
+                    .HasColumnType("datetime")
+                    .HasColumnName("FECHA_VENCIMIENTORESERVA");
+
+                entity.Property(e => e.IdInvInst).HasColumnName("ID_INV_INST");
+
+                entity.Property(e => e.IdPrestamo).HasColumnName("ID_PRESTAMO");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
+
+                entity.HasOne(d => d.IdInvInstNavigation)
+                    .WithMany(p => p.ReservaLibros)
+                    .HasForeignKey(d => d.IdInvInst)
+                    .HasConstraintName("FK_RESERVA__TIENEMUCH_INV_INST");
+
+                entity.HasOne(d => d.IdPrestamoNavigation)
+                    .WithMany(p => p.ReservaLibros)
+                    .HasForeignKey(d => d.IdPrestamo)
+                    .HasConstraintName("FK_RESERVA__SE_CONVIE_PRESTAMO");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.ReservaLibros)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .HasConstraintName("FK_RESERVA__REALIZARE_USUARIO");
             });
 
             modelBuilder.Entity<Telefono>(entity =>
@@ -387,6 +442,11 @@ namespace Sistema_Bibliotecario.Models
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("APELLIDOS");
+
+                entity.Property(e => e.Avatar)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("AVATAR");
 
                 entity.Property(e => e.Contrasenia)
                     .HasMaxLength(50)
