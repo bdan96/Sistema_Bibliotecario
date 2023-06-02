@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Sistema_Bibliotecario.Models
 {
-    public partial class Usuario : IdentityUser
+    public partial class Usuario
     {
         public Usuario()
         {

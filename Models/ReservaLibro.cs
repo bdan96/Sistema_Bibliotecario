@@ -11,13 +11,11 @@ namespace Sistema_Bibliotecario.Models
         }
 
         public int Idreservalibro { get; set; }
-        public int? IdInvInst { get; set; }
-        public int? IdPrestamo { get; set; }
         public int? IdUsuario { get; set; }
+        public int? IdInvInst { get; set; }
         public DateTime? FechaVencimientoreserva { get; set; }
 
         public virtual InvInstLibro? IdInvInstNavigation { get; set; }
-        public virtual Prestamo? IdPrestamoNavigation { get; set; }
         public virtual Usuario? IdUsuarioNavigation { get; set; }
         public virtual ICollection<Prestamo> Prestamos { get; set; }
     }

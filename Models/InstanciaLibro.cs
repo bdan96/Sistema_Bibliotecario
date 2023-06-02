@@ -13,7 +13,7 @@ namespace Sistema_Bibliotecario.Models
         public int IdInstLibro { get; set; }
         public int? IdLibro { get; set; }
         public int? IdIdioma { get; set; }
-        public string? IdGenero { get; set; }
+        public int? IdGenero { get; set; }
         public string? LogoLibro { get; set; }
         public string? AutorLibro { get; set; }
         public string? TituloLibro { get; set; }
