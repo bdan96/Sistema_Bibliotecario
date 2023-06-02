@@ -6,9 +6,11 @@ import {
     CarouselItem,
     CarouselIndicators,
 } from 'reactstrap';
-import img1 from 'img/Habitos-atomicos.jpg';
+
+
+/*import img1 from 'img/Habitos-atomicos.jpg';
 import img2 from 'img/Las-48-leyes-del-poder.jpg';
-import img3 from 'img/hoy-es-importante.jpg';
+import img3 from 'img/hoy-es-importante.jpg';*/
 
 
 function Carrusel() {

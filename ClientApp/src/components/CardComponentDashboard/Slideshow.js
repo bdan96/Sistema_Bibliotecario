@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { ReactComponent as FlechaIzquierda } from 'img/iconmonstr-angel-left-thin.svg';
 import { ReactComponent as FlechaDerecha } from 'img/iconmonstr-angel-right-thin.svg';
 import styled from 'styled-components';
@@ -10,8 +10,8 @@ const Slideshow = ({
     velocidad = "500",
     intervalo = "5000"
 }) => {
-    const slideshow = useRef(null);
-    const intervaloSlideshow = useRef(null);
+    const slideshow = useRef(0);
+    const intervaloSlideshow = useRef(0);
 
     const siguiente = useCallback(() => {
         // Comprobamos que el slideshow tenga elementos

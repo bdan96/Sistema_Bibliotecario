@@ -10,13 +10,13 @@ import "assets/css/Carrusel2.css";
 
 const items = [
     {
-        src: require("img/Las48leyes.jpg"),
+        src: require("assets/imgDashboard/Las48leyes.jpg"),
         altText: 'Slide 1',
         caption: 'Slide 1',
         key: 1,
     },
     {
-        src:"https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg",
+        src: "https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg",
         altText: 'Slide 2',
         caption: 'Slide 2',
         key: 2,
@@ -56,9 +56,9 @@ function Carrusel2(args) {
                 onExiting={() => setAnimating(true)}
                 onExited={() => setAnimating(false)}
                 key={item.src}
-                
+
             >
-                <img src={item.src} alt={item.altText} height="500" width="350"/>
+                <img src={item.src} alt={item.altText} height="500" width="370" />
                 <CarouselCaption
                     captionText={item.caption}
                     captionHeader={item.caption}
@@ -70,29 +70,29 @@ function Carrusel2(args) {
     return (
         <div className="justify-content-center align-items-center h-100">
 
-        
-        <Carousel
-            activeIndex={activeIndex}
-            next={next}
-            previous={previous}
-            {...args}           
-        >
-            <CarouselIndicators
-                items={items}
+
+            <Carousel
                 activeIndex={activeIndex}
-                onClickHandler={goToIndex}
-            />
-            {slides}
-            <CarouselControl
-                direction="prev"
-                directionText="Previous"
-                onClickHandler={previous}
-            />
-            <CarouselControl
-                direction="next"
-                directionText="Next"
-                onClickHandler={next}
-            />
+                next={next}
+                previous={previous}
+                {...args}
+            >
+                <CarouselIndicators
+                    items={items}
+                    activeIndex={activeIndex}
+                    onClickHandler={goToIndex}
+                />
+                {slides}
+                <CarouselControl
+                    direction="prev"
+                    directionText="Previous"
+                    onClickHandler={previous}
+                />
+                <CarouselControl
+                    direction="next"
+                    directionText="Next"
+                    onClickHandler={next}
+                />
             </Carousel>
         </div>
     );

@@ -45,6 +45,7 @@ import Carrusel from 'components/CardComponentDashboard/Carrusel'
 import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
 import CardsAll from 'components/CardComponentDashboard/CardsAll'
+//import CarruselNew from "../components/CardComponentDashboard/CarruselNew";
 
 
 
@@ -53,10 +54,52 @@ function Dashboard() {
         <>
 
             <div className="content">
-                
+
+
                 <Row>
                     <Col md="12" style={{ alignItems: 'center' }}>
                         <Carrusel2 />
+                        <br></br>
+
+                    </Col>
+
+                </Row>
+
+                <Row>
+                    <Col md="3">
+                        <Carrusel />
+
+                    </Col>
+                    <Col md="9">
+                        <Card>
+
+                            <CardBody>
+                                <Row>
+                                    <Col md="6" xs="5">
+                                        <div className="icon-big text-center icon-warning">
+                                            <i className="nc-icon nc-globe text-warning" />
+                                        </div>
+                                    </Col>
+                                    <Col md="6" xs="7">
+                                        <div className="numbers">
+                                            <p className="card-category">Capacity</p>
+                                            <CardTitle tag="p">150GB</CardTitle>
+                                            <p className="card-category">Lorem isup kjfskfjkfjaskfjaskjaskfjaskasja
+                                                <br></br>
+                                                <br></br>
+                                                <br></br>
+                                            </p>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </CardBody>
+                            <CardFooter>
+                                <hr />
+                                <div>
+                                    <i className="fas fa-sync-alt" /> Update Now
+                                </div>
+                            </CardFooter>
+                        </Card>
                     </Col>
 
                 </Row>
@@ -125,7 +168,7 @@ function Dashboard() {
                             <CardImg
                                 alt="Card image cap"
                                 className="rounded-3"
-                                src={require("img/Las48leyes.jpg")}
+                                src={require("assets/imgDashboard/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
@@ -153,7 +196,7 @@ function Dashboard() {
                         <Card >
                             <CardImg
                                 alt="Card image cap"
-                                src={require("img/Las48leyes.jpg")}
+                                src={require("assets/imgDashboard/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
@@ -209,7 +252,7 @@ function Dashboard() {
                         <Card >
                             <CardImg
                                 alt="Card image cap"
-                                src={require("img/Las48leyes.jpg")}
+                                src={require("assets/imgDashboard/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
@@ -254,7 +297,7 @@ function Dashboard() {
                             <CardImg
                                 alt="Card image cap"
                                 className="rounded-3"
-                                src={require("img/Las48leyes.jpg")}
+                                src={require("assets/imgDashboard/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
@@ -282,7 +325,7 @@ function Dashboard() {
                         <Card >
                             <CardImg
                                 alt="Card image cap"
-                                src={require("img/Las48leyes.jpg")}
+                                src={require("assets/imgDashboard/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
@@ -338,7 +381,7 @@ function Dashboard() {
                         <Card >
                             <CardImg
                                 alt="Card image cap"
-                                src={require("img/Las48leyes.jpg")}
+                                src={require("assets/imgDashboard/Las48leyes.jpg")}
                                 top
                                 height="400"
                                 width="270"
@@ -554,13 +597,7 @@ function Dashboard() {
                     </Col>
                 </Row>
 
-                <Row>
-                    <Col md="3">
-                        <Carrusel />
-
-                    </Col>
-
-                </Row>
+                
             </div>
         </>
     );

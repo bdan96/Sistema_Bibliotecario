@@ -17,7 +17,7 @@ function CardLibro() {
             <Card>
                 <CardImg
                     alt="Card image cap"
-                    src={require("img/Las48leyes.jpg")}
+                    src={require("assets/imgDashboard/Las48leyes.jpg")}
                     top                   
                     width="100%"
                 />
@@ -43,7 +43,7 @@ function CardLibro() {
             <Card>
                 <CardImg
                     alt="Card image cap"
-                    src={require("img/hoyEsImportante.jpg")}
+                    src={require("assets/imgDashboard/hoyEsImportante.jpg")}
                     top                 
                     width="100%"
                 />
@@ -70,7 +70,7 @@ function CardLibro() {
             <Card>
                 <CardImg
                     alt="Card image cap"
-                    src={require("img/Mate4.jpg")}
+                    src={require("assets/imgDashboard/Mate4.jpg")}
                     bottom
                     width="100%"
                 />

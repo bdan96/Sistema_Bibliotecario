@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\assets\imgDashboard\" />
+    <Folder Include="ClientApp\src\assets\imgLibros\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
