@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
-import { ReactComponent as FlechaIzquierda } from 'img/iconmonstr-angel-left-thin.svg';
-import { ReactComponent as FlechaDerecha } from 'img/iconmonstr-angel-right-thin.svg';
+import React, { useRef, useEffect, useCallback, useState,useContext } from 'react';
+import { ReactComponent as FlechaIzquierda } from 'assets/imgDashboard/iconmonstr-angel-left-thin.svg';
+import { ReactComponent as FlechaDerecha } from 'assets/imgDashboard/iconmonstr-angel-right-thin.svg';
 import styled from 'styled-components';
 
 const Slideshow = ({
@@ -174,4 +174,4 @@ const Boton = styled.button`
 	${props => props.derecho ? 'right: 0' : 'left: 0'}
 `;
 
-export { Slideshow, Slide, TextoSlide };
+export { Slideshow, Slide,TextoSlide};

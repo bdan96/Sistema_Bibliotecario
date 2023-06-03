@@ -87,11 +87,13 @@ function Carrusel2(args) {
                     direction="prev"
                     directionText="Previous"
                     onClickHandler={previous}
+                    id="carruselPrev"
                 />
                 <CarouselControl
                     direction="next"
                     directionText="Next"
                     onClickHandler={next}
+                    id="carruselNext"
                 />
             </Carousel>
         </div>

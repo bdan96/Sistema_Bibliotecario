@@ -45,7 +45,7 @@ import Carrusel from 'components/CardComponentDashboard/Carrusel'
 import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
 import CardsAll from 'components/CardComponentDashboard/CardsAll'
-//import CarruselNew from "../components/CardComponentDashboard/CarruselNew";
+//import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
 
 
 
@@ -55,7 +55,7 @@ function Dashboard() {
 
             <div className="content">
 
-
+                
                 <Row>
                     <Col md="12" style={{ alignItems: 'center' }}>
                         <Carrusel2 />
@@ -597,7 +597,7 @@ function Dashboard() {
                     </Col>
                 </Row>
 
-                
+
             </div>
         </>
     );
