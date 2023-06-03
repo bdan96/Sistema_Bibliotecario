@@ -4,7 +4,7 @@
 
 
 
-#carruselPrev .carousel-control-prev-icon, #carruselNext .carousel-control-next-icon {
+.carousel-control-prev-icon,.carousel-control-next-icon {
     /* line-height: 3; */
     background-color: black;
     display: block;

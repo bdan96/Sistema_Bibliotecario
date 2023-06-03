@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { Slideshow, Slide, TextoSlide } from './Slideshow.js'
 import 'assets/css/estilosCarrusel.css';
 import styled from 'styled-components';
@@ -7,26 +7,16 @@ import img2 from 'assets/imgDashboard/Las-48-leyes-del-poder.jpg';
 import img3 from 'assets/imgDashboard/hoy-es-importante.jpg';
 import img4 from 'assets/imgDashboard/senior-de-los-anillos.png';
 
-const Titulo = styled.p`
+
+const CarruselNew = () => {
+    const Titulo = styled.p`
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
 	margin-bottom: 10px;       
 `;
-
-const CarruselNew = () => {
-
-
-    
-    
     return (
-        <>
-            <Titulo>Test de carrusel</Titulo>
-            <p>Hola mundo</p>
-        </>
-    )
-    /*return (
-        <>
+        <main>
             <Titulo>Productos Destacados</Titulo>
             <Slideshow controles={true}>
                 <Slide>
@@ -82,9 +72,11 @@ const CarruselNew = () => {
                     </TextoSlide>
                 </Slide>
             </Slideshow>
-        </>
-    );*/
+        </main>
+    );
 }
+
+
 
 
 export default CarruselNew;
