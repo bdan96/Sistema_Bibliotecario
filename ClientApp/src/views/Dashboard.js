@@ -68,37 +68,32 @@ function Dashboard() {
                 <Row>
                     <Col md="3">
                         <Carrusel />
-
+                        <br></br>
                     </Col>
                     <Col md="9">
                         <Card>
 
                             <CardBody>
                                 <Row>
-                                    <Col md="6" xs="5">
-                                        <div className="icon-big text-center icon-warning">
-                                            <i className="nc-icon nc-globe text-warning" />
+                                    <Col md="4" xs="7">
+                                        <div>
+                                            <img src="https://th.bing.com/th/id/OIP.VNSDd8Nd2KylGsXAuzCRewHaMM?pid=ImgDet&rs=1" height="410" width="200"></img>
                                         </div>
                                     </Col>
-                                    <Col md="6" xs="7">
+                                    <Col md="8" xs="5">
                                         <div className="numbers">
-                                            <p className="card-category">Capacity</p>
-                                            <CardTitle tag="p">150GB</CardTitle>
-                                            <p className="card-category">Lorem isup kjfskfjkfjaskfjaskjaskfjaskasja
+                                            <CardTitle>La divina comedia</CardTitle>
+                                            <p className="card-description">Autor: Danta alighieri</p>                                         
+                                            <p className="card-description">Descripcion del libro
                                                 <br></br>
                                                 <br></br>
-                                                <br></br>
+                                                
                                             </p>
                                         </div>
                                     </Col>
                                 </Row>
                             </CardBody>
-                            <CardFooter>
-                                <hr />
-                                <div>
-                                    <i className="fas fa-sync-alt" /> Update Now
-                                </div>
-                            </CardFooter>
+                            
                         </Card>
                     </Col>
 
