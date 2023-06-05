@@ -21,8 +21,12 @@ builder.Services.AddCors(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
 
+
+
 builder.Services.AddDbContext<Sistema_Bibliotecario.Models.BDBibliotecaContext>(options =>
 options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<Sistema_Bibliotecario.Models.BDBibliotecaContext>();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 

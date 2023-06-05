@@ -57,7 +57,7 @@ function CardsAll() {
                     </div>
                 ))}
             </div>
-            <div className="row">
+            {/*<div className="row">
                 {
                     libros.map((libro, index) => (
                         <h4 key={index}>
@@ -65,7 +65,7 @@ function CardsAll() {
                         </h4>
                     ))
                 }
-            </div>
+            </div>*/}
         </div>
     );
 }
