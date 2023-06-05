@@ -95,7 +95,7 @@ namespace Sistema_Bibliotecario.Models
                 entity.Property(e => e.IdCategoria).HasColumnName("ID_CATEGORIA");
 
                 entity.Property(e => e.Categoria)
-                    .HasMaxLength(20)
+                    .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasColumnName("CATEGORIA");
             });
@@ -107,11 +107,12 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.ToTable("GENERO");
 
-                entity.Property(e => e.IdGenero)
-                    .HasMaxLength(10)
+                entity.Property(e => e.IdGenero).HasColumnName("ID_GENERO");
+
+                entity.Property(e => e.NombreGenero)
+                    .HasMaxLength(30)
                     .IsUnicode(false)
-                    .HasColumnName("ID_GENERO")
-                    .IsFixedLength();
+                    .HasColumnName("NOMBRE_GENERO");
             });
 
             modelBuilder.Entity<Idioma>(entity =>
@@ -153,11 +154,7 @@ namespace Sistema_Bibliotecario.Models
                     .HasColumnType("numeric(20, 0)")
                     .HasColumnName("CANTIDAD_INSTANCIA_LIBRO");
 
-                entity.Property(e => e.IdGenero)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("ID_GENERO")
-                    .IsFixedLength();
+                entity.Property(e => e.IdGenero).HasColumnName("ID_GENERO");
 
                 entity.Property(e => e.IdIdioma).HasColumnName("ID_IDIOMA");
 
@@ -200,15 +197,15 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.ToTable("INV_INST_LIBRO");
 
-                entity.HasIndex(e => e.IdPrestamo, "AGRUPA_FK");
-
                 entity.HasIndex(e => e.IdInstLibro, "CONTIENE_FK");
+
+                entity.HasIndex(e => e.IdUsuario, "QUIENTIENELIBRO_FK");
 
                 entity.Property(e => e.IdInvInst).HasColumnName("ID_INV_INST");
 
                 entity.Property(e => e.IdInstLibro).HasColumnName("ID_INST_LIBRO");
 
-                entity.Property(e => e.IdPrestamo).HasColumnName("ID_PRESTAMO");
+                entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
 
                 entity.Property(e => e.Prestado).HasColumnName("PRESTADO");
 
@@ -217,10 +214,10 @@ namespace Sistema_Bibliotecario.Models
                     .HasForeignKey(d => d.IdInstLibro)
                     .HasConstraintName("FK_INV_INST_CONTIENE_INSTANCI");
 
-                entity.HasOne(d => d.IdPrestamoNavigation)
+                entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.InvInstLibros)
-                    .HasForeignKey(d => d.IdPrestamo)
-                    .HasConstraintName("FK_INV_INST_AGRUPA_PRESTAMO");
+                    .HasForeignKey(d => d.IdUsuario)
+                    .HasConstraintName("FK_INV_INST_QUIENTIEN_USUARIO");
             });
 
             modelBuilder.Entity<Mora>(entity =>
@@ -268,6 +265,8 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.ToTable("PRESTAMO");
 
+                entity.HasIndex(e => e.IdInvInst, "AGRUPA_FK");
+
                 entity.HasIndex(e => e.IdUsuario, "REALIZA_FK");
 
                 entity.HasIndex(e => e.Idreservalibro, "SE_CONVIERTE_FK");
@@ -282,9 +281,16 @@ namespace Sistema_Bibliotecario.Models
                     .HasColumnType("datetime")
                     .HasColumnName("FECHA_PRESTAMO");
 
+                entity.Property(e => e.IdInvInst).HasColumnName("ID_INV_INST");
+
                 entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
 
                 entity.Property(e => e.Idreservalibro).HasColumnName("IDRESERVALIBRO");
+
+                entity.HasOne(d => d.IdInvInstNavigation)
+                    .WithMany(p => p.Prestamos)
+                    .HasForeignKey(d => d.IdInvInst)
+                    .HasConstraintName("FK_PRESTAMO_AGRUPA_INV_INST");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Prestamos)
@@ -337,8 +343,6 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.HasIndex(e => e.IdUsuario, "REALIZARESERVA_FK");
 
-                entity.HasIndex(e => e.IdPrestamo, "SE_CONVIERTE2_FK");
-
                 entity.HasIndex(e => e.IdInvInst, "TIENEMUCHASRESERVAS_FK");
 
                 entity.Property(e => e.Idreservalibro).HasColumnName("IDRESERVALIBRO");
@@ -349,19 +353,12 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.Property(e => e.IdInvInst).HasColumnName("ID_INV_INST");
 
-                entity.Property(e => e.IdPrestamo).HasColumnName("ID_PRESTAMO");
-
                 entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
 
                 entity.HasOne(d => d.IdInvInstNavigation)
                     .WithMany(p => p.ReservaLibros)
                     .HasForeignKey(d => d.IdInvInst)
                     .HasConstraintName("FK_RESERVA__TIENEMUCH_INV_INST");
-
-                entity.HasOne(d => d.IdPrestamoNavigation)
-                    .WithMany(p => p.ReservaLibros)
-                    .HasForeignKey(d => d.IdPrestamo)
-                    .HasConstraintName("FK_RESERVA__SE_CONVIE_PRESTAMO");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.ReservaLibros)
