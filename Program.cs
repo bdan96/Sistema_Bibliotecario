@@ -7,10 +7,24 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCors(options =>
+{
+
+    options.AddPolicy("Policy1", policy =>
+    {
+        policy.AllowAnyOrigin();
+    });
+
+}
+);
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
+
+
 
 builder.Services.AddDbContext<Sistema_Bibliotecario.Models.BDBibliotecaContext>(options =>
 options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<Sistema_Bibliotecario.Models.BDBibliotecaContext>();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
