@@ -99,7 +99,7 @@ namespace Sistema_Bibliotecario.Models
                 entity.Property(e => e.IdCategoria).HasColumnName("ID_CATEGORIA");
 
                 entity.Property(e => e.Categoria)
-                    .HasMaxLength(30)
+                    .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasColumnName("CATEGORIA");
             });
@@ -203,9 +203,13 @@ namespace Sistema_Bibliotecario.Models
 
                 entity.HasIndex(e => e.IdInstLibro, "CONTIENE_FK");
 
+                entity.HasIndex(e => e.IdUsuario, "QUIENTIENELIBRO_FK");
+
                 entity.Property(e => e.IdInvInst).HasColumnName("ID_INV_INST");
 
                 entity.Property(e => e.IdInstLibro).HasColumnName("ID_INST_LIBRO");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("ID_USUARIO");
 
                 entity.Property(e => e.Prestado).HasColumnName("PRESTADO");
 
@@ -213,6 +217,11 @@ namespace Sistema_Bibliotecario.Models
                     .WithMany(p => p.InvInstLibros)
                     .HasForeignKey(d => d.IdInstLibro)
                     .HasConstraintName("FK_INV_INST_CONTIENE_INSTANCI");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.InvInstLibros)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .HasConstraintName("FK_INV_INST_QUIENTIEN_USUARIO");
             });
 
             modelBuilder.Entity<Mora>(entity =>
