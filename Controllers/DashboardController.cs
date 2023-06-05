@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Sistema_Bibliotecario.Models;
 //using System.Web.Http.Cors;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.EntityFrameworkCore;
 
 namespace Sistema_Bibliotecario.Controllers
 {
@@ -14,9 +15,12 @@ namespace Sistema_Bibliotecario.Controllers
 
         private readonly ILogger<DashboardController> _logger;
 
-        public DashboardController(ILogger<DashboardController> logger)
+        private readonly BDBibliotecaContext _context;
+
+        public DashboardController(ILogger<DashboardController> logger, BDBibliotecaContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [EnableCors("Policy1")]
@@ -25,6 +29,7 @@ namespace Sistema_Bibliotecario.Controllers
         [HttpGet]
         public List<string> Get()
         {
+            var result = _context.Database.ExecuteSqlRaw("consultarReservas");
 
             return new List<string> {
                 "Data1",

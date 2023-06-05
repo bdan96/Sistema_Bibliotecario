@@ -81,9 +81,12 @@ function Dashboard() {
                                         </div>
                                     </Col>
                                     <Col md="8" xs="5">
-                                        <div className="numbers">
+                                        <div className="numbers">                                                                                      
                                             <CardTitle>La divina comedia</CardTitle>
-                                            <p className="card-description">Autor: Danta alighieri</p>                                         
+                                            
+                                            <p>Autor: Danta alighieri</p>  
+                                            <br></br>
+                                            
                                             <p className="card-description">Descripcion del libro
                                                 <br></br>
                                                 <br></br>
