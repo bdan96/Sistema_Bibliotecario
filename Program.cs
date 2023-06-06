@@ -18,6 +18,8 @@ builder.Services.AddCors(options =>
 
 }
 );
+
+
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
 
 
