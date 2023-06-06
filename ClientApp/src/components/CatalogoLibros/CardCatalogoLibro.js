@@ -18,7 +18,7 @@ const CardCatalogoLibro = (props) => {
             <Card className="text-center" onClick={toggle} >
                 <CardImg
                     alt="Card image cap"
-                    src={libro[0].LogoLibro}
+                    src={libro.LogoLibro}
                     style={{
                         height: 400
                     }}
@@ -28,13 +28,13 @@ const CardCatalogoLibro = (props) => {
                 />
                 <CardBody>
                     <CardTitle tag="h5">
-                        {libro[0].TituloLibro}
+                        {libro.TituloLibro}
                     </CardTitle>
                    
                 </CardBody>
             </Card>
             { /*Este es el componente que se muestra cuando se clickea en el card*/}
-            <ModalCatalogoLibro toggle={toggle} modal={modal} libro={libro[0]}></ModalCatalogoLibro>
+            <ModalCatalogoLibro toggle={toggle} modal={modal} libro={libro}></ModalCatalogoLibro>
 
         </>
         

@@ -7,10 +7,8 @@ function ModalCatalogoLibro({ toggle,modal, libro}) {
 
 
     const idiomas = ['Ingles', 'Español']
-    const categorias = ['acción', 'Suspenso']
+    const categorias = ['Fantasia', 'Suspenso']
 
-    console.log(libro)
-    console.log(libro.LogoLibro)
 
     return (
         <div>
