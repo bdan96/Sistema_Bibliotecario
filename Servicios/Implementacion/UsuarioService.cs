@@ -2,11 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Sistema_Bibliotecario.Models;
 using Sistema_Bibliotecario.Servicios.Contrato;
 
-namespace Sistema_Bibliotecario.Servicios.Implementacion{
+namespace Sistema_Bibliotecario.Servicios.Implementacion
+{
     public class UsuarioService : IUsuarioService
     {
-        private readonly BibliotecaDBContext _context;
-        public UsuarioService(BibliotecaDBContext context)
+        private readonly BDBibliotecaContext _context;
+        public UsuarioService(BDBibliotecaContext context)
         {
             _context = context;
         }
@@ -36,4 +37,4 @@ namespace Sistema_Bibliotecario.Servicios.Implementacion{
             return _context.Usuarios.ToList();
         }
     }
-}                                                                                       
+}
