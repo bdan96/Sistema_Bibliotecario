@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 namespace Sistema_Bibliotecario.Areas.Identity.Data;
 
 // Add profile data for application users by adding properties to the User class
-public class User 
+public class User : IdentityUser
 {
     
 
