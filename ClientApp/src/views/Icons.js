@@ -30,10 +30,12 @@ function Icons() {
     const [libros, setLibros] = useState([]);
     const [librosCard, setLibrosCard] = useState([]);
     const [librosOrdenar, setLibrosOrdenar] = useState([]);
+    const [librosFiltrados, setLibrosFiltrados] = useState([]);
     const [busqueda, setBusqueda] = useState("");
     const [opcionSelect, setOpcionSelect] = useState('');
+    const [opcionFilter, setOpcionFilter] = useState('');
 
-    //funcion para filtrar
+    //funcion para filtrar la busqueda
     const filtrar = (terminoBusqueda) => {
         var resultadosBusqueda = librosCard.filter((elemento) => {
 
@@ -44,16 +46,29 @@ function Icons() {
             }
         })
         setLibros(resultadosBusqueda)
-    }   
+    } 
+    
+    //funcion para filtrar por genero
+    const filtrarGenero = (terminofiltrado) => {
+        var resultadoFiltrado = librosFiltrados.filter((elemento) => {
+
+            if (parseInt(elemento.IdGenero).toString().includes(terminofiltrado)) {
+                return elemento
+            }
+        })
+
+        setLibros(resultadoFiltrado)
+
+    }
 
     //funcion para ordenar el arreglo
     const ordenar = (terminoOrden) => {
         var arregloOrdenado = []
         console.log(terminoOrden)
         switch (terminoOrden) {
-            case "1": arregloOrdenado = librosOrdenar.sort((a,b)=>a.TituloLibro.localeCompare(b.TituloLibro)); break;
-            case "2": arregloOrdenado = librosOrdenar.sort((a, b) => a.TituloLibro.localeCompare(b.TituloLibro)).reverse(); break;
-            default: arregloOrdenado = librosOrdenar  
+            case "1": arregloOrdenado = libros.sort((a,b)=>a.TituloLibro.localeCompare(b.TituloLibro)); break;
+            case "2": arregloOrdenado = libros.sort((a, b) => a.TituloLibro.localeCompare(b.TituloLibro)).reverse(); break;
+            default: arregloOrdenado = libros 
         }
 
             setLibros(arregloOrdenado)
@@ -67,17 +82,25 @@ function Icons() {
             filtrar(e.target.value)
     }
 
-    //funcion que guarda la seleccion del input select
+    //funcion que guarda la seleccion del input select de ordenado
     const handleChangeSelect = (eventoSelect) => {
         setOpcionSelect(eventoSelect.target.value)
         ordenar(eventoSelect.target.value)
         
     }
 
+    //funcion que guarda la seleccion del input select de filtrado
+    const handleChangeFilter = (eventoFilter) => {
+        setOpcionFilter(eventoFilter.target.value)
+        filtrarGenero(eventoFilter.target.value)
+
+    }
+
     useEffect(() => {
         setLibros(books)
         setLibrosCard(books)
         setLibrosOrdenar(books)
+        setLibrosFiltrados(books)
     }, [])
   
     //se retornan 1 componente por cada libro
@@ -90,7 +113,7 @@ function Icons() {
                     <Col >
                         <Card
                         className="my-2"
-                        color="info"
+                        color="dark"
                         inverse
                        
                     >
@@ -129,10 +152,14 @@ function Icons() {
                                         </Input>
                                     </Col>
                                     <Col
-
                                         sm="4"
                                     >
-                                     
+                                        <Label tag="h6">Filtrado por categorias</Label>
+                                        <Input type="select" value={opcionFilter} onChange={handleChangeFilter}>
+                                            <option value="">Filtrar por categorias</option>
+                                            <option value="0">Fantasia</option>
+                                            <option value="1">Suspenso</option>
+                                        </Input>
                                     </Col>
                                 </Row>
                         </CardBody>

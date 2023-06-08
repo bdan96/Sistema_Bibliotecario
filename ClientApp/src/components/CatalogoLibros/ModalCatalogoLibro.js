@@ -1,13 +1,34 @@
 ﻿
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col, Row, Card,CardBody,CardFooter,CardHeader,CardText,CardTitle,ListGroup,ListGroupItem} from 'reactstrap';
-
+import axios from 'axios'
 
 function ModalCatalogoLibro({ toggle,modal, libro}) {
 
 
     const idiomas = ['Ingles', 'Español']
     const categorias = ['Fantasia', 'Suspenso']
+
+    const newPrestamo = () => {
+
+        let prestamo = {usuario:1, libro: 1}
+
+        //fetch("/api/prestamo", {
+
+        //    method: "POST",
+        //    body: JSON.stringify(prestamo)
+
+        //})
+        // .then((response)=> response.json())
+        //    .then((json) => console.log(json))
+        //.catch((error) => console.log(error))
+
+        axios.post('http://localhost:5006/api/prestamo',prestamo)
+            .then(response => {
+                alert(response.data)
+            })
+            .catch(error => console.error(error));
+    }
 
 
     return (
@@ -56,7 +77,9 @@ function ModalCatalogoLibro({ toggle,modal, libro}) {
                     <Button style={{
                         margin: "5px",
 
-                    }} color="success" outline>
+                    }} color="success" outline
+                        onClick={newPrestamo}
+                    >
                         Prestar
                     </Button>
                     {' '}
