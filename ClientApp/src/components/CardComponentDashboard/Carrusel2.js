@@ -10,19 +10,19 @@ import "assets/css/Carrusel2.css";
 
 const items = [
     {
-        src: require("assets/imgDashboard/Las48leyes.jpg"),
+        src: "https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg",
         altText: 'Slide 1',
         caption: 'Slide 1',
         key: 1,
     },
     {
-        src: "https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg",
+        src: "https://covers.alibrate.com/b/59872e8acba2bce50c1a6d96/b0bf30dd-8585-4a46-9229-c72a94282fbe/share",
         altText: 'Slide 2',
         caption: 'Slide 2',
         key: 2,
     },
     {
-        src: "https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg",
+        src: "https://m.media-amazon.com/images/I/81pSlQ1HGkL.jpg",
         altText: 'Slide 3',
         caption: 'Slide 3',
         key: 3,
@@ -59,10 +59,7 @@ function Carrusel2(args) {
 
             >
                 <img src={item.src} alt={item.altText} height="500" width="370" />
-                <CarouselCaption
-                    captionText={item.caption}
-                    captionHeader={item.caption}
-                />
+                
             </CarouselItem>
         );
     });

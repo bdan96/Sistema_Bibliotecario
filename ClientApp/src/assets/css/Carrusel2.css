@@ -2,6 +2,9 @@
     text-align: center !important;
 }
 
+.carousel-caption{
+    color: black;
+}
 
 
 .carousel-control-prev-icon,.carousel-control-next-icon {

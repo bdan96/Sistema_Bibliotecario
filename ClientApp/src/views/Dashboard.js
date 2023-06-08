@@ -55,7 +55,7 @@ function Dashboard() {
 
             <div className="content">
 
-                
+
                 <Row>
                     <Col md="12" style={{ alignItems: 'center' }}>
                         <Carrusel2 />
@@ -75,28 +75,28 @@ function Dashboard() {
 
                             <CardBody>
                                 <Row>
-                                    <Col md="4" xs="7">
+                                    <Col md="5">
                                         <div>
-                                            <img src="https://th.bing.com/th/id/OIP.VNSDd8Nd2KylGsXAuzCRewHaMM?pid=ImgDet&rs=1" height="410" width="200"></img>
+                                            <img src="https://pearson.es/images/default-source/espa%C3%B1a/fundamentos-de-sistemas-de-bases-de-datos_9788478290857.jpg?sfvrsn=6c7d04b2_0" height="410" width="350"></img>
                                         </div>
                                     </Col>
-                                    <Col md="8" xs="5">
-                                        <div className="numbers">                                                                                      
+                                    <Col md="7">
+                                        <div className="numbers">
                                             <CardTitle>La divina comedia</CardTitle>
-                                            
-                                            <p>Autor: Danta alighieri</p>  
+
+                                            <p>Autor: Danta alighieri</p>
                                             <br></br>
-                                            
+
                                             <p className="card-description">Descripcion del libro
                                                 <br></br>
                                                 <br></br>
-                                                
+
                                             </p>
                                         </div>
                                     </Col>
                                 </Row>
                             </CardBody>
-                            
+
                         </Card>
                     </Col>
 

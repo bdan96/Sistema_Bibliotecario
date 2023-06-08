@@ -25,12 +25,12 @@ function Carrusel() {
     const items = [
         {
             caption: 'Sample Caption One', src:
-                'https://m.media-amazon.com/images/I/51HmK4PEYtL.jpg',
+                'https://olcovers2.blob.core.windows.net/coverswp/2013/06/Introduccion-a-la-programacion-con-C-sharp-OpenLibra.gif',
             altText: 'Slide One'
         },
         {
             caption: 'Sample Caption Two', src:
-                'https://m.media-amazon.com/images/I/51HmK4PEYtL.jpg',
+                'https://www.loqueleo.com/co/uploads/2021/01/la-odisea-1.JPG',
             altText: 'Slide Two'
         },
         {
@@ -68,7 +68,7 @@ function Carrusel() {
                 onExited={() => setAnimating(false)}
                 onExiting={() => setAnimating(true)}
             >
-                <img src={item.src} alt={item.altText} />
+                <img src={item.src} alt={item.altText} height="410" width="350" />
             </CarouselItem>
         );
     });
