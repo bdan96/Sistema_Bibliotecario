@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+/*using Microsoft.AspNetCore.Mvc;
 using Sistema_Bibliotecario.Models;
 using Sistema_Bibliotecario.Servicios.Contrato;
 using Sistema_Bibliotecario.Recursos;
@@ -36,10 +36,10 @@ namespace Sistema_Bibliotecario.Controllers
             }
             else
             {
-                ViewData["Mensaje"]="Error al crear el usuario";
+                ViewData["Mensaje"] = "Error al crear el usuario";
                 return View();
             }
-           
+
         }
 
         public IActionResult IniciarSesion()
@@ -92,4 +92,4 @@ namespace Sistema_Bibliotecario.Controllers
             }
         }
     }
-}                                                                                                                                        
+}*/

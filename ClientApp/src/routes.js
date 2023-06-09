@@ -35,7 +35,7 @@ var routes = [
   },
   {
     path: "/icons",
-    name: "Icons",
+    name: "Catalogo",
     icon: "nc-icon nc-diamond",
     component: <Icons />,
     layout: "/admin",
