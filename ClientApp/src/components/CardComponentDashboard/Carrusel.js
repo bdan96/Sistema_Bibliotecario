@@ -75,7 +75,7 @@ function Carrusel() {
 
     return (
         <div>
-            <h6>Nuevas adquisiciones</h6>
+
             <Carousel previous={previousButton} next={nextButton}
                 activeIndex={activeIndex}>
                 <CarouselIndicators items={items}

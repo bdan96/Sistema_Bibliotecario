@@ -84,7 +84,7 @@ function Dashboard() {
                                         <div className="numbers">
                                             <CardTitle>La divina comedia</CardTitle>
 
-                                            <p>Autor: Danta alighieri</p>
+                                            <h4 className="card-description">Autor: Danta alighieri</h4>
                                             <br></br>
 
                                             <p className="card-description">Descripcion del libro
