@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
-using Sistema_Bibliotecario.Data;
+using Sistema_Bibliotecario.Models;
 using System.Data;
 
 namespace Sistema_Bibliotecario.Controllers
@@ -19,10 +19,10 @@ namespace Sistema_Bibliotecario.Controllers
 
 
         //cambiarlo
-        private readonly BibliotecaDBContext _dBContext;
+        private readonly BDBibliotecaContext _dBContext;
 
         private readonly ILogger<PrestamoController> _logger;
-        public PrestamoController(ILogger<PrestamoController> logger, BibliotecaDBContext context)
+        public PrestamoController(ILogger<PrestamoController> logger, BDBibliotecaContext context)
         {
             _dBContext = context;
             _logger = logger;
