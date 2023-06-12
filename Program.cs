@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options =>
-{
-    //AllowAnyHeader();
-    options.AddPolicy("Policy1", policy =>
-    {
-        policy.AllowAnyOrigin().AllowAnyHeader();
-    });
 
-}
+builder.Services.AddCors(options =>
+    {
+
+        options.AddPolicy("Policy1", policy =>
+        {
+            policy.AllowAnyOrigin().AllowAnyMethod();
+        });
+
+    }
 );
+
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
 
 
@@ -52,6 +54,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors();
+
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -60,6 +64,5 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");//{controller=Usuario}/{action=IniciarSesion}/{id?}
 
 app.MapFallbackToFile("index.html"); ;
-
 
 app.Run();
