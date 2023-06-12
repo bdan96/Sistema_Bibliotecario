@@ -5,21 +5,20 @@ using Sistema_Bibliotecario.Servicios.Contrato;
 using Sistema_Bibliotecario.Servicios.Implementacion;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddCors(options =>
+{
+    //AllowAnyHeader();
+    options.AddPolicy("Policy1", policy =>
     {
+        policy.AllowAnyOrigin().AllowAnyHeader();
+    });
 
-        options.AddPolicy("Policy1", policy =>
-        {
-            policy.AllowAnyOrigin().AllowAnyMethod();
-        });
-
-    }
+}
 );
-
-var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection");
 
 
 
@@ -28,23 +27,31 @@ options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<Sistema_Bibliotecario.Models.BDBibliotecaContext>();
 
+
+
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
-builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<Sistema_Bibliotecario.Models.BDBibliotecaContext>();
-
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/Usuarios/IniciarSesion";
-        options.AccessDeniedPath = "/Usuarios/IniciarSesion";
-    });
 
 // Add services to the container.
-
+builder.Services.AddTransient < UsuariosSeeder>();
 builder.Services.AddControllersWithViews();
 
-var app = builder.Build();
+    var app = builder.Build();
+if(args.Length == 1 && args[0].ToLower() == "seedusuarios")
+{
+    UsuariosSeeder(app);
+}
+
+void UsuariosSeeder(IHost app)
+{
+    var scopeFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopeFactory.CreateScope())
+    {
+        var seeder = scope.ServiceProvider.GetService<UsuariosSeeder>();
+        seeder.seed();
+    }
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -54,8 +61,6 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 app.UseCors();
-
-
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -64,5 +69,6 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");//{controller=Usuario}/{action=IniciarSesion}/{id?}
 
 app.MapFallbackToFile("index.html"); ;
+
 
 app.Run();
