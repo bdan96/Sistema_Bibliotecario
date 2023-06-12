@@ -517,7 +517,7 @@ function Dashboard() {
                         </Card>
                     </Col>
 
-                    <Col md="12">
+                    {/*<Col md="12">
                         <Card>
                             <CardHeader>
                                 <CardTitle tag="h5">Users Behavior</CardTitle>
@@ -538,9 +538,9 @@ function Dashboard() {
                                 </div>
                             </CardFooter>
                         </Card>
-                    </Col>
+                    </Col>*/}
                 </Row>
-                <Row>
+                {/*<Row>
                     <Col md="4">
                         <Card>
                             <CardHeader>
@@ -593,7 +593,7 @@ function Dashboard() {
                             </CardFooter>
                         </Card>
                     </Col>
-                </Row>
+                </Row>*/}
 
 
             </div>
