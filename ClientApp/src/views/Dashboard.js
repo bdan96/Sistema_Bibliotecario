@@ -284,7 +284,7 @@ function Dashboard() {
                             inverse>
                             <CardBody>
                                 <CardTitle tag="h5">
-                                    Libros M&aacute;s Gustados
+                                    Libros Recomendados
                                 </CardTitle>
                             </CardBody>
                         </Card>
