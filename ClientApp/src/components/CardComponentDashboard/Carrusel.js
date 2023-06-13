@@ -6,7 +6,7 @@ import {
     CarouselItem,
     CarouselIndicators,
 } from 'reactstrap';
-
+import "assets/css/tituloCarruselAdquision.css";
 
 /*import img1 from 'img/Habitos-atomicos.jpg';
 import img2 from 'img/Las-48-leyes-del-poder.jpg';
@@ -74,8 +74,8 @@ function Carrusel() {
     });
 
     return (
-        <div>
-
+        <div>     
+            <h6 className="centrarTituloCarrusel">Nuevas Adquisiciones</h6>
             <Carousel previous={previousButton} next={nextButton}
                 activeIndex={activeIndex}>
                 <CarouselIndicators items={items}
@@ -89,7 +89,9 @@ function Carrusel() {
                     direction="prev" onClickHandler={previousButton} />
                 <CarouselControl directionText="Next"
                     direction="next" onClickHandler={nextButton} />
+                
             </Carousel>
+            
         </div>
     );
 }

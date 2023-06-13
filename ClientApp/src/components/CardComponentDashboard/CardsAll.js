@@ -60,9 +60,9 @@ function CardsAll() {
 
                     </div>
                 ))}*/}
-                {libros.map(({ TITULO_LIBRO, LOGO_LIBRO, AUTOR_LIBRO }) => (
+                {libros.map(({ TITULO_LIBRO, LOGO_LIBRO, AUTOR_LIBRO, NOMBRE_GENERO }) => (
                     <div className="col-md-4">
-                        {<CardAll imageSource={LOGO_LIBRO} title={TITULO_LIBRO} url={AUTOR_LIBRO} />}
+                        {<CardAll imageSource={LOGO_LIBRO} title={TITULO_LIBRO} url={AUTOR_LIBRO} text={NOMBRE_GENERO} />}
 
                     </div>
                 ))}

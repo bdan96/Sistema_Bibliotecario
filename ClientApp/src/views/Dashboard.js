@@ -68,7 +68,8 @@ function Dashboard() {
                 <Row>
                     <Col md="3">
                         <Carrusel />
-                        <br></br>
+                        
+                       
                     </Col>
                     <Col md="9">
                         <Card>
@@ -81,15 +82,15 @@ function Dashboard() {
                                         </div>
                                     </Col>
                                     <Col md="7">
-                                        <div className="numbers">
-                                            <CardTitle>La divina comedia</CardTitle>
+                                        <div className="numbers" style={{ alignItems: 'center' }}>
+                                            <CardTitle style={{ textAlign: "center" }}>Fundamentos de sistemas de base de datos</CardTitle>
 
-                                            <h4 className="card-description">Autor: Danta alighieri</h4>
+                                            <h4 className="card-description">Autor: Ramez Elmasri</h4>
                                             <br></br>
 
-                                            <p className="card-description">Descripcion del libro
-                                                <br></br>
-                                                <br></br>
+                                            <p className="card-description" style={{ textAlign: "justify" }}>Este libro introduce los conceptos fundamentales para modelar,
+                                            utilizar e implementar sistemas y aplicaciones de bases de datos.                                    
+                                                
 
                                             </p>
                                         </div>

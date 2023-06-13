@@ -38,12 +38,14 @@ function CardLibro() {
                     alt="Card image cap"
                     src={LOGO_LIBRO}
                     top                   
-                    width="100%"
+                    height="500"
+                    width="370"
                 />
                 <CardBody>
                     <CardTitle tag="h5">
                             { TITULO_LIBRO}
-                    </CardTitle>
+                        </CardTitle>
+                    <br></br>
                     <CardSubtitle
                         className="mb-2 text-muted"
                         tag="h6"
