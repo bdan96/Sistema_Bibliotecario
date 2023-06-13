@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
     Card,
     CardGroup,
@@ -12,24 +13,42 @@ import {
 
 function CardLibro() {
 
+    const [libros, setLibros] = useState([])
+
+    //const { createProxyMiddleware } = require('http-proxy-middleware');
+
+
+
+
+    useEffect(() => {
+        axios.get('http://localhost:5006/api/dashboard/popular')
+            .then(response => {
+                setLibros(response.data)
+            })
+            .catch(error => console.error(error));
+
+    }, [])
+
     return (
         <CardGroup>
-            <Card>
+            { 
+                libros.map(({ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }) =>                
+            (<Card>
                 <CardImg
                     alt="Card image cap"
-                    src={require("assets/imgDashboard/Las48leyes.jpg")}
+                    src={LOGO_LIBRO}
                     top                   
                     width="100%"
                 />
                 <CardBody>
                     <CardTitle tag="h5">
-                        Las 48 leyes del poder
+                            { TITULO_LIBRO}
                     </CardTitle>
                     <CardSubtitle
                         className="mb-2 text-muted"
                         tag="h6"
                     >
-                        Libro sobre autoayuda
+                            { NOMBRE_GENERO}
                     </CardSubtitle>
                     <CardText>
                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
@@ -39,8 +58,8 @@ function CardLibro() {
                         Ver mas
                     </Button>
                 </CardBody>
-            </Card>
-            <Card>
+                </Card>))}
+            {/*<Card>
                 <CardImg
                     alt="Card image cap"
                     src={require("assets/imgDashboard/hoyEsImportante.jpg")}
@@ -91,7 +110,7 @@ function CardLibro() {
                         Ver mas
                     </Button>
                 </CardBody>
-            </Card>
+            </Card>*/}
          </CardGroup>
     );
 }

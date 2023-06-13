@@ -39,8 +39,6 @@ namespace Sistema_Bibliotecario.Controllers
         {
             //string cnnString = System.Configuration.ConfigurationManager.ConnectionStrings["BibliotecaDBContextConnection"];
 
-
-
             SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cnn;
@@ -52,11 +50,43 @@ namespace Sistema_Bibliotecario.Controllers
             dt.Clear();
             adapter.Fill(dt);
             cnn.Close();
-            //var das = dt.AsEnumerable();
 
-            //string serialice = JsonSerializer.Serialize(das);
 
+
+            //DataTableSystemTextJson(dt);
             return DataTableSystemTextJson(dt);
+
+
+        }
+
+        [EnableCors("Policy1")]
+        //[DisableCors]
+
+        [Route("popular")]
+
+        [HttpGet]
+        public IEnumerable getPopular()
+        {
+            //string cnnString = System.Configuration.ConfigurationManager.ConnectionStrings["BibliotecaDBContextConnection"];
+
+
+
+            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "libroPopularPorCategoria";
+            cnn.Open();
+            SqlDataAdapter adapter1 = new SqlDataAdapter(cmd);
+            DataTable dt1 = new DataTable();
+            dt1.Clear();
+            adapter1.Fill(dt1);
+            cnn.Close();
+
+
+
+            //DataTableSystemTextJson(dt);
+            return DataTableSystemTextJson(dt1);
 
 
         }

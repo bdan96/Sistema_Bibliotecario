@@ -31,6 +31,7 @@ const cards = [
 function CardsAll() {
 
     const [libros, setLibros] = useState([])
+    
     //const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
@@ -39,11 +40,12 @@ function CardsAll() {
     useEffect(() => {
         axios.get('http://localhost:5006/api/dashboard')
             .then(response => {
-                setLibros(response.data)
+                setLibros(response.data)              
             })
             .catch(error => console.error(error));
 
     }, [])
+
 
 
 
@@ -64,6 +66,10 @@ function CardsAll() {
 
                     </div>
                 ))}
+
+                
+
+
 
             </div>
             {/*<div className="row">
