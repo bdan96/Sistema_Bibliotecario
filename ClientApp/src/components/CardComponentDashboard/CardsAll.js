@@ -42,6 +42,7 @@ function CardsAll() {
                 setLibros(response.data)
             })
             .catch(error => console.error(error));
+
     }, [])
 
 
@@ -51,11 +52,19 @@ function CardsAll() {
     return (
         <div className="container d-flex justify-content-center align-items-center h-100">
             <div className="row">
-                {cards.map(({ title, image, url, id }) => (
+                {/*{cards.map(({ title, image, url, id }) => (
                     <div className="col-md-4" key={id}>
-                        <CardAll imageSource={image} title={title} url={url} />
+                        {<CardAll imageSource={image} title={title} url={url} />}
+
+                    </div>
+                ))}*/}
+                {libros.map(({ TITULO_LIBRO, LOGO_LIBRO, AUTOR_LIBRO }) => (
+                    <div className="col-md-4">
+                        {<CardAll imageSource={LOGO_LIBRO} title={TITULO_LIBRO} url={AUTOR_LIBRO} />}
+
                     </div>
                 ))}
+
             </div>
             {/*<div className="row">
                 {
