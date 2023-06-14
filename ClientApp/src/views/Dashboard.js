@@ -45,6 +45,7 @@ import Carrusel from 'components/CardComponentDashboard/Carrusel'
 import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
 import CardsAll from 'components/CardComponentDashboard/CardsAll'
+//import consumirApiRecomendados from 'components/CardComponentDashboard/libroRecomendadesDestacadosCard'
 //import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
 
 
@@ -68,8 +69,8 @@ function Dashboard() {
                 <Row>
                     <Col md="3">
                         <Carrusel />
-                        
-                       
+
+
                     </Col>
                     <Col md="9">
                         <Card>
@@ -89,8 +90,8 @@ function Dashboard() {
                                             <br></br>
 
                                             <p className="card-description" style={{ textAlign: "justify" }}>Este libro introduce los conceptos fundamentales para modelar,
-                                            utilizar e implementar sistemas y aplicaciones de bases de datos.                                    
-                                                
+                                                utilizar e implementar sistemas y aplicaciones de bases de datos.
+
 
                                             </p>
                                         </div>
@@ -156,124 +157,14 @@ function Dashboard() {
 
                             <CardBody>
                                 <CardTitle tag="h5">
-                                    Libros M&aacute;s Populares
+                                    Libros Recomendados
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
 
-                    <Col md="3">
-                        <Card className="rounded-3">
-                            <CardImg
-                                alt="Card image cap"
-                                className="rounded-3"
-                                src={require("assets/imgDashboard/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card >
-                            <CardImg
-                                alt="Card image cap"
-                                src={require("assets/imgDashboard/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card >
-                            <CardImg
-                                alt="Card image cap"
-                                src="https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg"
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card >
-                            <CardImg
-                                alt="Card image cap"
-                                src={require("assets/imgDashboard/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
+                    <Col md="12">
+                        {/*<consumirApiRecomendados />*/}
                     </Col>
 
                 </Row>
@@ -285,7 +176,7 @@ function Dashboard() {
                             inverse>
                             <CardBody>
                                 <CardTitle tag="h5">
-                                    Libros Recomendados
+                                    Libros Destacados
                                 </CardTitle>
                             </CardBody>
                         </Card>
