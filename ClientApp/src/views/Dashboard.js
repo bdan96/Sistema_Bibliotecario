@@ -45,7 +45,7 @@ import Carrusel from 'components/CardComponentDashboard/Carrusel'
 import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
 import CardsAll from 'components/CardComponentDashboard/CardsAll'
-//import consumirApiRecomendados from 'components/CardComponentDashboard/libroRecomendadesDestacadosCard'
+import Consumir from 'components/CardComponentDashboard/libroRecomendadosDestacadosCard'
 //import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
 
 
@@ -157,14 +157,14 @@ function Dashboard() {
 
                             <CardBody>
                                 <CardTitle tag="h5">
-                                    Libros Recomendados
+                                    Libros Destacados
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
 
                     <Col md="12">
-                        {/*<consumirApiRecomendados />*/}
+                        {/*<Consumir/>*/}
                     </Col>
 
                 </Row>
