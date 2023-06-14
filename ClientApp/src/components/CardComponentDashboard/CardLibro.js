@@ -32,36 +32,41 @@ function CardLibro() {
     return (
         <CardGroup>
             {
-                libros.map(({ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }) =>
-                (<Card>
-                    <CardImg
-                        alt="Card image cap"
-                        src={LOGO_LIBRO}
-                        top
-                        height="500"
-                        width="370"
-                    />
-                    <CardBody>
-                        <CardTitle tag="h5">
-                            {TITULO_LIBRO}
-                        </CardTitle>
-                        <br></br>
-                        <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
-                        >
-                            {NOMBRE_GENERO}
-                        </CardSubtitle>
-                        <CardText>
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                        </CardText>
-                        <Button className="btn btn-dark">
-
-                            Ver mas
-                        </Button>
-                    </CardBody>
-                </Card>))}
+                libros.map(({ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }, index) => {
+                    if (index < 3) {
+                        return (
+                            <Card>
+                                <CardImg
+                                    alt="Card image cap"
+                                    src={LOGO_LIBRO}
+                                    top
+                                    height="500"
+                                    width="370"
+                                />
+                                <CardBody>
+                                    <CardTitle tag="h5">
+                                        {TITULO_LIBRO}
+                                    </CardTitle>
+                                    <br></br>
+                                    <CardSubtitle
+                                        className="mb-2 text-muted"
+                                        tag="h6"
+                                    >
+                                        {NOMBRE_GENERO}
+                                    </CardSubtitle>
+                                    <CardText>
+                                        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                    </CardText>
+                                    <Button className="btn btn-dark">
+                                        Ver mas
+                                    </Button>
+                                </CardBody>
+                            </Card>)
+                    }
+                })
+            }
         </CardGroup>
+        
     );
 }
 

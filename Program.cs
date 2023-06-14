@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
+/*builder.Services.AddCors(options =>
     {
 
         options.AddPolicy("Policy1", policy =>
@@ -17,7 +17,9 @@ builder.Services.AddCors(options =>
         });
 
     }
-);
+);*/
+
+
 
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
 
@@ -47,13 +49,19 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-}
+// Configure the HTTP request pipeline.
+
+    app.UseCors(options =>
+    {
+        options.WithOrigins("http://localhost:44436");
+        options.WithOrigins("http://localhost:3000");
+        options.AllowAnyMethod();
+        options.AllowAnyHeader();
+    });
 
 app.UseStaticFiles();
 app.UseRouting();
-app.UseCors();
+//app.UseCors();
 
 
 app.UseAuthentication();

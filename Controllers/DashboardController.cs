@@ -29,7 +29,7 @@ namespace Sistema_Bibliotecario.Controllers
             _context = context;
         }
 
-        [EnableCors("Policy1")]
+        //[EnableCors("Policy1")]
         //[DisableCors]
 
 
@@ -59,7 +59,7 @@ namespace Sistema_Bibliotecario.Controllers
 
         }
 
-        [EnableCors("Policy1")]
+        //[EnableCors("Policy1")]
         //[DisableCors]
 
         [Route("popular")]
