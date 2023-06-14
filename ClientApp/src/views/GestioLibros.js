@@ -18,6 +18,8 @@
 */
 import ModalAgregarLibro from "components/ModalAgregarLibro";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
 // reactstrap components
 import {
     Button,
@@ -35,7 +37,7 @@ function User() {
 
     const [instanciaLibros, setInstanciaLibro] = useState([])
 
-    const mostrarInstanciaLibros = async () => {
+    /*const mostrarInstanciaLibros = async () => {
         const response = await fetch("http://localhost:44436/api/instancialibro/Lista");
 
         if (response.ok) {
@@ -47,11 +49,22 @@ function User() {
         }
 
     }
+    */
+    const [libros, setLibros] = useState([])
+
+    //const { createProxyMiddleware } = require('http-proxy-middleware');
+
+
+
 
     useEffect(() => {
+        axios.get('http://localhost:5006/api/instancialibro/lista')
+            .then(response => {
+                setLibros(response.data)
+            })
+            .catch(error => console.error(error));
 
-        mostrarInstanciaLibros();
-    },[])
+    }, [])
 
 
     const [mostrarModal, setMostrarModal] = useState(false);
@@ -91,7 +104,7 @@ function User() {
                                   <tbody>
                                       {
                                           (
-                                                  instanciaLibros.map((item) => (
+                                                  libros.map((item) => (
                                                       <tr key={item.idInstLibro}>
                                                           <td>{item.idInstLibro}</td>
                                                           <td>{item.titulo}</td>

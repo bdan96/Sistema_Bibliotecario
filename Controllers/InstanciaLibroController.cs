@@ -5,8 +5,9 @@ using Sistema_Bibliotecario.Models;
 
 namespace Sistema_Bibliotecario.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    
     public class InstanciaLibroController : ControllerBase
     {
         private readonly BDBibliotecaContext _dbcontext;
@@ -17,13 +18,14 @@ namespace Sistema_Bibliotecario.Controllers
         }
 
         [HttpGet]
-        [Route("Lista")]
-        public async Task<IActionResult> Lista()
+        [Route("lista")]
+        public async Task<ActionResult<List<InstanciaLibro>>> Lista()
         {
             List<InstanciaLibro> lista = await _dbcontext.InstanciaLibros.OrderByDescending(c => c.IdInstLibro).ToListAsync();
-            return StatusCode(StatusCodes.Status200OK, lista);
+            return lista;
 
         }
+
         [HttpPost]
         [Route("Guardar")]
         public async Task<IActionResult> Guardar([FromBody] InstanciaLibro request)
@@ -45,7 +47,7 @@ namespace Sistema_Bibliotecario.Controllers
         }
 
         [HttpDelete]
-        [Route("Eliminar/{id:init}")]
+        [Route("Eliminar/{id:int}")]
         public async Task<IActionResult> Eliminar(int id)
         {
             InstanciaLibro instanciaLibro = _dbcontext.InstanciaLibros.Find(id);
