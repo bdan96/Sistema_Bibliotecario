@@ -45,7 +45,7 @@ import Carrusel from 'components/CardComponentDashboard/Carrusel'
 import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
 import CardsAll from 'components/CardComponentDashboard/CardsAll'
-import Consumir from 'components/CardComponentDashboard/libroRecomendadosDestacadosCard'
+import Destacados from 'components/CardComponentDashboard/libroRecomendadosDestacadosCard'
 //import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
 
 
@@ -77,12 +77,12 @@ function Dashboard() {
 
                             <CardBody>
                                 <Row>
-                                    <Col md="5">
+                                    <Col md="4">
                                         <div>
                                             <img src="https://pearson.es/images/default-source/espa%C3%B1a/fundamentos-de-sistemas-de-bases-de-datos_9788478290857.jpg?sfvrsn=6c7d04b2_0" height="410" width="350"></img>
                                         </div>
                                     </Col>
-                                    <Col md="7">
+                                    <Col md="8">
                                         <div className="numbers" style={{ alignItems: 'center' }}>
                                             <CardTitle style={{ textAlign: "center" }}>Fundamentos de sistemas de base de datos</CardTitle>
 
@@ -90,7 +90,7 @@ function Dashboard() {
                                             <br></br>
 
                                             <p className="card-description" style={{ textAlign: "justify" }}>Este libro introduce los conceptos fundamentales para modelar,
-                                                utilizar e implementar sistemas y aplicaciones de bases de datos.
+                                                utilizar e implementar sistemas y aplicaciones de bases de datos,  se presenta la terminolog&iacute;a b&aacute;sica y los principios del modelado conceptual de una base de datos.
 
 
                                             </p>
@@ -101,6 +101,7 @@ function Dashboard() {
 
                         </Card>
                     </Col>
+                    
 
                 </Row>
 
@@ -117,6 +118,7 @@ function Dashboard() {
                                 </CardTitle>
                             </CardBody>
                         </Card>
+                        <br></br>
                     </Col>
                     <Col>
                         <CardsAll />
@@ -136,6 +138,7 @@ function Dashboard() {
                                 </CardTitle>
                             </CardBody>
                         </Card>
+                        <br></br>
                     </Col>
                     <Col md="1">
 
@@ -161,16 +164,24 @@ function Dashboard() {
                                 </CardTitle>
                             </CardBody>
                         </Card>
+                        <br></br>
                     </Col>
 
-                    <Col md="12">
-                        {/*<Consumir/>*/}
+                    <Col md="1">
                     </Col>
-
+                    <Col md="10">
+                        <Destacados />
+                    </Col>
+                    <Col md="1">
+                        
+                    </Col>
+                    
                 </Row>
 
                 <Row>
+                    
                     <Col md="12">
+                        <br></br>
                         <Card className="my-2"
                             color="dark"
                             inverse>
@@ -180,6 +191,7 @@ function Dashboard() {
                                 </CardTitle>
                             </CardBody>
                         </Card>
+                        <br></br>
                     </Col>
 
                     <Col md="3">

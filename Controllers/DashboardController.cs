@@ -29,16 +29,9 @@ namespace Sistema_Bibliotecario.Controllers
             _context = context;
         }
 
-        //[EnableCors("Policy1")]
-        //[DisableCors]
-
-
-
         [HttpGet]
         public IEnumerable Get()
         {
-            //string cnnString = System.Configuration.ConfigurationManager.ConnectionStrings["BibliotecaDBContextConnection"];
-
             SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cnn;
@@ -50,27 +43,15 @@ namespace Sistema_Bibliotecario.Controllers
             dt.Clear();
             adapter.Fill(dt);
             cnn.Close();
-
-
-
             //DataTableSystemTextJson(dt);
             return DataTableSystemTextJson(dt);
-
-
         }
-
-        //[EnableCors("Policy1")]
-        //[DisableCors]
 
         [Route("popular")]
 
         [HttpGet]
         public IEnumerable getPopular()
         {
-            //string cnnString = System.Configuration.ConfigurationManager.ConnectionStrings["BibliotecaDBContextConnection"];
-
-
-
             SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cnn;
@@ -91,18 +72,37 @@ namespace Sistema_Bibliotecario.Controllers
 
         }
 
+        [Route("destacados")]
+
+        [HttpGet]
+        public IEnumerable getDestacados()
+        {
+            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "getLibrosDestacados";
+            cnn.Open();
+            SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+            DataTable dt2 = new DataTable();
+            dt2.Clear();
+            adapter2.Fill(dt2);
+            cnn.Close();
+
+
+
+            //DataTableSystemTextJson(dt);
+            return DataTableSystemTextJson(dt2);
+
+
+        }
+
         //public static string DataTableSystemTextJson(DataTable dataTable)
         public static IEnumerable DataTableSystemTextJson(DataTable dataTable)
         {
-            /*if (dataTable == null)
-            {
-                //return string.Empty;
-                return new IEnumerable();
-            }*/
             var data = dataTable.Rows.OfType<DataRow>()
                         .Select(row => dataTable.Columns.OfType<DataColumn>()
                             .ToDictionary(col => col.ColumnName, c => row[c]));
-            //return System.Text.Json.JsonSerializer.Serialize(data);
             return data;
         }
 
