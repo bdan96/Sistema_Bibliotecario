@@ -47,9 +47,17 @@ builder.Services.AddControllersWithViews();
     var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+
+
+app.UseCors(options =>
 {
-}
+    options.WithOrigins("http://localhost:3000");
+    options.WithOrigins("http://localhost:44436");
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
+
+
 
 app.UseStaticFiles();
 app.UseRouting();
