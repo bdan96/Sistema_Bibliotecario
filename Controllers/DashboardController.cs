@@ -97,6 +97,31 @@ namespace Sistema_Bibliotecario.Controllers
 
         }
 
+        [Route("recomendados")]
+
+        [HttpGet]
+        public IEnumerable getRecomendados()
+        {
+            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "getLibrosDestacados";
+            cnn.Open();
+            SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+            DataTable dt2 = new DataTable();
+            dt2.Clear();
+            adapter2.Fill(dt2);
+            cnn.Close();
+
+
+
+            //DataTableSystemTextJson(dt);
+            return DataTableSystemTextJson(dt2);
+
+
+        }
+
         //public static string DataTableSystemTextJson(DataTable dataTable)
         public static IEnumerable DataTableSystemTextJson(DataTable dataTable)
         {

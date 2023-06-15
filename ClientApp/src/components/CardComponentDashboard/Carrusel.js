@@ -74,8 +74,8 @@ function Carrusel() {
     });
 
     return (
-        <div>     
-            <h6 className="centrarTituloCarrusel">Nuevas Adquisiciones</h6>
+        <div>
+            <h6 className="centrarTituloCarrusel">Libros a considerar</h6>
             <Carousel previous={previousButton} next={nextButton}
                 activeIndex={activeIndex}>
                 <CarouselIndicators items={items}
@@ -89,9 +89,9 @@ function Carrusel() {
                     direction="prev" onClickHandler={previousButton} />
                 <CarouselControl directionText="Next"
                     direction="next" onClickHandler={nextButton} />
-                
+
             </Carousel>
-            
+
         </div>
     );
 }

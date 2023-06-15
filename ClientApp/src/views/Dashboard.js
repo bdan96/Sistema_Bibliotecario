@@ -46,6 +46,7 @@ import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
 import CardsAll from 'components/CardComponentDashboard/CardsAll'
 import Destacados from 'components/CardComponentDashboard/libroRecomendadosDestacadosCard'
+import RecomendadosLibros from 'components/CardComponentDashboard/RecomendadosDashboard'
 //import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
 
 
@@ -83,8 +84,8 @@ function Dashboard() {
                                         </div>
                                     </Col>
                                     <Col md="8">
-                                        <div className="numbers" style={{ alignItems: 'center' }}>
-                                            <CardTitle style={{ textAlign: "center" }}>Fundamentos de sistemas de base de datos</CardTitle>
+                                        <div className="numbers" >
+                                            <CardTitle>Fundamentos de sistemas de base de datos</CardTitle>
 
                                             <h4 className="card-description">Autor: Ramez Elmasri</h4>
                                             <br></br>
@@ -101,7 +102,7 @@ function Dashboard() {
 
                         </Card>
                     </Col>
-                    
+
 
                 </Row>
 
@@ -173,13 +174,13 @@ function Dashboard() {
                         <Destacados />
                     </Col>
                     <Col md="1">
-                        
+
                     </Col>
-                    
+
                 </Row>
 
                 <Row>
-                    
+
                     <Col md="12">
                         <br></br>
                         <Card className="my-2"
@@ -187,127 +188,16 @@ function Dashboard() {
                             inverse>
                             <CardBody>
                                 <CardTitle tag="h5">
-                                    Libros Destacados
+                                    Libros Recomendados
                                 </CardTitle>
                             </CardBody>
                         </Card>
                         <br></br>
                     </Col>
 
-                    <Col md="3">
-                        <Card className="rounded-3">
-                            <CardImg
-                                alt="Card image cap"
-                                className="rounded-3"
-                                src={require("assets/imgDashboard/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card >
-                            <CardImg
-                                alt="Card image cap"
-                                src={require("assets/imgDashboard/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card >
-                            <CardImg
-                                alt="Card image cap"
-                                src="https://www.elsolucionario.org/wp-content/archivos/2012/08/fisica-universitaria-con-fisica-moderna-vol1-sears-11-edicion-elsolucionario-blogspot-com-.jpg"
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="3">
-                        <Card >
-                            <CardImg
-                                alt="Card image cap"
-                                src={require("assets/imgDashboard/Las48leyes.jpg")}
-                                top
-                                height="400"
-                                width="270"
-                            />
-                            <CardBody>
-                                <CardTitle tag="h5">
-                                    Card title
-                                </CardTitle>
-                                <CardSubtitle
-                                    className="mb-2 text-muted"
-                                    tag="h6"
-                                >
-                                    Card subtitle
-                                </CardSubtitle>
-                                <CardText>
-                                    This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                </CardText>
-                                <Button>
-                                    Button
-                                </Button>
-                            </CardBody>
-                        </Card>
-                    </Col>
-
+                    <Col md="12">
+                        <RecomendadosLibros />
+                    </Col>                    
                 </Row>
 
                 <Row>
@@ -419,86 +309,60 @@ function Dashboard() {
                                 </div>
                             </CardFooter>
                         </Card>
-                    </Col>
-
-                    {/*<Col md="12">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle tag="h5">Users Behavior</CardTitle>
-                                <p className="card-category">24 Hours performance</p>
-                            </CardHeader>
-                            <CardBody>
-                                <Line
-                                    data={dashboard24HoursPerformanceChart.data}
-                                    options={dashboard24HoursPerformanceChart.options}
-                                    width={400}
-                                    height={100}
-                                />
-                            </CardBody>
-                            <CardFooter>
-                                <hr />
-                                <div className="stats">
-                                    <i className="fa fa-history" /> Updated 3 minutes ago
-                                </div>
-                            </CardFooter>
-                        </Card>
-                    </Col>*/}
+                    </Col>                                                      
                 </Row>
-                {/*<Row>
-                    <Col md="4">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle tag="h5">Email Statistics</CardTitle>
-                                <p className="card-category">Last Campaign Performance</p>
-                            </CardHeader>
-                            <CardBody style={{ height: "266px" }}>
-                                <Pie
-                                    data={dashboardEmailStatisticsChart.data}
-                                    options={dashboardEmailStatisticsChart.options}
-                                />
-                            </CardBody>
-                            <CardFooter>
-                                <div className="legend">
-                                    <i className="fa fa-circle text-primary" /> Opened{" "}
-                                    <i className="fa fa-circle text-warning" /> Read{" "}
-                                    <i className="fa fa-circle text-danger" /> Deleted{" "}
-                                    <i className="fa fa-circle text-gray" /> Unopened
-                                </div>
-                                <hr />
-                                <div className="stats">
-                                    <i className="fa fa-calendar" /> Number of emails sent
-                                </div>
-                            </CardFooter>
-                        </Card>
-                    </Col>
-                    <Col md="8">
-                        <Card className="card-chart">
-                            <CardHeader>
-                                <CardTitle tag="h5">NASDAQ: AAPL</CardTitle>
-                                <p className="card-category">Line Chart with Points</p>
-                            </CardHeader>
+                <Row>
+                    <Col md="12">
+                        <br></br>
+                        <Card className="my-2"
+                            color="dark"
+                            inverse>
                             <CardBody>
-                                <Line
-                                    data={dashboardNASDAQChart.data}
-                                    options={dashboardNASDAQChart.options}
-                                    width={400}
-                                    height={100}
-                                />
+                                <CardTitle tag="h5">
+                                    Proximos libros
+                                </CardTitle>
                             </CardBody>
-                            <CardFooter>
-                                <div className="chart-legend">
-                                    <i className="fa fa-circle text-info" /> Tesla Model S{" "}
-                                    <i className="fa fa-circle text-warning" /> BMW 5 Series
-                                </div>
-                                <hr />
-                                <div className="card-stats">
-                                    <i className="fa fa-check" /> Data information certified
-                                </div>
-                            </CardFooter>
+                        </Card>
+                        <br></br>
+                    </Col>
+                    <Col md="9">
+                        <Card>
+
+                            <CardBody>
+                                <Row>
+                                    <Col md="4">
+                                        <div>
+                                            <img src="https://pearson.es/images/default-source/espa%C3%B1a/fundamentos-de-sistemas-de-bases-de-datos_9788478290857.jpg?sfvrsn=6c7d04b2_0" height="410" width="350"></img>
+                                        </div>
+                                    </Col>
+                                    <Col md="8">
+                                        <div className="numbers" >
+                                            <CardTitle>Fundamentos de sistemas de base de datos</CardTitle>
+
+                                            <h4 className="card-description">Autor: Ramez Elmasri</h4>
+                                            <br></br>
+
+                                            <p className="card-description" style={{ textAlign: "justify" }}>Este libro introduce los conceptos fundamentales para modelar,
+                                                utilizar e implementar sistemas y aplicaciones de bases de datos,  se presenta la terminolog&iacute;a b&aacute;sica y los principios del modelado conceptual de una base de datos.
+
+
+                                            </p>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </CardBody>
+
                         </Card>
                     </Col>
-                </Row>*/}
+                    <Col md="3">
+                        <Carrusel />
 
+
+                    </Col>
+
+
+
+                </Row>
 
             </div>
         </>

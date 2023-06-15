@@ -10,6 +10,7 @@ import {
     CardText,
     Button,
 } from "reactstrap";
+import "assets/css/recomendadosCard.css";
 
 function Destacados() {
 
@@ -53,8 +54,8 @@ function Destacados() {
                                     <CardText>
                                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     </CardText>
-                                    <Button className="btn btn-dark">
-                                        Ver mas
+                                    <Button className="btn btn-dark recomendadosCa">
+                                        IR AL LIBRO
                                     </Button>
                                 </CardBody>
                             </Card>)
