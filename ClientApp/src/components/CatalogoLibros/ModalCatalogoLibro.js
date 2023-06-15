@@ -1,33 +1,68 @@
 ﻿
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col, Row, Card,CardBody,CardFooter,CardHeader,CardText,CardTitle,ListGroup,ListGroupItem} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter,Col, Row, Card,CardBody,CardFooter,CardHeader,CardText,CardTitle,ListGroup,ListGroupItem, Tooltip, Label} from 'reactstrap';
 import axios from 'axios'
+import Swal from 'sweetalert2';
+import { useState } from 'react'
 
 function ModalCatalogoLibro({ toggle,modal, libro}) {
 
+    let existencias = '';
+    let color = 0;
+        if (libro.CantidadInstanciaLibro === 0) {
+            existencias = '  No hay copias disponibles'
+            color = 1
+        }
+        else {
+            existencias = libro.CantidadInstanciaLibro
+            color = 0;
+        }
+
+   
 
     const idiomas = ['Ingles', 'Español']
     const categorias = ['Fantasia', 'Suspenso']
 
     const newPrestamo = () => {
 
-        let prestamo = {usuario:1, libro: 1}
-
-        //fetch("/api/prestamo", {
-
-        //    method: "POST",
-        //    body: JSON.stringify(prestamo)
-
-        //})
-        // .then((response)=> response.json())
-        //    .then((json) => console.log(json))
-        //.catch((error) => console.log(error))
+        let prestamo = {usuario:1, libro: 2}
 
         axios.post('http://localhost:5006/api/prestamo',prestamo)
             .then(response => {
-                alert(response.data)
+                Swal.fire(
+                    response.data,
+                    'El prestamo se ha realizado con exito',
+                    'success'
+                )
             })
-            .catch(error => console.error(error));
+            .catch(error => 
+                Swal.fire({
+                    icon: error,
+                    title: 'Oops...',
+                    text: 'No se pudo realizar la reserva',
+                })
+            );
+    }
+
+    const newReserva = () => {
+
+        let reserva = { usuario: 1, libro: 3 }
+
+        axios.post('http://localhost:5006/api/reserva', reserva)
+            .then(response => {
+                Swal.fire(
+                    response.data,
+                    'La reserva se ha realizado con exito',
+                    'success'
+                )
+            })
+            .catch(error => 
+                Swal.fire({
+                    icon: error,
+                    title: 'Oops...',
+                    text: 'No se pudo realizar el prestamo',
+                })
+            );
     }
 
 
@@ -52,7 +87,7 @@ function ModalCatalogoLibro({ toggle,modal, libro}) {
                                 <CardTitle tag="h5">
                                     Titulo: {libro.TituloLibro}
                                 </CardTitle>
-                                <ListGroup flush tag = "h6">
+                                <ListGroup flush>
                                     <ListGroupItem>
                                         Autor: {libro.AutorLibro}
                                     </ListGroupItem>
@@ -65,31 +100,37 @@ function ModalCatalogoLibro({ toggle,modal, libro}) {
                                     <ListGroupItem>
                                         ISBN: {libro.Isbn}
                                     </ListGroupItem>
-                                    <ListGroupItem>
-                                        Copias disponible: {libro.CantidadInstanciaLibro}
+                                    <ListGroupItem >
+                                        Copias disponible: &nbsp;
+                                        <Label style={{ color: color ? 'red' : 'black' }}>
+                                          {existencias}
+                                       </Label>
                                     </ListGroupItem>
                                 </ListGroup>
                             </Card>
                         </Col>
                     </Row>
                 </ModalBody>
-                <ModalFooter>
+                        <ModalFooter>
                     <Button style={{
                         margin: "5px",
 
                     }} color="success" outline
                         onClick={newPrestamo}
+                        disabled={ libro.CantidadInstanciaLibro === 0}
                     >
                         Prestar
                     </Button>
                     {' '}
                     <Button style={{
                         margin: "5px"
-                    }} color="primary" outline>
+                    }} color="primary" outline
+                        onClick={newReserva}
+                    >
                         Reservar
                     </Button>
                     {' '}
-                    <Button color="danger" outline onClick={toggle}>
+                    <Button color="danger" outline onClick={toggle} id={`idlibro`}>
                         Cancelar
                     </Button>
                 </ModalFooter>

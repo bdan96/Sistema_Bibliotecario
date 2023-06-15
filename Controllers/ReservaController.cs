@@ -9,7 +9,7 @@ namespace Sistema_Bibliotecario.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PrestamoController : ControllerBase
+    public class ReservaController : ControllerBase
     {
         public class TagViewModel
         {
@@ -17,20 +17,20 @@ namespace Sistema_Bibliotecario.Controllers
             public int libro { set; get; }
         }
 
-
         //cambiarlo
         private readonly BDBibliotecaContext _dBContext;
 
         private readonly ILogger<PrestamoController> _logger;
-        public PrestamoController(ILogger<PrestamoController> logger, BDBibliotecaContext context)
+        public ReservaController(ILogger<PrestamoController> logger, BDBibliotecaContext context)
         {
             _dBContext = context;
             _logger = logger;
         }
 
-        [EnableCors ("Policy1")]
+        [EnableCors("Policy1")]
         [HttpPost]
-        public string Post([FromBody] TagViewModel variable) {
+        public string Post([FromBody] TagViewModel variable)
+        {
 
             //revisar credenciales porque no me funcionan
             //SqlConnection conexion = new SqlConnection("Server=DESKTOP-HOIS6DM\\SQLEXPRESS;Database=BDBiblioteca;Trusted_Connection=True;MultipleActiveResultSets=true");
@@ -40,7 +40,7 @@ namespace Sistema_Bibliotecario.Controllers
             //revisar nombres
             sentencia.Connection = conexion;
             sentencia.CommandType = System.Data.CommandType.StoredProcedure;
-            sentencia.CommandText = "insertPrestamo";
+            sentencia.CommandText = "insertReserva";
 
             sentencia.Parameters.Add("@usuario", SqlDbType.Int);
             sentencia.Parameters["@usuario"].Value = variable.usuario;
@@ -48,7 +48,7 @@ namespace Sistema_Bibliotecario.Controllers
             sentencia.Parameters.Add("@libro", SqlDbType.Int);
             sentencia.Parameters["@libro"].Value = variable.libro;
 
-                conexion.Open();
+            conexion.Open();
 
             SqlDataAdapter adapter = new SqlDataAdapter(sentencia);
 
@@ -59,15 +59,14 @@ namespace Sistema_Bibliotecario.Controllers
 
             conexion.Close();
 
-            if (dt1.Rows.Count < 1) {
+            if (dt1.Rows.Count < 1)
+            {
 
                 return "error";
             }
 
             return "exito";
         }
-
-
 
     }
 }
