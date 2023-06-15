@@ -24,6 +24,8 @@ import TableList from "views/Tables.js";
 import Maps from "views/Map.js";
 import UserPage from "views/User.js";
 import UpgradeToPro from "views/Upgrade.js";
+import GestionLibro from "views/GestioLibros.js";
+
 
 var routes = [
   {
@@ -35,7 +37,7 @@ var routes = [
   },
   {
     path: "/icons",
-    name: "Icons",
+    name: "Catalogo",
     icon: "nc-icon nc-diamond",
     component: <Icons />,
     layout: "/admin",
@@ -74,6 +76,13 @@ var routes = [
     icon: "nc-icon nc-caps-small",
     component: <Typography />,
     layout: "/admin",
+  },
+    {
+        path: "/getionarLibro",
+        name: "Gestionar Libro",
+        icon: "nc-icon nc-box-2",
+        component: <GestionLibro />,
+        layout: "/admin",
   },
   {
     pro: true,
