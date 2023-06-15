@@ -17,12 +17,14 @@
 
 */
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 // reactstrap components
 import { CardGroup ,Row, Col, Navbar,NavbarBrand, Form, FormGroup,Input, Label, Button, NavbarText,Container, Card, CardBody, CardHeader} from "reactstrap";
 import ModalCatalogoLibro from "../components/CatalogoLibros/ModalCatalogoLibro";
 import { books } from "../components/CatalogoLibros/DataCatalogoLibros.js"
 import CardCatalogoLibro from "../components/CatalogoLibros/CardCatalogoLibro";
+
 
 
 function Icons() {
@@ -34,6 +36,7 @@ function Icons() {
     const [busqueda, setBusqueda] = useState("");
     const [opcionSelect, setOpcionSelect] = useState('');
     const [opcionFilter, setOpcionFilter] = useState('');
+
 
     //funcion para filtrar la busqueda
     const filtrar = (terminoBusqueda) => {
@@ -97,6 +100,7 @@ function Icons() {
     }
 
     useEffect(() => {
+        //returnLibros()
         setLibros(books)
         setLibrosCard(books)
         setLibrosOrdenar(books)
