@@ -1,25 +1,5 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
-// react plugin used to create charts
 import { Line, Pie } from "react-chartjs-2";
-// reactstrap components
 import {
     Card,
     CardHeader,
@@ -50,33 +30,22 @@ import RecomendadosLibros from 'components/CardComponentDashboard/RecomendadosDa
 import CarruselLibrosProximos from 'components/CardComponentDashboard/CarruselLibrosProximos'
 //import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
 
-
-
 function Dashboard() {
     return (
         <>
-
             <div className="content">
-
-
                 <Row>
                     <Col md="12" style={{ alignItems: 'center' }}>
                         <Carrusel2 />
                         <br></br>
-
                     </Col>
-
                 </Row>
-
                 <Row>
                     <Col md="3">
                         <Carrusel />
-
-
                     </Col>
                     <Col md="9">
                         <Card>
-
                             <CardBody>
                                 <Row>
                                     <Col md="4">
@@ -93,18 +62,13 @@ function Dashboard() {
 
                                             <p className="card-description" style={{ textAlign: "justify" }}>Este libro introduce los conceptos fundamentales para modelar,
                                                 utilizar e implementar sistemas y aplicaciones de bases de datos,  se presenta la terminolog&iacute;a b&aacute;sica y los principios del modelado conceptual de una base de datos.
-
-
                                             </p>
                                         </div>
                                     </Col>
                                 </Row>
                             </CardBody>
-
                         </Card>
                     </Col>
-
-
                 </Row>
 
                 <Row>
@@ -125,8 +89,6 @@ function Dashboard() {
                     <Col>
                         <CardsAll />
                     </Col>
-
-
                 </Row>
 
                 <Row>
@@ -159,7 +121,6 @@ function Dashboard() {
                         <Card className="my-2"
                             color="dark"
                             inverse>
-
                             <CardBody>
                                 <CardTitle tag="h5">
                                     Libros Destacados
@@ -175,13 +136,11 @@ function Dashboard() {
                         <Destacados />
                     </Col>
                     <Col md="1">
-
                     </Col>
 
                 </Row>
 
                 <Row>
-
                     <Col md="12">
                         <br></br>
                         <Card className="my-2"
@@ -350,7 +309,7 @@ function Dashboard() {
                         </Card>
                     </Col>
                     <Col md="3">
-                        <CarruselLibrosProximos/>
+                        <CarruselLibrosProximos />
                     </Col>
                 </Row>
             </div>
