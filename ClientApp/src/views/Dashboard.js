@@ -47,6 +47,7 @@ import CardLibro from 'components/CardComponentDashboard/CardLibro'
 import CardsAll from 'components/CardComponentDashboard/CardsAll'
 import Destacados from 'components/CardComponentDashboard/libroRecomendadosDestacadosCard'
 import RecomendadosLibros from 'components/CardComponentDashboard/RecomendadosDashboard'
+import CarruselLibrosProximos from 'components/CardComponentDashboard/CarruselLibrosProximos'
 //import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
 
 
@@ -80,7 +81,7 @@ function Dashboard() {
                                 <Row>
                                     <Col md="4">
                                         <div>
-                                            <img src="https://pearson.es/images/default-source/espa%C3%B1a/fundamentos-de-sistemas-de-bases-de-datos_9788478290857.jpg?sfvrsn=6c7d04b2_0" height="410" width="350"></img>
+                                            <img src="https://www.lavanguardia.com/libros/images/posters/2007/5/9788478290857-image.jpg?v=1" height="410" width="350"></img>
                                         </div>
                                     </Col>
                                     <Col md="8">
@@ -197,7 +198,7 @@ function Dashboard() {
 
                     <Col md="12">
                         <RecomendadosLibros />
-                    </Col>                    
+                    </Col>
                 </Row>
 
                 <Row>
@@ -217,8 +218,8 @@ function Dashboard() {
                                     </Col>
                                     <Col md="8" xs="7">
                                         <div className="numbers">
-                                            <p className="card-category">Capacity</p>
-                                            <CardTitle tag="p">150GB</CardTitle>
+                                            <p className="card-category">Vistas</p>
+                                            <CardTitle tag="p">50</CardTitle>
                                             <p />
                                         </div>
                                     </Col>
@@ -243,8 +244,8 @@ function Dashboard() {
                                     </Col>
                                     <Col md="8" xs="7">
                                         <div className="numbers">
-                                            <p className="card-category">Revenue</p>
-                                            <CardTitle tag="p">$ 1,345</CardTitle>
+                                            <p className="card-category">Mora</p>
+                                            <CardTitle tag="p">$ 2.00</CardTitle>
                                             <p />
                                         </div>
                                     </Col>
@@ -253,7 +254,7 @@ function Dashboard() {
                             <CardFooter>
                                 <hr />
                                 <div className="stats">
-                                    <i className="far fa-calendar" /> Last day
+                                    <i className="far fa-calendar" /> Day a day
                                 </div>
                             </CardFooter>
                         </Card>
@@ -269,7 +270,7 @@ function Dashboard() {
                                     </Col>
                                     <Col md="8" xs="7">
                                         <div className="numbers">
-                                            <p className="card-category">Errors</p>
+                                            <p className="card-category">Advertencias</p>
                                             <CardTitle tag="p">23</CardTitle>
                                             <p />
                                         </div>
@@ -295,8 +296,8 @@ function Dashboard() {
                                     </Col>
                                     <Col md="8" xs="7">
                                         <div className="numbers">
-                                            <p className="card-category">Followers</p>
-                                            <CardTitle tag="p">+45K</CardTitle>
+                                            <p className="card-category">Libros favoritos</p>
+                                            <CardTitle tag="p">+5</CardTitle>
                                             <p />
                                         </div>
                                     </Col>
@@ -309,7 +310,7 @@ function Dashboard() {
                                 </div>
                             </CardFooter>
                         </Card>
-                    </Col>                                                      
+                    </Col>
                 </Row>
                 <Row>
                     <Col md="12">
@@ -319,7 +320,7 @@ function Dashboard() {
                             inverse>
                             <CardBody>
                                 <CardTitle tag="h5">
-                                    Proximos libros
+                                    Pr&oacute;ximos libros
                                 </CardTitle>
                             </CardBody>
                         </Card>
@@ -327,43 +328,31 @@ function Dashboard() {
                     </Col>
                     <Col md="9">
                         <Card>
-
                             <CardBody>
                                 <Row>
                                     <Col md="4">
                                         <div>
-                                            <img src="https://pearson.es/images/default-source/espa%C3%B1a/fundamentos-de-sistemas-de-bases-de-datos_9788478290857.jpg?sfvrsn=6c7d04b2_0" height="410" width="350"></img>
+                                            <img src="https://m.media-amazon.com/images/I/41xShlnTZTL._AC_UF1000,1000_QL80_.jpg" height="410" width="350"></img>
                                         </div>
                                     </Col>
                                     <Col md="8">
                                         <div className="numbers" >
-                                            <CardTitle>Fundamentos de sistemas de base de datos</CardTitle>
-
-                                            <h4 className="card-description">Autor: Ramez Elmasri</h4>
+                                            <CardTitle>Clean Code</CardTitle>
+                                            <h4 className="card-description">Autor: Robert Cecil Martin</h4>
                                             <br></br>
-
-                                            <p className="card-description" style={{ textAlign: "justify" }}>Este libro introduce los conceptos fundamentales para modelar,
-                                                utilizar e implementar sistemas y aplicaciones de bases de datos,  se presenta la terminolog&iacute;a b&aacute;sica y los principios del modelado conceptual de una base de datos.
-
-
+                                            <p className="card-description" style={{ textAlign: "justify" }}>Filosof&iacute;a del desarrollo del software que re&uacute;ne un conjunto de ideas que pretenden conseguir que el coiacute;digo que implementemos est&eacute; bien estructurado,
+                                                y sea comprensible, mantenible, extensible y  robusto.
                                             </p>
                                         </div>
                                     </Col>
                                 </Row>
                             </CardBody>
-
                         </Card>
                     </Col>
                     <Col md="3">
-                        <Carrusel />
-
-
+                        <CarruselLibrosProximos/>
                     </Col>
-
-
-
                 </Row>
-
             </div>
         </>
     );
