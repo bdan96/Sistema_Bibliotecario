@@ -30,7 +30,7 @@ function Destacados() {
         <CardGroup>
             {
                 libros.map(({ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }, index) => {
-                    if (index >3 && index <7) {
+                    if (index >=3 && index <=5) {
                         return (
                             <Card>
                                 <CardImg
@@ -44,7 +44,7 @@ function Destacados() {
                                     <CardTitle tag="h5">
                                         {TITULO_LIBRO}
                                     </CardTitle>
-                                    <br></br>
+                                    
                                     <CardSubtitle
                                         className="mb-2 text-muted"
                                         tag="h6"
@@ -54,6 +54,7 @@ function Destacados() {
                                     <CardText>
                                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     </CardText>
+                                    <br></br>
                                     <Button className="btn btn-dark recomendadosCa">
                                         IR AL LIBRO
                                     </Button>

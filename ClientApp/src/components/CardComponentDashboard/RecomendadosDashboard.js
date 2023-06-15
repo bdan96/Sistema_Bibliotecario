@@ -67,7 +67,7 @@ function RecomendadosLibros() {
         <CardGroup>
             {
                 libros.map(({ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }, index) => {
-                    if (index >= 6 && index < 10) {
+                    if (index >=14 && index <= 17) {
                         return (
                             <Card className="rounded-3">
                                 <CardImg
@@ -82,7 +82,7 @@ function RecomendadosLibros() {
                                     <CardTitle tag="h5">
                                         {TITULO_LIBRO}
                                     </CardTitle>
-                                    <br></br>
+                                   
                                     <CardSubtitle
                                         className="mb-2 text-muted"
                                         tag="h6"
@@ -90,8 +90,9 @@ function RecomendadosLibros() {
                                         {NOMBRE_GENERO}
                                     </CardSubtitle>
                                     <CardText>
-                                        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.                                      
                                     </CardText>
+                                    <br></br>
                                     <Button className="btn btn-dark recomendadosCa">
                                         IR AL LIBRO
                                     </Button>

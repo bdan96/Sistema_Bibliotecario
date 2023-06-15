@@ -11,6 +11,7 @@ const CardAll = (props) => {
             </div>
             <div className="card-body text-light">
                 <h4 className="card-title">{props.title}</h4>
+                
                 <p className="card-text text-secondary">
                     {props.text
                         ? props.text
@@ -22,7 +23,7 @@ const CardAll = (props) => {
                     className="btn btn-outline-secondary border-0"
                     rel="noreferrer"
                 >
-                    Go to {props.title}
+                    Go to the book
                 </a>
             </div>
         </div>

@@ -47,8 +47,10 @@ function CardLibro() {
                                 <CardBody>
                                     <CardTitle tag="h5">
                                         {TITULO_LIBRO}
+                                        
                                     </CardTitle>
-                                    <br></br>
+                                    
+                                    
                                     <CardSubtitle
                                         className="mb-2 text-muted"
                                         tag="h6"
@@ -58,6 +60,7 @@ function CardLibro() {
                                     <CardText>
                                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     </CardText>
+                                    <br></br>
                                     <Button className="btn btn-dark recomendadosCa">
                                         IR AL LIBRO
                                     </Button>
