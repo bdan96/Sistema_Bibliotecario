@@ -2,8 +2,24 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 //import ModalDashboard from './ModalDashboard'
 import "assets/css/CardAllDashboard.css";
+import ModalDashboard from './ModalDashboard'
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    Input,
+    Label,
+    Form,
+    FormGroup,
+} from 'reactstrap';
 
 const CardAll = (props) => {
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
 
     return (
         <div className="card text-center bg-dark animate__animated animate__fadeInUp" style={{ borderRadius: "20px" }}>
@@ -27,7 +43,9 @@ const CardAll = (props) => {
                 >
                     Go to the book
                 </a>
+                
             </div>
+            
         </div>
     );
 }

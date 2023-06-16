@@ -6,6 +6,7 @@ import Las48leyes from "assets/imgDashboard/Las48leyes.jpg";
 import Mate4 from "assets/imgDashboard/Mate4.jpg";
 import axios from "axios";
 
+
 const cards = [
     {
         id: 1,
@@ -31,7 +32,8 @@ const cards = [
 function CardsAll() {
 
     const [libros, setLibros] = useState([])
-    
+
+
     //const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
@@ -40,7 +42,7 @@ function CardsAll() {
     useEffect(() => {
         axios.get('http://localhost:5006/api/dashboard')
             .then(response => {
-                setLibros(response.data)              
+                setLibros(response.data)
             })
             .catch(error => console.error(error));
 
@@ -62,12 +64,14 @@ function CardsAll() {
                 ))}*/}
                 {libros.map(({ TITULO_LIBRO, LOGO_LIBRO, AUTOR_LIBRO, NOMBRE_GENERO }) => (
                     <div className="col-md-4">
-                        {<CardAll imageSource={LOGO_LIBRO} title={TITULO_LIBRO} url={AUTOR_LIBRO} text={NOMBRE_GENERO} />}
+                        {
+                            <CardAll imageSource={LOGO_LIBRO} title={TITULO_LIBRO} url={AUTOR_LIBRO} text={NOMBRE_GENERO} />
+                        }
 
                     </div>
                 ))}
 
-                
+
 
 
 
