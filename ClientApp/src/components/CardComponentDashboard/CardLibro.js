@@ -11,6 +11,7 @@ import {
     Button,
 } from "reactstrap";
 import "assets/css/recomendadosCard.css";
+import toast, { Toaster } from 'react-hot-toast';
 
 function CardLibro() {
 
@@ -47,10 +48,10 @@ function CardLibro() {
                                 <CardBody>
                                     <CardTitle tag="h5">
                                         {TITULO_LIBRO}
-                                        
+
                                     </CardTitle>
-                                    
-                                    
+
+
                                     <CardSubtitle
                                         className="mb-2 text-muted"
                                         tag="h6"
@@ -61,7 +62,15 @@ function CardLibro() {
                                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     </CardText>
                                     <br></br>
-                                    <Button className="btn btn-dark recomendadosCa">
+                                    <Button className="btn btn-dark recomendadosCa" onClick={() => {
+                                        toast.success("Libro Popular", {
+                                                                                     
+                                            style: {
+                                                borderRadius: '10px',
+                                                background: '#333',
+                                                color: '#fff',
+                                            },
+                                        }) }}>
                                         IR AL LIBRO
                                     </Button>
                                 </CardBody>
@@ -69,6 +78,10 @@ function CardLibro() {
                     }
                 })
             }
+            <Toaster
+                position='top-right'
+                reverseOrder={false}
+            />
         </CardGroup>
         
     );
