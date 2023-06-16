@@ -1,5 +1,6 @@
 ﻿import { useState } from "react"
 import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, ModalFooter, Button } from "reactstrap"
+import toast, { Toaster } from 'react-hot-toast';
 
 const modeloLibro = {
     idInstLibro: 0,
@@ -12,7 +13,7 @@ const modeloLibro = {
     logo: "",
     cantidad: 0
 }
-const ModalAgregarLibro = ({mostrarModal, setMostrarModal, guardarLibro}) => {
+const ModalAgregarLibro = ({ mostrarModal, setMostrarModal, guardarLibro }) => {
 
     const [libro, setLibro] = useState(modeloLibro);
 
@@ -37,7 +38,7 @@ const ModalAgregarLibro = ({mostrarModal, setMostrarModal, guardarLibro}) => {
     return (
         <Modal isOpen={mostrarModal}>
             <ModalHeader>
-            Nuevo Libro
+                Nuevo Libro
             </ModalHeader>
             <ModalBody>
                 <Form>
@@ -57,17 +58,32 @@ const ModalAgregarLibro = ({mostrarModal, setMostrarModal, guardarLibro}) => {
                         <Label>Genero</Label>
                         <Input name="genero" onChange={(e) => actualizarDato(e)} value={libro.genero} />
                         <Label>Imagen (URL)</Label>
-                        <Input name="logo" onChange={(e) => actualizarDato(e)} value={libro.logo}/>
+                        <Input name="logo" onChange={(e) => actualizarDato(e)} value={libro.logo} />
                         <Label>Cantidad</Label>
                         <Input name="cantidad" onChange={(e) => actualizarDato(e)} value={libro.cantidad} />
                     </FormGroup>
                 </Form>
             </ModalBody>
             <ModalFooter>
-                <Button color="primary" onClick={enviarDatos}>Guardar</Button>{"   "}
-                <Button color="danger" onClick={() => setMostrarModal(!mostrarModal) }>Cerrar</Button>
+                <Button color="primary" onClick={enviarDatos}
+                    onClick={() => {
+                        toast.success("Se ha creado el libro", {
+
+                            style: {
+                                borderRadius: '10px',
+                                background: '#333',
+                                color: '#fff',
+                            },
+                        })
+                    }}>Guardar</Button>{"   "}
+                <Button color="danger" onClick={() => setMostrarModal(!mostrarModal)}>Cerrar</Button>
             </ModalFooter>
+            <Toaster
+                position='top-right'
+                reverseOrder={false}
+            />
         </Modal>
+
     )
 }
 
