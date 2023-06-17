@@ -1,18 +1,18 @@
-﻿import { useState } from "react"
+﻿import { useEffect, useState } from "react"
 import { Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, ModalFooter, Button } from "reactstrap"
 
 const modeloLibro = {
     idInstLibro: 0,
-    idLibro: 0,
-    titulo: "",
-    autor: "",
-    genero: "",
-    idioma: "",
+    idLibro: "",
+    tituloLibro: "",
+    autorLibro: "",
+    idGenero: "",
+    idIdioma: "",
     isbn: "",
-    logo: "",
-    cantidad: 0
+    logoLibro: "",
+    cantidadInstanciaLibro: ""
 }
-const ModalAgregarLibro = ({mostrarModal, setMostrarModal, guardarLibro}) => {
+const ModalAgregarLibro = ({mostrarModal, setMostrarModal, guardarLibro, editar, setEditar, editarLibro}) => {
 
     const [libro, setLibro] = useState(modeloLibro);
 
@@ -32,40 +32,57 @@ const ModalAgregarLibro = ({mostrarModal, setMostrarModal, guardarLibro}) => {
         if (libro.idInstLibro == 0) {
             guardarLibro(libro)
         }
+        else {
+            editarLibro(libro)
+        }
+        setLibro(modeloLibro)
+    }
+
+    useEffect(() => {
+        if (editar != null) {
+            setLibro(editar)
+        } else {
+            setLibro(modeloLibro)
+        }
+    }, [editar])
+
+    const cerrarModal = () => {
+        setMostrarModal(!mostrarModal)
+        setEditar(null)
     }
 
     return (
         <Modal isOpen={mostrarModal}>
             <ModalHeader>
-            Nuevo Libro
+                {libro.idInstLibro==0? "Nuevo Libro" : "Editar Libro"}
+            
             </ModalHeader>
             <ModalBody>
                 <Form>
                     <FormGroup>
-                        <Label>ID libro</Label>
-                        <Input name="idInstLibro" onChange={(e) => actualizarDato(e)} value={libro.idInstLibro} />
+                        
                         <Label>codigo libro</Label>
                         <Input name="idLibro" onChange={(e) => actualizarDato(e)} value={libro.idLibro} />
                         <Label>Titulo</Label>
-                        <Input name="titulo" onChange={(e) => actualizarDato(e)} value={libro.titulo} />
+                        <Input name="tituloLibro" onChange={(e) => actualizarDato(e)} value={libro.tituloLibro} />
                         <Label>Autor</Label>
-                        <Input name="autor" onChange={(e) => actualizarDato(e)} value={libro.autor} />
+                        <Input name="autorLibro" onChange={(e) => actualizarDato(e)} value={libro.autorLibro} />
                         <Label>ISBN</Label>
                         <Input name="isbn" onChange={(e) => actualizarDato(e)} value={libro.isbn} />
                         <Label>Idioma</Label>
-                        <Input name="idioma" onChange={(e) => actualizarDato(e)} value={libro.idioma} />
+                        <Input name="idIdioma" onChange={(e) => actualizarDato(e)} value={libro.idIdioma} />
                         <Label>Genero</Label>
-                        <Input name="genero" onChange={(e) => actualizarDato(e)} value={libro.genero} />
+                        <Input name="idGenero" onChange={(e) => actualizarDato(e)} value={libro.idGenero} />
                         <Label>Imagen (URL)</Label>
-                        <Input name="logo" onChange={(e) => actualizarDato(e)} value={libro.logo}/>
+                        <Input name="logoLibro" onChange={(e) => actualizarDato(e)} value={libro.logoLibro} />
                         <Label>Cantidad</Label>
-                        <Input name="cantidad" onChange={(e) => actualizarDato(e)} value={libro.cantidad} />
+                        <Input name="cantidadInstanciaLibro" onChange={(e) => actualizarDato(e)} value={libro.cantidadInstanciaLibro} />
                     </FormGroup>
                 </Form>
             </ModalBody>
             <ModalFooter>
                 <Button color="primary" onClick={enviarDatos}>Guardar</Button>{"   "}
-                <Button color="danger" onClick={() => setMostrarModal(!mostrarModal) }>Cerrar</Button>
+                <Button color="danger" onClick={cerrarModal}>Cerrar</Button>
             </ModalFooter>
         </Modal>
     )
