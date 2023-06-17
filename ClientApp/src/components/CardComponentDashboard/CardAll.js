@@ -17,6 +17,7 @@ import {
 
 const CardAll = (props) => {
 
+    const { libro } = props;
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
@@ -24,20 +25,20 @@ const CardAll = (props) => {
     return (
         <div className="card text-center bg-dark animate__animated animate__fadeInUp" style={{ borderRadius: "20px" }}>
             <div className="overflow">
-                <img src={props.imageSource} alt="a wallpaper" className="card-img-top" style={{ borderRadius: "20px 20px 0px 0px" }} />
+                <img src={libro.LOGO_LIBRO} alt="a wallpaper" className="card-img-top" style={{ borderRadius: "20px 20px 0px 0px" }} />
             </div>
             <div className="card-body text-light">
-                <h4 className="card-title">{props.title}</h4>
+                <h4 className="card-title">{libro.TITULO_LIBRO}</h4>
 
                 <p className="card-text text-secondary">
-                    {props.text
-                        ? props.text
+                    {libro.NOMBRE_GENERO
+                        ? libro.NOMBRE_GENERO
                         : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam deserunt fuga accusantium excepturi quia, voluptates obcaecati nam in voluptas perferendis velit harum dignissimos quasi ex? Tempore repellat quo doloribus magnam."}
-                </p>
+                </p>             
                 <a
 
                     onClick={toggle}
-                    target="_blank"
+
                     className="btn btn-outline-secondary border-0"
                     rel="noreferrer"
                 >
@@ -45,7 +46,7 @@ const CardAll = (props) => {
                 </a>
 
             </div>
-            <ModalDashboard toggle={toggle} modal={modal} libro={props}></ModalDashboard>
+            <ModalDashboard toggle={toggle} modal={modal} libro={libro}></ModalDashboard>
         </div>
     );
 }

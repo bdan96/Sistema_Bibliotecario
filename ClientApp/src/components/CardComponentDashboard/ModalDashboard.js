@@ -8,19 +8,15 @@ function ModalDashboard({ toggle, modal, libro }) {
 
     let existencias = '';
     let color = 0;
-    if (libro.CantidadInstanciaLibro === 0) {
+    if (libro.CANTIDAD_INSTANCIA_LIBRO === 0) {
         existencias = '  No hay copias disponibles'
         color = 1
     }
     else {
-        existencias = libro.CantidadInstanciaLibro
+        existencias = libro.CANTIDAD_INSTANCIA_LIBRO
         color = 0;
     }
 
-
-
-    const idiomas = ['Ingles', 'Español']
-    const categorias = ['Fantasia', 'Suspenso']
 
     const newPrestamo = () => {
 
@@ -73,7 +69,7 @@ function ModalDashboard({ toggle, modal, libro }) {
                     <Row >
                         <Col
                             xs="6">
-                            <img className="img-fluid shadow-4 mx-auto d-block " src={libro.LogoLibro} alt="logo libro" width="65%" style={{
+                            <img className="img-fluid shadow-4 mx-auto d-block " src={libro.LOGO_LIBRO} alt="logo libro" width="65%" style={{
                                 height: 400,
                                 alignContent: "center"
                             }}  ></img>
@@ -84,27 +80,19 @@ function ModalDashboard({ toggle, modal, libro }) {
                             <br></br>
                             <Card body>
                                 <CardTitle tag="h5">
-                                    Titulo: {libro.TituloLibro}
+                                    Titulo: {libro.TITULO_LIBRO}
                                 </CardTitle>
                                 <ListGroup flush>
                                     <ListGroupItem>
-                                        Autor: {libro.AutorLibro}
+                                        Autor: {libro.AUTOR_LIBRO}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        Idiomas: {idiomas[libro.IdIdioma]}
+                                        Idioma: {libro.IDIOMA}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        categorias: {categorias[libro.IdGenero]}
+                                        Genero: {libro.NOMBRE_GENERO}
                                     </ListGroupItem>
-                                    <ListGroupItem>
-                                        ISBN: {libro.Isbn}
-                                    </ListGroupItem>
-                                    <ListGroupItem >
-                                        Copias disponible: &nbsp;
-                                        <Label style={{ color: color ? 'red' : 'black' }}>
-                                            {existencias}
-                                        </Label>
-                                    </ListGroupItem>
+                                    
                                 </ListGroup>
                             </Card>
                         </Col>

@@ -43,7 +43,7 @@ function CardsAll() {
         axios.get('http://localhost:5006/api/dashboard')
             .then(response => {
                 setLibros(response.data)
-                
+
             })
             .catch(error => console.error(error));
 
@@ -63,10 +63,19 @@ function CardsAll() {
 
                     </div>
                 ))}*/}
-                {libros.map(({ TITULO_LIBRO, LOGO_LIBRO, AUTOR_LIBRO, NOMBRE_GENERO }) => (
+                {/*{libros.map(({ TITULO_LIBRO, LOGO_LIBRO, AUTOR_LIBRO, NOMBRE_GENERO }) => (
                     <div className="col-md-4">
                         {
                             <CardAll imageSource={LOGO_LIBRO} title={TITULO_LIBRO} url={AUTOR_LIBRO} text={NOMBRE_GENERO} />
+                        }
+
+                    </div>
+                ))}*/}
+
+                {libros.map((item) => (
+                    <div className="col-md-4">
+                        {
+                            <CardAll libro={item} />
                         }
 
                     </div>
