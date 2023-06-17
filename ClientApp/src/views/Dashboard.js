@@ -20,7 +20,6 @@ import {
     dashboardNASDAQChart,
 } from "variables/charts.js";
 
-//import CarruselNew from 'components/CarruselNew.js'
 import Carrusel from 'components/CardComponentDashboard/Carrusel'
 import Carrusel2 from 'components/CardComponentDashboard/Carrusel2'
 import CardLibro from 'components/CardComponentDashboard/CardLibro'
@@ -28,7 +27,7 @@ import CardsAll from 'components/CardComponentDashboard/CardsAll'
 import Destacados from 'components/CardComponentDashboard/libroRecomendadosDestacadosCard'
 import RecomendadosLibros from 'components/CardComponentDashboard/RecomendadosDashboard'
 import CarruselLibrosProximos from 'components/CardComponentDashboard/CarruselLibrosProximos'
-//import CarruselNew  from "components/CardComponentDashboard/CarruselNew";
+
 
 function Dashboard() {
     return (
