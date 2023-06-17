@@ -43,6 +43,7 @@ function CardsAll() {
         axios.get('http://localhost:5006/api/dashboard')
             .then(response => {
                 setLibros(response.data)
+                console.log(response.data)
             })
             .catch(error => console.error(error));
 

@@ -66,16 +66,7 @@ const ModalAgregarLibro = ({ mostrarModal, setMostrarModal, guardarLibro }) => {
             </ModalBody>
             <ModalFooter>
                 <Button color="primary" onClick={enviarDatos}
-                    onClick={() => {
-                        toast.success("Se ha creado el libro", {
-
-                            style: {
-                                borderRadius: '10px',
-                                background: '#333',
-                                color: '#fff',
-                            },
-                        })
-                    }}>Guardar</Button>{"   "}
+                    >Guardar</Button>{"   "}
                 <Button color="danger" onClick={() => setMostrarModal(!mostrarModal)}>Cerrar</Button>
             </ModalFooter>
             <Toaster
