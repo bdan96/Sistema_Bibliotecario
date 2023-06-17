@@ -32,31 +32,25 @@ function User() {
 
     const [instanciaLibros, setInstanciaLibro] = useState([])
 
-    /*const mostrarInstanciaLibros = async () => {
-        const response = await fetch("http://localhost:44436/api/instancialibro/lista");
+    const [libros, setLibros] = useState([])
 
-        if (response.ok) {
-            const data = await response.json();
-            setInstanciaLibro(data)
-            console.log("datos recibidos")
-        } else {
-            console.log("error en la lista")
-        }
+    const mostrarInstanciaLibros = async () => {
+        axios.get('http://localhost:5006/api/instancialibro/lista')
+            .then(response => {
+                setLibros(response.data)
+            })
+            .catch(error => console.error(error));
 
     }
-    */
-    const [libros, setLibros] = useState([])
+    
+    
 
 
     const [editar, setEditar] = useState(null)
 
     
-        useEffect(() => {
-            axios.get('http://localhost:5006/api/instancialibro/lista')
-                .then(response => {
-                    setLibros(response.data)
-                })
-                .catch(error => console.error(error));
+    useEffect(() => {
+        mostrarInstanciaLibros();
 
         }, [])
 
@@ -75,7 +69,7 @@ function User() {
             setMostrarModal(!mostrarModal);
             
         }
-       
+        mostrarInstanciaLibros();
     }
 
     const editarLibro = async (libro) => {
@@ -90,6 +84,7 @@ function User() {
             setMostrarModal(!mostrarModal);
 
         }
+        mostrarInstanciaLibros();
     }
 
     const eliminarLibro = async (id) => {
@@ -103,6 +98,7 @@ function User() {
         if (response.ok) {
 
         }
+        mostrarInstanciaLibros();
     }
 
     const enviarDatos = (libro) => {

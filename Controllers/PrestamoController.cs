@@ -1,12 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Sistema_Bibliotecario.Models;
 
 namespace Sistema_Bibliotecario.Controllers
 {
-    public class PrestamoController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+
+    public class PrestamoController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly BDBibliotecaContext _dbcontext;
+
+        public PrestamoController (BDBibliotecaContext context)
         {
-            return View();
+            _dbcontext = context;
         }
+
+        [HttpGet]
+        [Route("lista")]
+
+        public async Task<ActionResult<List<Prestamo>>> Lista()
+        {
+            List<Prestamo> lista = await _dbcontext.Prestamos.OrderByDescending(c => c.IdPrestamo).ToListAsync();
+            return lista;
+
+        }
+
     }
 }

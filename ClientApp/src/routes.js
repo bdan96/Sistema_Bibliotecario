@@ -25,6 +25,7 @@ import Maps from "views/Map.js";
 import UserPage from "views/User.js";
 import UpgradeToPro from "views/Upgrade.js";
 import GestionLibro from "views/GestioLibros.js";
+import PrestamosReservas from "views/PrestamosReservas";
 
 
 var routes = [
@@ -91,6 +92,13 @@ var routes = [
     icon: "nc-icon nc-spaceship",
     component: <UpgradeToPro />,
     layout: "/admin",
-  },
+    },
+  {
+    path: "/prestamosReservas",
+    name: "Prestamos y Reservas",
+    icon: "nc-icon nc-paper",
+    component: <PrestamosReservas />,
+    layout: "/admin",
+    },
 ];
 export default routes;

@@ -10,7 +10,22 @@ import {
 
 function User() {
 
+    const [prestamos, setPrestamos] = useState([])
 
+    const mostrarPrestamos = async () => {
+        const response = await fetch("http://localhost:44436/api/prestamo/lista");
+        if (response.ok) {
+            const data = await response.json();
+            setPrestamos(data)
+            console.log("datos recibidos")
+        } else {
+            console.log("error en la lista")
+        }
+    }
+
+    useEffect(() => {
+        mostrarPrestamos();
+    },[])
 
     return (
         <>
@@ -20,15 +35,7 @@ function User() {
                         <Card>
                             <CardHeader>
                                 <CardTitle tag="h4">Prestamos</CardTitle>
-                                <Button
-                                    className="btn-round"
-                                    color="primary"
-                                    type="submit"
-                                    size="lg"
-                                    onClick={() => setMostrarModal(!mostrarModal)}
-                                >
-                                    Agregar libro
-                                </Button>
+                               
                             </CardHeader>
                             <CardBody>
                                 <Table responsive>
@@ -46,7 +53,7 @@ function User() {
                                     <tbody>
                                         {
                                             (
-                                                libros.map((item) => (
+                                                prestamos.map((item) => (
                                                     <tr key={item.idInstLibro}>
                                                         <td>{item.idInstLibro}</td>
                                                         <td>{item.tituloLibro}</td>
@@ -56,8 +63,8 @@ function User() {
                                                         <td>{item.isbn}</td>
 
                                                         <td>{item.cantidadInstanciaLibro}</td>
-                                                        <td><Button color="primary" onClick={() => enviarDatos(item)}>Editar</Button>{"   "}
-                                                            <Button color="danger" onClick={() => eliminarLibro(item.idInstLibro)}>Eliminar</Button>
+                                                        <td><Button color="primary" >Editar</Button>{"   "}
+
                                                         </td>
                                                     </tr>
                                                 ))
