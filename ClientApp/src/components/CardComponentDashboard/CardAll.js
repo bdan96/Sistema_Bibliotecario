@@ -36,16 +36,16 @@ const CardAll = (props) => {
                 </p>
                 <a
 
-                    href={props.url ? props.url : "#!"}
+                    onClick={toggle}
                     target="_blank"
                     className="btn btn-outline-secondary border-0"
                     rel="noreferrer"
                 >
                     Go to the book
                 </a>
-                
+
             </div>
-            
+            <ModalDashboard toggle={toggle} modal={modal} libro={props}></ModalDashboard>
         </div>
     );
 }
