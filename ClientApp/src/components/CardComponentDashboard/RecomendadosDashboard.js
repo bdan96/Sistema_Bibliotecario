@@ -16,6 +16,7 @@ import {
     Button,
 } from "reactstrap";
 import "assets/css/recomendadosCard.css";
+import ModalDashboard from './ModalDashboard'
 
 const cards = [
     {
@@ -43,6 +44,10 @@ function RecomendadosLibros() {
 
     const [libros, setLibros] = useState([])
 
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
+
     //const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
@@ -66,13 +71,13 @@ function RecomendadosLibros() {
         /*<CardGroup>*/
         <CardGroup>
             {
-                libros.map(({ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }, index) => {
-                    if (index >=14 && index <= 17) {
+                libros.map((item, index) => {
+                    if (index >= 14 && index <= 17) {
                         return (
                             <Card className="rounded-3">
                                 <CardImg
                                     alt="Card image cap"
-                                    src={LOGO_LIBRO}
+                                    src={item.LOGO_LIBRO}
                                     top
                                     className="rounded-3"
                                     height="500"
@@ -80,23 +85,24 @@ function RecomendadosLibros() {
                                 />
                                 <CardBody>
                                     <CardTitle tag="h5">
-                                        {TITULO_LIBRO}
+                                        {item.TITULO_LIBRO}
                                     </CardTitle>
-                                   
+
                                     <CardSubtitle
                                         className="mb-2 text-muted"
                                         tag="h6"
                                     >
-                                        {NOMBRE_GENERO}
+                                        {item.NOMBRE_GENERO}
                                     </CardSubtitle>
                                     <CardText>
-                                        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.                                      
+                                        This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     </CardText>
                                     <br></br>
-                                    <Button className="btn btn-dark recomendadosCa">
+                                    <Button className="btn btn-dark recomendadosCa" onClick={toggle}>
                                         IR AL LIBRO
                                     </Button>
                                 </CardBody>
+                                <ModalDashboard toggle={toggle} modal={modal} libro={item}></ModalDashboard>
                             </Card>)
                     }
                 })
