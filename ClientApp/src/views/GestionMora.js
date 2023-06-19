@@ -16,6 +16,8 @@ function GestionMora() {
 
     const [moras, setMoras] = useState([])
 
+    const [moraNueva, setMoraNueva] = useState([])
+
     const mostrarMoras = async () => {
         axios.get('http://localhost:5006/api/mora/lista')
             .then(response => {
@@ -23,6 +25,14 @@ function GestionMora() {
             })
             .catch(error => console.error(error));
 
+    }
+
+    const calcularMorasUsuario = async () => {
+        axios.get('http://localhost:5006/api/mora/calcular')
+            .then(response => {
+                setMoraNueva(response.data)
+            })
+            .catch(error => console.error(error));
     }
 
 
@@ -97,7 +107,7 @@ function GestionMora() {
                         <Card>
                             <CardHeader>
                                 <CardTitle tag="h4">Gestion de Moras</CardTitle>
-                                <Button
+                                {/*<Button
                                     className="btn-round"
                                     color="primary"
                                     type="submit"
@@ -105,7 +115,9 @@ function GestionMora() {
                                     onClick={() => setMostrarModal(!mostrarModal)}
                                 >
                                     Agregar Mora
-                                </Button>
+                                </Button>*/}
+                                <br></br>
+                                <br></br>
                             </CardHeader>
                             <CardBody>
                                 <Table responsive>
@@ -117,7 +129,7 @@ function GestionMora() {
                                             <th>DIAS</th>
                                             <th>FECHA PRESTAMO</th>
                                             <th>PAGO MORA</th>
-                                            <th>TOTAL MORA</th>                                          
+                                            <th>TOTAL MORA</th>
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
@@ -133,7 +145,7 @@ function GestionMora() {
                                                         <td>{item.idPrestamoNavigation.fechaPrestamo}</td>
                                                         <td>{item.pagoMora}</td>
                                                         <td>{item.totalMora}</td>
-                                                        
+
 
                                                         <td><Button color="primary" onClick={() => enviarDatos(item)}>Editar</Button>{"   "}
                                                             <Button color="danger" onClick={() => eliminarMora(item.idMora)}>Eliminar</Button> {"   "}

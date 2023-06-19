@@ -1,7 +1,15 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 using Sistema_Bibliotecario.Models;
+using Microsoft.Data.SqlClient;
+using System.Collections;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.CodeAnalysis.Scripting;
+using System.Data;
 
 namespace Sistema_Bibliotecario.Controllers
 {
@@ -26,6 +34,34 @@ namespace Sistema_Bibliotecario.Controllers
             return lista;
 
         }
+
+        [Route("calcular")]
+
+        [HttpGet]
+        public IEnumerable getCalcularMora()
+        {
+            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "insertMora";
+            cnn.Open();
+            SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+            DataTable dt2 = new DataTable();
+            dt2.Clear();
+            adapter2.Fill(dt2);
+            cnn.Close();
+
+
+
+            //DataTableSystemTextJson(dt);
+            return DataTableSystemTextJson(dt2);
+
+
+        }
+
+
+
 
         [HttpPost]
         [Route("guardar")]
@@ -57,6 +93,14 @@ namespace Sistema_Bibliotecario.Controllers
 
             return StatusCode(StatusCodes.Status200OK, "ok");
 
+        }
+
+        public static IEnumerable DataTableSystemTextJson(DataTable dataTable)
+        {
+            var data = dataTable.Rows.OfType<DataRow>()
+                        .Select(row => dataTable.Columns.OfType<DataColumn>()
+                            .ToDictionary(col => col.ColumnName, c => row[c]));
+            return data;
         }
     }
 }
