@@ -43,10 +43,25 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 // Add services to the container.
-
+// Add services to the container.
+builder.Services.AddTransient < UsuariosSeeder>();
 builder.Services.AddControllersWithViews();
 
-    var app = builder.Build();
+var app = builder.Build();
+if(args.Length == 1 && args[0].ToLower() == "seedusuarios") //se usa con el comando dotnet run seedusuarios
+{
+    UsuariosSeeder(app);
+}
+
+void UsuariosSeeder(IHost app)
+{
+    var scopeFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopeFactory.CreateScope())
+    {
+        var seeder = scope.ServiceProvider.GetService<UsuariosSeeder>();
+        seeder.seed();
+    }
+}
 
 // Configure the HTTP request pipeline.
 // Configure the HTTP request pipeline.
