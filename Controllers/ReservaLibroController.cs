@@ -4,14 +4,15 @@ using Sistema_Bibliotecario.Models;
 
 namespace Sistema_Bibliotecario.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
 
-    public class PrestamoController : ControllerBase
+    public class ReservaLibroController : ControllerBase
     {
         private readonly BDBibliotecaContext _dbcontext;
 
-        public PrestamoController (BDBibliotecaContext context)
+        public ReservaLibroController (BDBibliotecaContext context)
         {
             _dbcontext = context;
         }
@@ -19,12 +20,10 @@ namespace Sistema_Bibliotecario.Controllers
         [HttpGet]
         [Route("lista")]
 
-        public async Task<ActionResult<List<Prestamo>>> Lista()
+        public async Task<ActionResult<List<ReservaLibro>>> Lista()
         {
-            List<Prestamo> lista = await _dbcontext.Prestamos.OrderByDescending(c => c.IdPrestamo).ToListAsync();
+            List<ReservaLibro> lista = await _dbcontext.ReservaLibros.OrderByDescending(c => c.Idreservalibro).ToListAsync();
             return lista;
-
         }
-
     }
 }

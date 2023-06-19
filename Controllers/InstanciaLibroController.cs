@@ -27,7 +27,7 @@ namespace Sistema_Bibliotecario.Controllers
         }
 
         [HttpPost]
-        [Route("Guardar")]
+        [Route("guardar")]
         public async Task<IActionResult> Guardar([FromBody] InstanciaLibro request)
         {
             await _dbcontext.InstanciaLibros.AddAsync(request);

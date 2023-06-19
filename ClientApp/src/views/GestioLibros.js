@@ -28,46 +28,81 @@ import {
 } from "reactstrap";
 
 
-
-const guardarLibro = async (libro) => {
-
-}
-
 function User() {
 
     const [instanciaLibros, setInstanciaLibro] = useState([])
 
-    /*const mostrarInstanciaLibros = async () => {
-        const response = await fetch("http://localhost:44436/api/instancialibro/Lista");
-
-        if (response.ok) {
-            const data = await response.json();
-            setInstanciaLibro(data)
-            console.log("datos recibidos")
-        } else {
-            console.log("error en la lista")
-        }
-
-    }
-    */
     const [libros, setLibros] = useState([])
 
-    //const { createProxyMiddleware } = require('http-proxy-middleware');
-
-
-
-
-    useEffect(() => {
+    const mostrarInstanciaLibros = async () => {
         axios.get('http://localhost:5006/api/instancialibro/lista')
             .then(response => {
                 setLibros(response.data)
             })
             .catch(error => console.error(error));
 
-    }, [])
+    }
+
+    const [editar, setEditar] = useState(null)
+
+    
+    useEffect(() => {
+        mostrarInstanciaLibros();
+
+        }, [])
 
 
     const [mostrarModal, setMostrarModal] = useState(false);
+
+    const guardarLibro = async (libro) => {
+        const response = await fetch("http://localhost:5006/api/instancialibro/guardar", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(libro)
+        })
+        if (response.ok) {
+            setMostrarModal(!mostrarModal);
+            
+        }
+        mostrarInstanciaLibros();
+    }
+
+    const editarLibro = async (libro) => {
+        const response = await fetch("http://localhost:5006/api/instancialibro/Editar", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(libro)
+        })
+        if (response.ok) {
+            setMostrarModal(!mostrarModal);
+
+        }
+        mostrarInstanciaLibros();
+    }
+
+    const eliminarLibro = async (id) => {
+        var respuesta = window.confirm("Desea eliminar el Libro?")
+        if (!respuesta) {
+            return
+        }
+        const response = await fetch("http://localhost:5006/api/instancialibro/Eliminar/" + id, {
+            method: 'DELETE',
+        })
+        if (response.ok) {
+
+        }
+        mostrarInstanciaLibros();
+    }
+
+    const enviarDatos = (libro) => {
+        setEditar(libro)
+        setMostrarModal(!mostrarModal)
+    }
+
 
   return (
     <>
@@ -107,14 +142,15 @@ function User() {
                                                   libros.map((item) => (
                                                       <tr key={item.idInstLibro}>
                                                           <td>{item.idInstLibro}</td>
-                                                          <td>{item.titulo}</td>
-                                                          <td>{item.autor}</td>
+                                                          <td>{item.tituloLibro}</td>
+                                                          <td>{item.autorLibro}</td>
+                                                          <td>{item.idIdioma}</td>
                                                           <td>{item.idGenero}</td>
                                                           <td>{item.isbn}</td>
-                                                          <td>{item.logoLibro}</td>
-                                                          <td>{item.CantidadInstanciaLibro}</td>
-                                                          <td><Button color="primary">Editar</Button>{"   "}
-                                                              <Button color="danger">Editar</Button>
+                                                          
+                                                          <td>{item.cantidadInstanciaLibro}</td>
+                                                          <td><Button color="primary" onClick={() => enviarDatos(item)}>Editar</Button>{"   "}
+                                                              <Button color="danger" onClick={() => eliminarLibro(item.idInstLibro)}>Eliminar</Button>
                                                           </td>
                                                       </tr>
                                               ))
@@ -126,130 +162,15 @@ function User() {
                               </Table>
                           </CardBody>
                       </Card>
-            <Card className="card-user">
-              <CardHeader>
-                <CardTitle tag="h5">Gestionar Libro</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Form>
-                  <Row>
-                    <Col className="pr-1" md="8">
-                      <FormGroup>
-                        <label>Ingrese ID del libro</label>
-                        <Input
-                          defaultValue="ID libro"
-        
-                          placeholder="Company"
-                          type="text"
-                        />
-                      </FormGroup>
-                                      </Col>
-                                      <Col className="update ml-auto mr-auto" md="4">
-                                         
-                                              <Button
-                                                  className="btn-round"
-                                                  color="primary"
-                                              type="submit"
-                                              size="lg"
-                                              >
-                                                  Buscar
-                                              </Button>
-                             
-                                      </Col>
-                             
-                  </Row>
-                  <Row>
-                    <Col className="pr-1" md="6">
-                      <FormGroup>
-                        <label>Titulo</label>
-                        <Input
-                          defaultValue=""
-                          placeholder="Company"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <FormGroup>
-                        <label>Autor</label>
-                        <Input
-                          defaultValue=""
-                          placeholder="Last Name"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col className="pr-1" md="4">
-                      <FormGroup>
-                        <label>Genero</label>
-                        <Input
-                          defaultValue=""
-                          placeholder="City"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="px-1" md="4">
-                      <FormGroup>
-                        <label>Idioma</label>
-                        <Input
-                          defaultValue="Australia"
-                          placeholder="Country"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <FormGroup>
-                        <label>ISBN</label>
-                                              <Input placeholder=""
-                                                  type="text" />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="12">
-                      <FormGroup>
-                        <label>About Me</label>
-                        <Input
-                          type="textarea"
-                          defaultValue="Oh so, your weak rhyme You doubt I'll bother, reading into it"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <div className="update ml-auto mr-auto">
-                      <Button
-                        className="btn-round"
-                        color="primary"
-                        type="submit"
-                        size="lg"
-                      >
-                        ACTUALIZAR
-                      </Button>
-                      <Button
-                        className="btn-round"
-                        color="danger"
-                        type="submit"
-                        size="lg"
-                       >
-                       ELIMINAR
-                      </Button>
-                    </div>
-                  </Row>
-                </Form>
-              </CardBody>
-            </Card>
           </Col>
               </Row>
               <ModalAgregarLibro
                   mostrarModal={mostrarModal}
-              setMostrarModal = {setMostrarModal}
-              guardarLibro = {guardarLibro}/>
+                  setMostrarModal={setMostrarModal}
+                  guardarLibro={guardarLibro}
+                  editar={editar}
+                  setEditar={setEditar}
+                  editarLibro={editarLibro} />
       </div>
     </>
   );
