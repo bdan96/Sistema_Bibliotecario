@@ -37,13 +37,18 @@ import {
 } from "reactstrap";
 
 import routes from "routes.js";
+import Cookies from "universal-cookie/es6";
+import { useNavigate } from 'react-router-dom';
+
 
 function Header(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const [color, setColor] = React.useState("transparent");
   const sidebarToggle = React.useRef();
-  const location = useLocation();
+   const location = useLocation();
+   const cookies = new Cookies();
+   const navigate = useNavigate();
   const toggle = () => {
     if (isOpen) {
       setColor("transparent");
@@ -77,6 +82,16 @@ function Header(props) {
       setColor("transparent");
     }
   };
+
+    const cerrarSesion = () => {
+        cookies.remove('id', { path: '/' });
+        cookies.remove('TipoUsuario', { path: '/' });
+        cookies.remove('apellidos', { path: '/' });
+        cookies.remove('nombre', { path: '/' });
+        cookies.remove('correo', { path: '/' });
+        cookies.remove('username', { path: '/' });
+    }
+
   React.useEffect(() => {
     window.addEventListener("resize", updateColor.bind(this));
   });
@@ -89,6 +104,11 @@ function Header(props) {
       sidebarToggle.current.classList.toggle("toggled");
     }
   }, [location]);
+    React.useEffect(() => {
+        if (!cookies.get('id')) {
+            navigate('/', { replace: true });
+        }
+    });
   return (
     // add or remove classes depending if we are on full-screen-maps page or not
     <Navbar
@@ -145,9 +165,9 @@ function Header(props) {
               </Link>
             </NavItem>
             <Dropdown
-              nav
+              /*nav
               isOpen={dropdownOpen}
-              toggle={(e) => dropdownToggle(e)}
+              toggle={(e) => dropdownToggle(e)}*/
             >
               <DropdownToggle caret nav>
                 <i className="nc-icon nc-bell-55" />
@@ -160,6 +180,21 @@ function Header(props) {
                 <DropdownItem tag="a">Another Action</DropdownItem>
                 <DropdownItem tag="a">Something else here</DropdownItem>
               </DropdownMenu>
+              </Dropdown>
+            <Dropdown
+                nav
+                isOpen={dropdownOpen}
+                toggle={(e) => dropdownToggle(e)}
+            >
+                <DropdownToggle caret nav>
+                    <i className="nc-icon nc-single-02" />
+                    <p>
+                     <span className="d-lg-none d-md-block">usuario</span>
+                    </p>
+                </DropdownToggle>
+                          <DropdownMenu user>
+                              <DropdownItem button="signOut" onClick={() => cerrarSesion()} >Cerrar Sesion</DropdownItem>                   
+                </DropdownMenu>
             </Dropdown>
             <NavItem>
               <Link to="#pablo" className="nav-link btn-rotate">
