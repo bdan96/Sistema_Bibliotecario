@@ -8,16 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddCors(options =>
-{
-    //AllowAnyHeader();
-    options.AddPolicy("Policy1", policy =>
-    {
-        policy.AllowAnyOrigin().AllowAnyHeader();
-    });
 
-}
-);
 var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection");
 
 
@@ -58,9 +49,17 @@ if (!app.Environment.IsDevelopment())
 {
 }
 
+app.UseCors(options =>
+{
+    options.WithOrigins("http://localhost:44436");
+    options.WithOrigins("http://localhost:3000");
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
+
+
 app.UseStaticFiles();
 app.UseRouting();
-app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 

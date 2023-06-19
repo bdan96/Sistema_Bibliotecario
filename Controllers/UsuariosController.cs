@@ -108,13 +108,12 @@ namespace Sistema_Bibliotecario.Controllers
             return usuarios;
         }
 
-        [EnableCors("Policy1")]
         [HttpGet("{email}/{password}")]
         public ActionResult<List<Usuario>> IniciarSesion(string email, string password)
         {
             var pass = Utilidades.EncriptarClave(password);
             var usuarios = _context.Usuarios.Where(usuario => usuario.Correo.Equals(email) && usuario.Contrasenia.Equals(pass)).ToList();
-
+            
             if (usuarios == null)
             {
                 return NotFound();
