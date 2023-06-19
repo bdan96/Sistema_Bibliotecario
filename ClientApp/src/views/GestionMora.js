@@ -110,27 +110,34 @@ function GestionMora() {
                             <CardBody>
                                 <Table responsive>
                                     <thead className="text-primary">
-                                        <tr>
+                                        <tr style={{ textAlign: "center" }}>
                                             <th>ID</th>
-                                            <th>USUARIO</th>
+                                            <th>NOMBRE</th>
+                                            <th>APELLIDOS</th>
                                             <th>DIAS</th>
-                                            <th>TOTAL_MORA</th>
+                                            <th>FECHA PRESTAMO</th>
+                                            <th>PAGO MORA</th>
+                                            <th>TOTAL MORA</th>                                          
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ textAlign: "center" }}>
                                         {
                                             (
                                                 moras.map((item) => (
                                                     <tr key={item.idMora}>
                                                         <td>{item.idMora}</td>
-                                                        <td>{item.idRegistro}</td>
+                                                        <td>{item.idPrestamoNavigation.idUsuarioNavigation.nombres}</td>
+                                                        <td>{item.idPrestamoNavigation.idUsuarioNavigation.apellidos}</td>
                                                         <td>{item.dias}</td>
-                                                        <td>{item.totalMora}</td>
+                                                        <td>{item.idPrestamoNavigation.fechaPrestamo}</td>
                                                         <td>{item.pagoMora}</td>
+                                                        <td>{item.totalMora}</td>
+                                                        
 
                                                         <td><Button color="primary" onClick={() => enviarDatos(item)}>Editar</Button>{"   "}
-                                                            <Button color="danger" onClick={() => eliminarMora(item.idMora)}>Eliminar</Button>
+                                                            <Button color="danger" onClick={() => eliminarMora(item.idMora)}>Eliminar</Button> {"   "}
+                                                            <Button color="success" >Calcular</Button>
                                                         </td>
                                                     </tr>
                                                 ))

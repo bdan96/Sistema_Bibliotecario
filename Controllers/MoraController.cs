@@ -21,7 +21,8 @@ namespace Sistema_Bibliotecario.Controllers
         [Route("lista")]
         public async Task<ActionResult<List<Mora>>> Lista()
         {
-            List<Mora> lista = await _dbcontext.Moras.OrderBy(c => c.IdMora).ToListAsync();
+            List<Mora> lista = await _dbcontext.Moras.Include(m => m.IdPrestamoNavigation).ThenInclude(m => m.IdUsuarioNavigation).OrderBy(c => c.IdMora).ToListAsync();
+            /*List<Mora> lista = await _dbcontext.Moras.Include("IdPrestamoNavigation").ToListAsync();*/
             return lista;
 
         }

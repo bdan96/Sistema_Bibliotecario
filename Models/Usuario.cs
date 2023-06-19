@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Sistema_Bibliotecario.Models
 {
-    public partial class Usuario : IdentityUser
+    public partial class Usuario /*: IdentityUser*/
     {
         public Usuario()
         {
@@ -34,5 +34,10 @@ namespace Sistema_Bibliotecario.Models
         public virtual ICollection<Prestamo> Prestamos { get; set; }
         public virtual ICollection<ReservaLibro> ReservaLibros { get; set; }
         public virtual ICollection<Telefono> Telefonos { get; set; }
+
+        public string getFullName()
+        {
+            return Nombres + " " + Apellidos;
+        }
     }
 }
