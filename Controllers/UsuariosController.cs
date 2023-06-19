@@ -1,95 +1,132 @@
-/*using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Sistema_Bibliotecario.Models;
 using Sistema_Bibliotecario.Servicios.Contrato;
 using Sistema_Bibliotecario.Recursos;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Cors;
 
 namespace Sistema_Bibliotecario.Controllers
 {
-    public class UsuariosController : Controller
+
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UsuariosController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly BDBibliotecaContext _context;
 
-        public UsuariosController(IUsuarioService usuarioService)
+        public UsuariosController(BDBibliotecaContext context)
         {
-            this._usuarioService = usuarioService;
+            _context = context;
         }
 
-        public IActionResult Registrarse()
+        // GET: api/Usuarios
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Usuario>>> Getusuarios()
         {
-            return View();
+            return await _context.Usuarios.ToListAsync();
         }
 
-        [HttpPost]
-        public IActionResult Registrarse(Usuario user)
+        // GET: api/Usuarios/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Usuario>> GetUsuarios(int id)
         {
-            user.Contrasenia = Utilidades.EncriptarClave(user.Contrasenia);
-            user.IdTipoUsuario = 3;
-            Usuario usuarioCreado = _usuarioService.CrearUsuario(user);
-            if (usuarioCreado.IdUsuario > 0)
+            var usuarios = await _context.Usuarios.FindAsync(id);
+
+            if (usuarios == null)
             {
-                return RedirectToAction("IniciarSesion");
-            }
-            else
-            {
-                ViewData["Mensaje"] = "Error al crear el usuario";
-                return View();
+                return NotFound();
             }
 
+            return usuarios;
         }
 
-        public IActionResult IniciarSesion()
+        // PUT: api/Usuarios/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUsuarios(int id, Usuario usuarios)
         {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult IniciarSesion(string correo, string clave)
-        {
-            Usuario usuario_encontrado = _usuarioService.ObtenerUsuario(correo, Utilidades.EncriptarClave(clave));
-            if (usuario_encontrado != null)
+            if (id != usuarios.IdUsuario)
             {
-                var claims = new List<Claim>
+                return BadRequest();
+            }
+
+            _context.Entry(usuarios).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsuariosExists(id))
                 {
-                    new Claim(ClaimTypes.Name, usuario_encontrado.Correo),
-                    new Claim(ClaimTypes.Role, usuario_encontrado.IdTipoUsuario.ToString())
-                };
-                var claimsIdentity = new ClaimsIdentity(
-                                       claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties
+                    return NotFound();
+                }
+                else
                 {
-                    AllowRefresh = true,
-                    // Refreshing the authentication session should be allowed.
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                    // The time at which the authentication ticket expires. A 
-                    // value set here overrides the ExpireTimeSpan option of 
-                    // CookieAuthenticationOptions set with AddCookie.
-                    //IsPersistent = true,
-                    // Whether the authentication session is persisted across 
-                    // multiple requests. When used with cookies, controls
-                    // whether the cookie's lifetime is absolute (matching the
-                    // lifetime of the authentication ticket) or session-based.
-                    //IssuedUtc = <DateTimeOffset>,
-                    // The time at which the authentication ticket was issued.
-                    //RedirectUri = <string>
-                    // The full path or absolute URI to be used as an http 
-                    // redirect response value.
-                };
-                HttpContext.SignInAsync(
-                                       CookieAuthenticationDefaults.AuthenticationScheme,
-                                                          new ClaimsPrincipal(claimsIdentity),
-                                                                             authProperties);
-                return RedirectToAction("Index", "Home");
+                    throw;
+                }
             }
-            else
-            {
-                ViewData["Mensaje"] = "Usuario o contraseña incorrectos";
-                return View();
-            }
+
+            return NoContent();
         }
+
+        // POST: api/Usuarios
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPost]
+        public async Task<ActionResult<Usuario>> PostUsuarios(Usuario usuarios)
+        {
+            _context.Usuarios.Add(usuarios);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUsuarios", new { id = usuarios.IdUsuario }, usuarios);
+        }
+
+        // DELETE: api/Usuarios/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Usuario>> DeleteUsuarios(int id)
+        {
+            var usuarios = await _context.Usuarios.FindAsync(id);
+            if (usuarios == null)
+            {
+                return NotFound();
+            }
+
+            _context.Usuarios.Remove(usuarios);
+            await _context.SaveChangesAsync();
+
+            return usuarios;
+        }
+
+        [HttpGet("{email}/{password}")]
+        public ActionResult<List<Usuario>> IniciarSesion(string email, string password)
+        {
+            var pass = Utilidades.EncriptarClave(password);
+            var usuarios = _context.Usuarios.Where(usuario => usuario.Correo.Equals(email) && usuario.Contrasenia.Equals(pass)).ToList();
+            
+            if (usuarios == null)
+            {
+                return NotFound();
+            }
+
+            return usuarios;
+        }
+
+        private bool UsuariosExists(int id)
+        {
+            return _context.Usuarios.Any(e => e.IdUsuario == id);
+        }
+
+       
     }
-}*/
+}

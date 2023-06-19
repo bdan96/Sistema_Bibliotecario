@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Sistema_Bibliotecario.Models
 {
-    public partial class Usuario : IdentityUser
+    public partial class Usuario 
     {
         public Usuario()
         {
@@ -16,7 +16,7 @@ namespace Sistema_Bibliotecario.Models
         }
 
         public int IdUsuario { get; set; }
-        public int? IdTipoUsuario { get; set; }
+        public int? IdTipoUsuario { get; set; } 
         public bool Responsable { get; set; }
         public string NombreUsuario { get; set; } = null!;
         public string Contrasenia { get; set; } = null!;

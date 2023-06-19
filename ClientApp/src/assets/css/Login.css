@@ -1,0 +1,138 @@
+
+.login-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #ED213A;
+    background: -webkit-linear-gradient(to right, #93291E, #ED213A);
+    background: linear-gradient(to right, #93291E, #ED213A);
+    border: solid 1px #000000;
+}
+
+.logo {
+    width: 200px;
+    height: 300px;
+    text-align: center;
+    margin-left: 40px;
+}
+
+.logo img {
+    object-fit: contain;
+    align-content: center;
+}
+
+.box-form {
+    margin: 0 auto;
+    width: fit-content;
+    max-height: 80%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex: 1 1 100%;
+    align-items: stretch;
+
+    box-shadow: 0 0 20px 6px #090b6f85;
+}
+
+@media (max-width: 980px) {
+    .box-form {
+        flex-flow: wrap;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+    }
+}
+
+.box-form div {
+    height: auto;
+}
+
+.box-form .left {
+    color: #FFFFFF;
+    overflow: hidden;
+
+
+}
+
+.box-form .left .overlay {
+padding: 30px;
+width: 100%;
+height: 100%;
+overflow: hidden;
+box-sizing: border-box;
+}
+
+.box-form .left .overlay h1 {
+    font-size: 40px;
+    line-height: 1;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #2E2A2A;
+    text-shadow: 1px 1px 3px #2E2A2A;
+}
+
+
+
+.box-form .right {
+    padding: 40px;
+    overflow: hidden;
+
+}
+
+@media (max-width: 980px) {
+    .box-form .right {
+        width: 100%;
+    }
+}
+
+.box-form .right h5 {
+    font-size: 20px;
+    line-height: 0;
+    margin-top:20px;
+}
+
+.box-form .right p {
+    font-size: 14px;
+    color: #B0B3B9;
+}
+
+.box-form .right .inputs {
+    overflow: hidden;
+}
+
+.box-form .right input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 25px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #B0B3B9;
+}
+
+
+.box-form .right button {
+    float: right;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 35px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    box-shadow: 0px 4px 20px 0px #49c628a6;
+    background: linear-gradient(to right, #000000, #434343);
+}
+
+.box-form .right button:hover {
+    border-color: #c78c19;
+}
+
+.box-form .right button:active {
+    border-color: #088c19;
+}
