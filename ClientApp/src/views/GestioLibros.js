@@ -42,9 +42,6 @@ function User() {
             .catch(error => console.error(error));
 
     }
-    
-    
-
 
     const [editar, setEditar] = useState(null)
 
