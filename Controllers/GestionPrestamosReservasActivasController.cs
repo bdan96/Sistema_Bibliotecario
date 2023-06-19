@@ -21,7 +21,17 @@ namespace Sistema_Bibliotecario.Controllers
         [Route("lista")]
         public async Task<ActionResult<List<Prestamo>>> Lista()
         {
-            List<Prestamo> lista = await _dbcontext.Prestamos.OrderByDescending(c => c.IdPrestamo).ToListAsync();
+            List<Prestamo> lista = await _dbcontext.Prestamos.Include(m => m.IdUsuarioNavigation).OrderBy(c => c.IdPrestamo).ToListAsync();
+            return lista;
+
+        }
+
+
+        [HttpGet]
+        [Route("listaReserva")]
+        public async Task<ActionResult<List<ReservaLibro>>> ListaRer()
+        {
+            List<ReservaLibro> lista = await _dbcontext.ReservaLibros.Include(m => m.IdUsuarioNavigation).OrderBy(c => c.Idreservalibro).ToListAsync();
             return lista;
 
         }

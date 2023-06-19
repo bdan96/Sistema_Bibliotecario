@@ -15,10 +15,21 @@ function GestionPrestamosReservasActivos() {
 
     const [libros, setLibros] = useState([])
 
+    const [reservaNue, setReservaNue] = useState([])
+
     const mostrarPrestamos = async () => {
         axios.get('http://localhost:5006/api/gestionprestamosreservasactivas/lista')
             .then(response => {
                 setLibros(response.data)
+            })
+            .catch(error => console.error(error));
+
+    }
+
+    const mostrarReservas = async () => {
+        axios.get('http://localhost:5006/api/gestionprestamosreservasactivas/listareserva')
+            .then(response => {
+                setReservaNue(response.data)
             })
             .catch(error => console.error(error));
 
@@ -32,6 +43,7 @@ function GestionPrestamosReservasActivos() {
 
     useEffect(() => {
         mostrarPrestamos();
+        mostrarReservas();
 
     }, [])
 
@@ -65,25 +77,28 @@ function GestionPrestamosReservasActivos() {
                             <CardBody>
                                 <Table responsive>
                                     <thead className="text-primary">
-                                        <tr>
+                                        <tr style={{ textAlign: "center" }}>
                                             <th>ID</th>
-                                            <th>IDUSUARIO</th>
-                                            <th>USUSARIO</th>
-                                            <th>FECHA ENTREGA</th>
-                                            <th>FECHA PRESTAMOS</th>
+                                            <th>NOMBRE</th>
+                                            <th>APELLIDO</th>
+                                            <th>CORREO</th>
+                                            <th>FECHA PRESTAMO</th>
+                                            <th>FECHA VENCIMIENTO PRESTAMO</th>
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ textAlign: "center" }}>
                                         {
                                             (
                                                 libros.map((item) => (
                                                     <tr key={item.idPrestamo}>
                                                         <td>{item.idPrestamo}</td>
-                                                        <td>{item.idUsuario}</td>
-                                                        <td>{item.idUsuario}</td>
-                                                        <td>{item.fechaEntrega}</td>
+                                                        <td>{item.idUsuarioNavigation.nombres}</td>
+                                                        <td>{item.idUsuarioNavigation.apellidos}</td>
+                                                        <td>{item.idUsuarioNavigation.correo}</td>
                                                         <td>{item.fechaPrestamo}</td>
+                                                        <td>{item.fechaEntrega}</td>
+
 
                                                         <td><Button color="primary" onClick={() => enviarDatos(item)}>Devolver</Button>{"   "}
 
@@ -116,25 +131,26 @@ function GestionPrestamosReservasActivos() {
                             <CardBody>
                                 <Table responsive>
                                     <thead className="text-primary">
-                                        <tr>
+                                        <tr style={{ textAlign: "center" }}>
                                             <th>ID</th>
-                                            <th>IDUSUARIO</th>
-                                            <th>USUSARIO</th>
-                                            <th>FECHA ENTREGA</th>
-                                            <th>FECHA PRESTAMOS</th>
+                                            <th>NOMBRE</th>
+                                            <th>APELLIDO</th>
+                                            <th>CORREO</th>
+                                            
+                                            <th>FECHA VENCIMIENTO</th>
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ textAlign: "center" }}>
                                         {
                                             (
-                                                libros.map((item) => (
-                                                    <tr key={item.idPrestamo}>
-                                                        <td>{item.idPrestamo}</td>
-                                                        <td>{item.idUsuario}</td>
-                                                        <td>{item.idUsuario}</td>
-                                                        <td>{item.fechaEntrega}</td>
-                                                        <td>{item.fechaPrestamo}</td>
+                                                reservaNue.map((item) => (
+                                                    <tr key={item.idreservalibro}>
+                                                        <td>{item.idreservalibro}</td>
+                                                        <td>{item.idUsuarioNavigation.nombres}</td>
+                                                        <td>{item.idUsuarioNavigation.apellidos}</td>
+                                                        <td>{item.idUsuarioNavigation.correo}</td>
+                                                        <td>{item.fechaVencimientoreserva}</td>
 
                                                         <td><Button color="primary" onClick={() => enviarDatos(item)}>Entregar</Button>{"   "}
 
@@ -154,10 +170,10 @@ function GestionPrestamosReservasActivos() {
                 <ModalAgregarLibro
                     mostrarModal={mostrarModal}
                     setMostrarModal={setMostrarModal}
-                    
+
                     editar={editar}
                     setEditar={setEditar}
-                     />
+                />
             </div>
         </>
     );

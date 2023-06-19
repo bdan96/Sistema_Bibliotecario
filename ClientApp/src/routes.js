@@ -89,7 +89,7 @@ var routes = [
     },
     {
         path: "/getionarPrestamosYReservasActivos",
-        name: "Gestionar Prestamos y Reservas Activas",
+        name: "Gestion de Entregas",
         icon: "nc-icon nc-box-2",
         component: <GestionPrestamosReservasActivos />,
         layout: "/admin",
