@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import "assets/css/recomendadosCard.css";
 import toast, { Toaster } from 'react-hot-toast';
-import ModalDashboard from './ModalDashboard'
+import ModalLibroMasPopular from './ModalLibrosMasPopulares'
 
 function CardLibro() {
 
@@ -64,19 +64,20 @@ function CardLibro() {
                                     >
                                         {item.NOMBRE_GENERO}
                                     </CardSubtitle>
-                                    <CardText>
+                                    {/*<CardText>
                                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                                    </CardText>
+                                    </CardText>*/}
                                     <br></br>
                                     <Button className="btn btn-dark recomendadosCa" onClick={toggle} >
                                         IR AL LIBRO
                                     </Button>
                                 </CardBody>
-                                <ModalDashboard toggle={toggle} modal={modal} libro={item}></ModalDashboard>
+                                < ModalLibroMasPopular toggle={toggle} modal={modal} libro={item} ></ModalLibroMasPopular>
                             </Card>)
                             
+
                     }
-                    
+
                 })
                 
             }
@@ -84,7 +85,7 @@ function CardLibro() {
                 position='top-right'
                 reverseOrder={false}
             />
-            
+
         </CardGroup>
 
     );
