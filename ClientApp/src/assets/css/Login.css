@@ -129,10 +129,10 @@ box-sizing: border-box;
     background: linear-gradient(to right, #000000, #434343);
 }
 
-.box-form .right button:hover {
-    border-color: #c78c19;
-}
+    .box-form .right button:hover {
+        box-shadow: 1px 4px 20px 1px #c78c19!important;
+    }
 
-.box-form .right button:active {
-    border-color: #088c19;
-}
+    .box-form .right button:active {
+        box-shadow: 1px 4px 20px 1px #088c19 !important;
+    }

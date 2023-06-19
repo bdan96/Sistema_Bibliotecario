@@ -196,14 +196,7 @@ function Header(props) {
                               <DropdownItem button="signOut" onClick={() => cerrarSesion()} >Cerrar Sesion</DropdownItem>                   
                 </DropdownMenu>
             </Dropdown>
-            <NavItem>
-              <Link to="#pablo" className="nav-link btn-rotate">
-                <i className="nc-icon nc-settings-gear-65" />
-                <p>
-                  <span className="d-lg-none d-md-block">Account</span>
-                </p>
-              </Link>
-            </NavItem>
+
           </Nav>
         </Collapse>
       </Container>

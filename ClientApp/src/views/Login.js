@@ -37,7 +37,7 @@ const [form, setForm]=useState({
           cookies.set('nombre', respuesta.nombres, {path: '/'});
           cookies.set('correo', respuesta.correo, {path: '/'});
           cookies.set('username', respuesta.nombreUsuario, { path: '/' });
-          
+          navigate('/dashboard', { replace: true });
         
 
       }else{

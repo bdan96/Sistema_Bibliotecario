@@ -1,0 +1,110 @@
+
+.registro-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #ED213A;
+    background: -webkit-linear-gradient(to right, #93291E, #ED213A);
+    background: linear-gradient(to right, #93291E, #ED213A);
+    border: solid 1px #000000;
+}
+
+.box {
+    margin: 10px auto;
+    padding: 15px;
+    width: 40%;
+    max-height: 90%;
+    background: #FFFFFF;
+    border-radius: 10px;
+    overflow: auto;
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
+    display: list-item;
+    box-shadow: 0 0 20px 6px #090b6f85;
+}
+
+.box::-webkit-scrollbar {
+    width: 5px;
+    background: rgba(0, 0, 0, 0);
+}
+
+.box::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .5);
+}
+
+
+.box  h5 {
+    font-size: 30px;
+    font-weight:800;
+    line-height: 4px;
+    margin-top:20px;
+    text-align:center;
+}
+
+    .box label {
+        font-size: 14px;
+        color: #B0B3B9;
+        margin-left: 20px;
+    }
+
+.box .inputs {
+    overflow: hidden;
+    padding-left: 20%
+}
+
+.box input {
+    width: 70%;
+    padding: 10px;
+    margin-top: 0px;
+    margin-left:20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #B0B3B9;
+}
+
+.box input:focus {
+    border-bottom: 2px solid #000000;
+}
+
+    .box select {
+        width: 50%;
+        padding: 10px;
+        margin-top: 0px;
+        margin-left: 20px;
+
+        font-size: 16px;
+        border: none;
+        outline: none;
+        border-bottom: 2px solid #B0B3B9;
+    }
+
+
+
+.box button {
+    float: left;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 35px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 0;
+    outline: 0;
+    box-shadow: 0px 4px 20px 0px #49c628a6;
+    background: linear-gradient(to right, #000000, #434343);
+}
+
+    .box button:hover {
+        box-shadow: 1px 4px 20px 1px #c78c19!important;
+    }
+
+    .box button:active {
+        box-shadow: 1px 4px 20px 1px #088c19 !important;
+    }           
+    
+    p{
+        text-align:center;
+    }

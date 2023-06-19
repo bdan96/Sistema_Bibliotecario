@@ -86,8 +86,8 @@ namespace Sistema_Bibliotecario.Controllers
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuarios(Usuario usuarios)
         {
-            _context.Usuarios.Add(usuarios);
-            await _context.SaveChangesAsync();
+            //_context.Usuarios.Add(usuarios);
+           // await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUsuarios", new { id = usuarios.IdUsuario }, usuarios);
         }

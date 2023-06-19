@@ -28,7 +28,7 @@ builder.Services.AddTransient < UsuariosSeeder>();
 builder.Services.AddControllersWithViews();
 
     var app = builder.Build();
-if(args.Length == 1 && args[0].ToLower() == "seedusuarios")
+if(args.Length == 1 && args[0].ToLower() == "seedusuarios")//se usa el comando dotnet run seedusuarios
 {
     UsuariosSeeder(app);
 }

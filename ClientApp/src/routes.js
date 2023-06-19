@@ -24,6 +24,7 @@ import TableList from "views/Tables.js";
 import Maps from "views/Map.js";
 import UserPage from "views/User.js";
 import Login from "views/Login.js";
+import Registrar from "views/Registrar.js";
 
 var routes = [
   {
@@ -80,6 +81,12 @@ var routes = [
     name: "Iniciar Sesion",
     icon: "nc-icon nc-single-02",
     component: <Login />,
-  },
+    },
+    {
+    path: "/registrar",
+    name: "Registrar",
+    icon: "nc-icon nc-single-02",
+    component: <Registrar />,
+    },
 ];
 export default routes;
