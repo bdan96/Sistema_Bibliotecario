@@ -9,6 +9,7 @@ import CardCatalogoLibro from "../components/CatalogoLibros/CardCatalogoLibro";
 
 
 
+
 function Icons() {
 
     const [libros, setLibros] = useState([]);
@@ -22,7 +23,7 @@ function Icons() {
 
     const mostrarInstanciaLibros = async () => {
         axios.get('http://localhost:5006/api/instancialibro/lista')
-            .then(response => {   
+            .then(response => {
                 console.log(response.data)
                 setLibros(response.data)
                 setLibrosCard(response.data)
@@ -96,7 +97,7 @@ function Icons() {
 
     useEffect(() => {
         //returnLibros()
-        
+
         mostrarInstanciaLibros()
     }, [])
 
@@ -171,6 +172,7 @@ function Icons() {
                             {libros.map((item) => (
                                 <Col md="4">
                                     <CardCatalogoLibro libro={item}></CardCatalogoLibro>
+
                                 </Col>
                             ))}
 

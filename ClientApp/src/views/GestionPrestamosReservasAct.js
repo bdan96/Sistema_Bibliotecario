@@ -9,6 +9,7 @@ import {
     Card, CardBody, CardHeader, CardTitle, Col, Form, FormGroup, Input,
     Row, Table
 } from "reactstrap";
+import Swal from 'sweetalert2';
 
 
 function GestionPrestamosReservasActivos() {
@@ -35,7 +36,49 @@ function GestionPrestamosReservasActivos() {
 
     }
 
+    const newDevolverLibro = ({ item }) => {
 
+        const libro10 = { item }
+
+        let prestamo = { usuario: 1, id: libro10.idPrestamo }
+
+        axios.post('http://localhost:5006/api/gestionprestamosreservasactivas', prestamo)
+            .then(response => {
+                Swal.fire(
+                    response.data,
+                    'El libro se ha devuelto con exito',
+                    'success'
+                )
+            })
+            .catch(error =>
+                Swal.fire({
+                    icon: error,
+                    title: 'Oops...',
+                    text: 'No se pudo realizar la devolucion',
+                })
+            );
+    }
+
+    /*const newReserva = () => {
+
+        let reserva = { usuario: 1, libro: libro.idInstLibro }
+
+        axios.post('http://localhost:5006/api/reserva', reserva)
+            .then(response => {
+                Swal.fire(
+                    response.data,
+                    'La reserva se ha realizado con exito',
+                    'success'
+                )
+            })
+            .catch(error =>
+                Swal.fire({
+                    icon: error,
+                    title: 'Oops...',
+                    text: 'No se pudo realizar el prestamo',
+                })
+            );
+    }*/
 
 
     const [editar, setEditar] = useState(null)
@@ -107,7 +150,7 @@ function GestionPrestamosReservasActivos() {
                                                         <td>{formatDate(item.fechaEntrega)}</td>
 
 
-                                                        <td><Button color="primary">Devolver</Button>{"   "}
+                                                        <td><Button color="primary" onClick={newDevolverLibro}>Devolver</Button>{"   "}
 
                                                         </td>
                                                     </tr>
@@ -157,9 +200,9 @@ function GestionPrestamosReservasActivos() {
                                                         <td>{item.idUsuarioNavigation.nombres}</td>
                                                         <td>{item.idUsuarioNavigation.apellidos}</td>
                                                         <td>{item.idUsuarioNavigation.correo}</td>
-                                                        <td>{item.fechaVencimientoreserva}</td>
+                                                        <td>{formatDate(item.fechaVencimientoreserva)}</td>
 
-                                                        <td><Button color="primary" onClick={() => enviarDatos(item)}>Entregar</Button>{"   "}
+                                                        <td><Button color="primary" >Entregar</Button>{"   "}
 
                                                         </td>
                                                     </tr>
