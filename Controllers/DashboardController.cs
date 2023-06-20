@@ -29,11 +29,6 @@ namespace Sistema_Bibliotecario.Controllers
             _context = context;
         }
 
-        [EnableCors("Policy1")]
-        //[DisableCors]
-
-
-
         [HttpGet]
         public IEnumerable Get()
         {
@@ -52,11 +47,81 @@ namespace Sistema_Bibliotecario.Controllers
             dt.Clear();
             adapter.Fill(dt);
             cnn.Close();
-            //var das = dt.AsEnumerable();
-
-            //string serialice = JsonSerializer.Serialize(das);
-
+            //DataTableSystemTextJson(dt);
             return DataTableSystemTextJson(dt);
+        }
+
+        [Route("popular")]
+
+        [HttpGet]
+        public IEnumerable getPopular()
+        {
+            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "libroPopularPorCategoria";
+            cnn.Open();
+            SqlDataAdapter adapter1 = new SqlDataAdapter(cmd);
+            DataTable dt1 = new DataTable();
+            dt1.Clear();
+            adapter1.Fill(dt1);
+            cnn.Close();
+
+
+
+            //DataTableSystemTextJson(dt);
+            return DataTableSystemTextJson(dt1);
+
+
+        }
+
+        [Route("destacados")]
+
+        [HttpGet]
+        public IEnumerable getDestacados()
+        {
+            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "getLibrosDestacados";
+            cnn.Open();
+            SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+            DataTable dt2 = new DataTable();
+            dt2.Clear();
+            adapter2.Fill(dt2);
+            cnn.Close();
+
+
+
+            //DataTableSystemTextJson(dt);
+            return DataTableSystemTextJson(dt2);
+
+
+        }
+
+        [Route("recomendados")]
+
+        [HttpGet]
+        public IEnumerable getRecomendados()
+        {
+            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cnn;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "getLibrosDestacados";
+            cnn.Open();
+            SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
+            DataTable dt2 = new DataTable();
+            dt2.Clear();
+            adapter2.Fill(dt2);
+            cnn.Close();
+
+
+
+            //DataTableSystemTextJson(dt);
+            return DataTableSystemTextJson(dt2);
 
 
         }
@@ -64,15 +129,9 @@ namespace Sistema_Bibliotecario.Controllers
         //public static string DataTableSystemTextJson(DataTable dataTable)
         public static IEnumerable DataTableSystemTextJson(DataTable dataTable)
         {
-            /*if (dataTable == null)
-            {
-                //return string.Empty;
-                return new IEnumerable();
-            }*/
             var data = dataTable.Rows.OfType<DataRow>()
                         .Select(row => dataTable.Columns.OfType<DataColumn>()
                             .ToDictionary(col => col.ColumnName, c => row[c]));
-            //return System.Text.Json.JsonSerializer.Serialize(data);
             return data;
         }
 

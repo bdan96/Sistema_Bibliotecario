@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     CarouselControl,
@@ -13,7 +13,7 @@ import img2 from 'img/Las-48-leyes-del-poder.jpg';
 import img3 from 'img/hoy-es-importante.jpg';*/
 
 
-function Carrusel() {
+function CarruselLibrosProximos() {
 
     // State for Active index
     const [activeIndex, setActiveIndex] = React.useState(0);
@@ -25,17 +25,17 @@ function Carrusel() {
     const items = [
         {
             caption: 'Sample Caption One', src:
-                'https://olcovers2.blob.core.windows.net/coverswp/2013/06/Introduccion-a-la-programacion-con-C-sharp-OpenLibra.gif',
+                'https://cdn.culturagenial.com/es/imagenes/lejos-de-luisiana.jpg',
             altText: 'Slide One'
         },
         {
             caption: 'Sample Caption Two', src:
-                'https://www.loqueleo.com/co/uploads/2021/01/la-odisea-1.JPG',
+                'https://cdn.culturagenial.com/es/imagenes/caso-alaska.jpg',           
             altText: 'Slide Two'
         },
         {
             caption: 'Sample Caption three', src:
-                'https://m.media-amazon.com/images/I/51HmK4PEYtL.jpg',
+                'https://cdn.culturagenial.com/es/imagenes/cuando-no-queden-mas-estrellas-que-contar-cke.jpg',
             altText: 'Slide Three'
         }
 
@@ -75,7 +75,7 @@ function Carrusel() {
 
     return (
         <div>
-            <h6 className="centrarTituloCarrusel">Libros a considerar</h6>
+            <h6 className="centrarTituloCarrusel">Pr&oacute;ximos escritos</h6>
             <Carousel previous={previousButton} next={nextButton}
                 activeIndex={activeIndex}>
                 <CarouselIndicators items={items}
@@ -96,4 +96,4 @@ function Carrusel() {
     );
 }
 
-export default Carrusel;
+export default CarruselLibrosProximos;

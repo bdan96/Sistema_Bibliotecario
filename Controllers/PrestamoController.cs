@@ -28,13 +28,13 @@ namespace Sistema_Bibliotecario.Controllers
             _logger = logger;
         }
 
-        [EnableCors ("Policy1")]
+        /*[EnableCors ("Policy1")]*/
         [HttpPost]
         public string Post([FromBody] TagViewModel variable) {
 
             //revisar credenciales porque no me funcionan
             //SqlConnection conexion = new SqlConnection("Server=DESKTOP-HOIS6DM\\SQLEXPRESS;Database=BDBiblioteca;Trusted_Connection=True;MultipleActiveResultSets=true");
-            SqlConnection conexion = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=BDBiblioteca;Trusted_Connection=True;MultipleActiveResultSets=true");
+            SqlConnection conexion = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
             SqlCommand sentencia = new SqlCommand();
 
             //revisar nombres
@@ -46,9 +46,9 @@ namespace Sistema_Bibliotecario.Controllers
             sentencia.Parameters["@usuario"].Value = variable.usuario;
 
             sentencia.Parameters.Add("@libro", SqlDbType.Int);
-            sentencia.Parameters["@libro"].Value = variable.libro;
+            sentencia.Parameters["@libro"].Value = 5;
 
-                conexion.Open();
+            conexion.Open();
 
             SqlDataAdapter adapter = new SqlDataAdapter(sentencia);
 

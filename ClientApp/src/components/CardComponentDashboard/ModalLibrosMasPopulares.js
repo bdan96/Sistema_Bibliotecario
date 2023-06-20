@@ -1,32 +1,26 @@
-﻿
-
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, ListGroup, ListGroupItem, Tooltip, Label } from 'reactstrap';
+﻿import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, ListGroup, ListGroupItem, Tooltip, Label } from 'reactstrap';
 import axios from 'axios'
 import Swal from 'sweetalert2';
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 
-function ModalCatalogoLibro({ toggle, modal, libro }) {
+function ModalLibroMasPopular({ toggle, modal, libro }) {
 
     let existencias = '';
     let color = 0;
-    if (libro.cantidadInstanciaLibro === 0) {
+    if (libro.CANTIDAD_INSTANCIA_LIBRO === 0) {
         existencias = '  No hay copias disponibles'
         color = 1
     }
     else {
-        existencias = libro.cantidadInstanciaLibro
+        existencias = libro.CANTIDAD_INSTANCIA_LIBRO
         color = 0;
     }
 
 
-
-    const idiomas = ['Ingles', 'Español']
-    const categorias = ['Fantasia', 'Suspenso']
-
     const newPrestamo = () => {
 
-        let prestamo = { usuario: 1, libro: libro.idInstLibro }
+        let prestamo = { usuario: 1, libro: 2 }
 
         axios.post('http://localhost:5006/api/prestamo', prestamo)
             .then(response => {
@@ -40,7 +34,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                 Swal.fire({
                     icon: error,
                     title: 'Oops...',
-                    text: 'No se pudo realizar el prestamo',
+                    text: 'No se pudo realizar la reserva',
                 })
             );
     }
@@ -75,7 +69,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                     <Row >
                         <Col
                             xs="6">
-                            <img className="img-fluid shadow-4 mx-auto d-block " src={libro.logoLibro} alt="logo libro" width="65%" style={{
+                            <img className="img-fluid shadow-4 mx-auto d-block " src={libro.LOGO_LIBRO} alt="logo libro" width="65%" style={{
                                 height: 400,
                                 alignContent: "center"
                             }}  ></img>
@@ -86,27 +80,16 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                             <br></br>
                             <Card body>
                                 <CardTitle tag="h5">
-                                    Titulo: {libro.tituloLibro}
+                                    Titulo: {libro.TITULO_LIBRO}
                                 </CardTitle>
-                                <ListGroup flush>
+                                <ListGroup flush>                                                                     
                                     <ListGroupItem>
-                                        Autor: {libro.autorLibro}
-                                    </ListGroupItem>
-                                    <ListGroupItem>
-                                        Idiomas: {idiomas[libro.idIdioma]}
+                                        Genero: {libro.NOMBRE_GENERO}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        categorias: {categorias[libro.idGenero]}
+                                        Cantidad en existencia: {libro.CANTIDAD}
                                     </ListGroupItem>
-                                    <ListGroupItem>
-                                        ISBN: {libro.isbn}
-                                    </ListGroupItem>
-                                    <ListGroupItem >
-                                        Copias disponible: &nbsp;
-                                        <Label style={{ color: color ? 'red' : 'black' }}>
-                                            {existencias}
-                                        </Label>
-                                    </ListGroupItem>
+
                                 </ListGroup>
                             </Card>
                         </Col>
@@ -119,7 +102,16 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                     }} color="success" outline
                         onClick={newPrestamo}
                         disabled={libro.CantidadInstanciaLibro === 0}
+                        onClick={() => {
+                            toast.success("Se ha prestado el libro", {
 
+                                style: {
+                                    borderRadius: '10px',
+                                    background: '#333',
+                                    color: '#fff',
+                                },
+                            })
+                        }}
                     >
                         Prestar
                     </Button>
@@ -154,4 +146,4 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
         </div>
     );
 }
-export default ModalCatalogoLibro;
+export default ModalLibroMasPopular;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
     Card,
@@ -11,25 +11,18 @@ import {
     Button,
 } from "reactstrap";
 import "assets/css/recomendadosCard.css";
-import toast, { Toaster } from 'react-hot-toast';
-import ModalLibroMasPopular from './ModalLibrosMasPopulares'
+import ModalDashboard from './ModalDashboard'
 
-function CardLibro() {
+function Destacados() {
 
     const [libros, setLibros] = useState([])
-
 
     const [modal, setModal] = useState(false);
 
     const toggle = () => setModal(!modal);
 
-    //const { createProxyMiddleware } = require('http-proxy-middleware');
-
-
-
-
     useEffect(() => {
-        axios.get('http://localhost:5006/api/dashboard/popular')
+        axios.get('http://localhost:5006/api/dashboard/destacados')
             .then(response => {
                 setLibros(response.data)
             })
@@ -38,10 +31,12 @@ function CardLibro() {
     }, [])
 
     return (
+        /*<CardGroup>*/
         <CardGroup>
+        
             {
                 libros.map((item, index) => {
-                    if (index < 3) {
+                    if (index >= 3 && index <= 5) {
                         return (
                             <Card>
                                 <CardImg
@@ -54,9 +49,7 @@ function CardLibro() {
                                 <CardBody>
                                     <CardTitle tag="h5">
                                         {item.TITULO_LIBRO}
-
                                     </CardTitle>
-
 
                                     <CardSubtitle
                                         className="mb-2 text-muted"
@@ -68,29 +61,21 @@ function CardLibro() {
                                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     </CardText>*/}
                                     <br></br>
-                                    <Button className="btn btn-dark recomendadosCa" onClick={toggle} >
+                                    <Button className="btn btn-dark recomendadosCa" onClick={toggle}>
                                         IR AL LIBRO
                                     </Button>
                                 </CardBody>
-                                < ModalLibroMasPopular toggle={toggle} modal={modal} libro={item} ></ModalLibroMasPopular>
+                                <ModalDashboard toggle={toggle} modal={modal} libro={item}></ModalDashboard>
                             </Card>)
-                            
-
                     }
-
                 })
+                }
                 
-            }
-            <Toaster
-                position='top-right'
-                reverseOrder={false}
-            />
-
+            
         </CardGroup>
+
 
     );
 }
 
-export default CardLibro;
-//{ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }
-
+export default Destacados;

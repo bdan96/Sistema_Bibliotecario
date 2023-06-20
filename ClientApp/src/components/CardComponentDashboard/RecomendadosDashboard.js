@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
+import CardAll from "./CardAll";
+//import axios from "axios"
+import hoyEsImportante from "assets/imgDashboard/hoyEsImportante.jpg";
+import Las48leyes from "assets/imgDashboard/Las48leyes.jpg";
+import Mate4 from "assets/imgDashboard/Mate4.jpg";
 import axios from "axios";
 import {
     Card,
@@ -11,13 +16,33 @@ import {
     Button,
 } from "reactstrap";
 import "assets/css/recomendadosCard.css";
-import toast, { Toaster } from 'react-hot-toast';
-import ModalLibroMasPopular from './ModalLibrosMasPopulares'
+import ModalDashboard from './ModalDashboard'
 
-function CardLibro() {
+const cards = [
+    {
+        id: 1,
+        title: "Mate 4",
+        image: Mate4,
+        url: "https://youtube.com/fazttech",
+    },
+    {
+        id: 2,
+        title: "Hoy Es Importante",
+        image: hoyEsImportante,
+        url: "https://blog.faztweb.com",
+    },
+    {
+        id: 3,
+        title: "Las 48 Leyes",
+        image: Las48leyes,
+        url: "https://youtube.com/fazttech",
+    },
+
+];
+
+function RecomendadosLibros() {
 
     const [libros, setLibros] = useState([])
-
 
     const [modal, setModal] = useState(false);
 
@@ -29,7 +54,7 @@ function CardLibro() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5006/api/dashboard/popular')
+        axios.get('http://localhost:5006/api/dashboard/recomendados')
             .then(response => {
                 setLibros(response.data)
             })
@@ -37,26 +62,31 @@ function CardLibro() {
 
     }, [])
 
+
+
+
+
+
     return (
+        /*<CardGroup>*/
         <CardGroup>
             {
                 libros.map((item, index) => {
-                    if (index < 3) {
+                    if (index >= 14 && index <= 17) {
                         return (
-                            <Card>
+                            <Card className="rounded-3">
                                 <CardImg
                                     alt="Card image cap"
                                     src={item.LOGO_LIBRO}
                                     top
+                                    className="rounded-3"
                                     height="500"
                                     width="370"
                                 />
                                 <CardBody>
                                     <CardTitle tag="h5">
                                         {item.TITULO_LIBRO}
-
                                     </CardTitle>
-
 
                                     <CardSubtitle
                                         className="mb-2 text-muted"
@@ -68,29 +98,20 @@ function CardLibro() {
                                         This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                                     </CardText>*/}
                                     <br></br>
-                                    <Button className="btn btn-dark recomendadosCa" onClick={toggle} >
+                                    <Button className="btn btn-dark recomendadosCa" onClick={toggle}>
                                         IR AL LIBRO
                                     </Button>
                                 </CardBody>
-                                < ModalLibroMasPopular toggle={toggle} modal={modal} libro={item} ></ModalLibroMasPopular>
+                                <ModalDashboard toggle={toggle} modal={modal} libro={item}></ModalDashboard>
                             </Card>)
-                            
-
                     }
-
                 })
-                
             }
-            <Toaster
-                position='top-right'
-                reverseOrder={false}
-            />
-
         </CardGroup>
+
 
     );
 }
 
-export default CardLibro;
-//{ TITULO_LIBRO, LOGO_LIBRO, NOMBRE_GENERO }
 
+export default RecomendadosLibros;
