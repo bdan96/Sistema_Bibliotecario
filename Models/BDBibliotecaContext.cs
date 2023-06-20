@@ -14,6 +14,7 @@ namespace Sistema_Bibliotecario.Models
         public BDBibliotecaContext(DbContextOptions<BDBibliotecaContext> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<Carnet> Carnets { get; set; } = null!;

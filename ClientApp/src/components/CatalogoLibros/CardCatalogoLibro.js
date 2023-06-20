@@ -18,17 +18,15 @@ const CardCatalogoLibro = (props) => {
             <Card className="text-center" onClick={toggle} >
                 <CardImg
                     alt="Card image cap"
-                    src={libro.LogoLibro}
-                    style={{
-                        height: 400
-                    }}
-                    width="100%"
+                    src={libro.logoLibro}                  
+                    height="500"
+                    width="370"
 
 
                 />
                 <CardBody>
                     <CardTitle tag="h5">
-                        {libro.TituloLibro}
+                        {libro.tituloLibro}
                     </CardTitle>
                    
                 </CardBody>

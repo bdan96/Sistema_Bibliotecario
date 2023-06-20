@@ -1,34 +1,44 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Sistema_Bibliotecario.Models;
 using System.Data;
+using static Sistema_Bibliotecario.Controllers.PrestamoController;
 
 namespace Sistema_Bibliotecario.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class PrestamoController : ControllerBase
+    [Route("api/[controller]")]
+
+    public class GestionPrestamosReservasActivasController : ControllerBase
     {
-        public class TagViewModel
+        private readonly BDBibliotecaContext _dbcontext;
+
+        public GestionPrestamosReservasActivasController(BDBibliotecaContext context)
         {
-            public int usuario { set; get; }
-            public int libro { set; get; }
+            _dbcontext = context;
+        }
+
+        [HttpGet]
+        [Route("lista")]
+        public async Task<ActionResult<List<Prestamo>>> Lista()
+        {
+            List<Prestamo> lista = await _dbcontext.Prestamos.Include(m => m.IdInvInstNavigation).ThenInclude(lo => lo.IdInstLibroNavigation).Include(m => m.IdUsuarioNavigation).OrderByDescending(c => c.IdPrestamo).ToListAsync();
+            return lista;
+
         }
 
 
-        //cambiarlo
-        private readonly BDBibliotecaContext _dBContext;
-
-        private readonly ILogger<PrestamoController> _logger;
-        public PrestamoController(ILogger<PrestamoController> logger, BDBibliotecaContext context)
+        [HttpGet]
+        [Route("listaReserva")]
+        public async Task<ActionResult<List<ReservaLibro>>> ListaRer()
         {
-            _dBContext = context;
-            _logger = logger;
+            List<ReservaLibro> lista = await _dbcontext.ReservaLibros.Include(m => m.IdUsuarioNavigation).OrderBy(c => c.Idreservalibro).ToListAsync();
+            return lista;
+
         }
 
-        /*[EnableCors ("Policy1")]*/
         [HttpPost]
         public string Post([FromBody] TagViewModel variable)
         {
@@ -41,13 +51,16 @@ namespace Sistema_Bibliotecario.Controllers
             //revisar nombres
             sentencia.Connection = conexion;
             sentencia.CommandType = System.Data.CommandType.StoredProcedure;
-            sentencia.CommandText = "insertPrestamo";
+            sentencia.CommandText = "devolverLibro";
+
 
             sentencia.Parameters.Add("@usuario", SqlDbType.Int);
             sentencia.Parameters["@usuario"].Value = variable.usuario;
 
-            sentencia.Parameters.Add("@libro", SqlDbType.Int);
-            sentencia.Parameters["@libro"].Value = variable.libro;
+            sentencia.Parameters.Add("@id", SqlDbType.Int);
+            sentencia.Parameters["@id"].Value = variable.libro;
+
+
 
             conexion.Open();
 
@@ -68,7 +81,6 @@ namespace Sistema_Bibliotecario.Controllers
 
             return "exito";
         }
-
 
     }
 }

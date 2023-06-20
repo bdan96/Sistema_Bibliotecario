@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Sistema_Bibliotecario.Models
 {
-    public partial class Usuario 
+    public partial class Usuario /*: IdentityUser*/
     {
         public Usuario()
         {
@@ -16,7 +17,7 @@ namespace Sistema_Bibliotecario.Models
         }
 
         public int IdUsuario { get; set; }
-        public int? IdTipoUsuario { get; set; } 
+        public int? IdTipoUsuario { get; set; }
         public bool Responsable { get; set; }
         public string NombreUsuario { get; set; } = null!;
         public string Contrasenia { get; set; } = null!;
@@ -29,10 +30,21 @@ namespace Sistema_Bibliotecario.Models
         public string? Avatar { get; set; }
 
         public virtual TipoUsuario? IdTipoUsuarioNavigation { get; set; }
+
+        [JsonIgnore]
         public virtual ICollection<Carnet> Carnets { get; set; }
+        [JsonIgnore]
         public virtual ICollection<InvInstLibro> InvInstLibros { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Prestamo> Prestamos { get; set; }
+        [JsonIgnore]
         public virtual ICollection<ReservaLibro> ReservaLibros { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Telefono> Telefonos { get; set; }
+
+        public string getFullName()
+        {
+            return Nombres + " " + Apellidos;
+        }
     }
 }

@@ -1,0 +1,5 @@
+﻿.overflow img {
+    height : 500px; 
+    width: 370px;
+    object-fit: cover;
+}

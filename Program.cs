@@ -5,11 +5,25 @@ using Sistema_Bibliotecario.Servicios.Contrato;
 using Sistema_Bibliotecario.Servicios.Implementacion;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection");
+/*builder.Services.AddCors(options =>
+    {
+
+        options.AddPolicy("Policy1", policy =>
+        {
+            policy.AllowAnyOrigin().AllowAnyMethod();
+        });
+
+    }
+);*/
+
+
+
+var connectionString = builder.Configuration.GetConnectionString("BibliotecaDBContextConnection") ?? throw new InvalidOperationException("Connection string 'BibliotecaDBContextConnection' not found.");
 
 
 
@@ -22,10 +36,19 @@ builder.Services.AddScoped<Sistema_Bibliotecario.Models.BDBibliotecaContext>();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
+/*builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<Sistema_Bibliotecario.Models.BDBibliotecaContext>();*/
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Usuarios/IniciarSesion";
+        options.AccessDeniedPath = "/Usuarios/IniciarSesion";
+    });
 
 // Add services to the container.
-builder.Services.AddTransient < UsuariosSeeder>();
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
     var app = builder.Build();
 if(args.Length == 1 && args[0].ToLower() == "seedusuarios")//se usa el comando dotnet run seedusuarios
@@ -45,10 +68,7 @@ void UsuariosSeeder(IHost app)
 
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-}
-
+// Configure the HTTP request pipeline.
 app.UseCors(options =>
 {
     options.WithOrigins("http://localhost:44436");
@@ -58,8 +78,13 @@ app.UseCors(options =>
 });
 
 
+
+
 app.UseStaticFiles();
 app.UseRouting();
+
+
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -68,6 +93,5 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");//{controller=Usuario}/{action=IniciarSesion}/{id?}
 
 app.MapFallbackToFile("index.html"); ;
-
 
 app.Run();

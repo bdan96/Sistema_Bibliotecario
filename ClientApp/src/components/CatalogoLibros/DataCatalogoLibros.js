@@ -33,5 +33,5 @@
             AutorLibro: "Dante Alighieri",
             TituloLibro: "La divina comedia",
             Isbn: 122343455232,
-            CantidadInstanciaLibro: 5
+            CantidadInstanciaLibro: 0
         }];
