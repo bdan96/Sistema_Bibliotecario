@@ -101,6 +101,13 @@ function Icons() {
 
     useEffect(() => {
         //returnLibros()
+        axios.get('http://localhost:5006/api/instancialibro/lista')
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => console.error(error));
+
+
         setLibros(books)
         setLibrosCard(books)
         setLibrosOrdenar(books)

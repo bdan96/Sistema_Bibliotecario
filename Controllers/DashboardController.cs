@@ -41,7 +41,7 @@ namespace Sistema_Bibliotecario.Controllers
 
 
 
-            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlConnection cnn = new SqlConnection("Data Source = DESKTOP-HOIS6DM\\SQLEXPRESS; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cnn;
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
