@@ -54,13 +54,13 @@ var routes = [
         component: <Maps />,
         layout: "/admin",
     },*/
-    {
+    /*{
         path: "/notifications",
         name: "Notifications",
         icon: "nc-icon nc-bell-55",
         component: <Notifications />,
         layout: "/admin",
-    },
+    },*/
     {
         path: "/user-page",
         name: "User Profile",
@@ -98,7 +98,7 @@ var routes = [
     },
     {
         path: "/getionarMora",
-        name: "Gestionar Mora",
+        name: "Gestion de las Mora",
         icon: "nc-icon nc-box-2",
         component: <GestionMora />,
         layout: "/admin",
