@@ -1,14 +1,13 @@
 
-.registro-container
-{
+.registro-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: #ED213A;
-    background: -webkit-linear-gradient(to right, #93291E, #ED213A);
-    background: linear-gradient(to right, #93291E, #ED213A);
+    background: #141E30; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #243B55, #141E30); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: solid 1px #000000;
 }
 
@@ -16,14 +15,15 @@
     margin: 10px auto;
     padding: 15px;
     width: 40%;
-    max-height: 90%;
+    max-width: 520px;
+    max-height:800px;
     background: #FFFFFF;
     border-radius: 10px;
     overflow: auto;
     scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
     scrollbar-width: thin;
     display: list-item;
-    box-shadow: 0 0 20px 6px #090b6f85;
+    box-shadow: 0 0 20px 6px #00010B;
 }
 
 .box::-webkit-scrollbar {

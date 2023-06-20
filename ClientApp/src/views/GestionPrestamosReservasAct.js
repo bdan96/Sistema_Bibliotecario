@@ -81,7 +81,7 @@ function GestionPrestamosReservasActivos() {
                                             <th>ID</th>
                                             <th>NOMBRE</th>
                                             <th>APELLIDO</th>
-                                            <th>CORREO</th>
+                                            <th>Titulo del libro</th>
                                             <th>FECHA PRESTAMO</th>
                                             <th>FECHA VENCIMIENTO PRESTAMO</th>
                                             <th>ACCIONES</th>
@@ -95,12 +95,12 @@ function GestionPrestamosReservasActivos() {
                                                         <td>{item.idPrestamo}</td>
                                                         <td>{item.idUsuarioNavigation.nombres}</td>
                                                         <td>{item.idUsuarioNavigation.apellidos}</td>
-                                                        <td>{item.idUsuarioNavigation.correo}</td>
+                                                        <td>{item.idInvInstNavigation.idInstLibroNavigation.tituloLibro}</td>
                                                         <td>{item.fechaPrestamo}</td>
                                                         <td>{item.fechaEntrega}</td>
 
 
-                                                        <td><Button color="primary" onClick={() => enviarDatos(item)}>Devolver</Button>{"   "}
+                                                        <td><Button color="primary">Devolver</Button>{"   "}
 
                                                         </td>
                                                     </tr>

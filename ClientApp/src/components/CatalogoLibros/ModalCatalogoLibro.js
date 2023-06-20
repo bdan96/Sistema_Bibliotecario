@@ -26,7 +26,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
 
     const newPrestamo = () => {
 
-        let prestamo = { usuario: 1, libro: 2 }
+        let prestamo = { usuario: 1, libro: libro.idInstLibro }
 
         axios.post('http://localhost:5006/api/prestamo', prestamo)
             .then(response => {
@@ -40,7 +40,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                 Swal.fire({
                     icon: error,
                     title: 'Oops...',
-                    text: 'No se pudo realizar la reserva',
+                    text: 'No se pudo realizar el prestamo',
                 })
             );
     }
@@ -119,16 +119,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                     }} color="success" outline
                         onClick={newPrestamo}
                         disabled={libro.CantidadInstanciaLibro === 0}
-                        onClick={() => {
-                            toast.success("Se ha prestado el libro", {
 
-                                style: {
-                                    borderRadius: '10px',
-                                    background: '#333',
-                                    color: '#fff',
-                                },
-                            })
-                        }}
                     >
                         Prestar
                     </Button>

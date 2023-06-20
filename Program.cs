@@ -6,6 +6,7 @@ using Sistema_Bibliotecario.Servicios.Implementacion;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,15 +69,6 @@ void UsuariosSeeder(IHost app)
 
 // Configure the HTTP request pipeline.
 // Configure the HTTP request pipeline.
-
-    app.UseCors(options =>
-    {
-        options.WithOrigins("http://localhost:44436");
-        options.WithOrigins("http://localhost:3000");
-        options.AllowAnyMethod();
-        options.AllowAnyHeader();
-    });
-
 app.UseCors(options =>
 {
     options.WithOrigins("http://localhost:44436");
@@ -86,9 +78,11 @@ app.UseCors(options =>
 });
 
 
+
+
 app.UseStaticFiles();
 app.UseRouting();
-//app.UseCors();
+
 
 
 app.UseAuthentication();

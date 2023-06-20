@@ -118,7 +118,7 @@ var routes = [
         component: <PrestamosReservas />,
         layout: "/admin",
     },
-    {
+    /*{
       path: "/",
       name: "Iniciar Sesion",
       icon: "nc-icon nc-single-02",
@@ -129,6 +129,6 @@ var routes = [
       name: "Registrar",
       icon: "nc-icon nc-single-02",
       component: <Registrar />,
-      },
+      },*/
 ];
 export default routes;
