@@ -64,7 +64,7 @@ function GestionPrestamosReservasActivos() {
                         <Card>
                             <CardHeader>
                                 <CardTitle tag="h4">Prestamos activos</CardTitle>
-                                <Button
+                                {/*<Button
                                     className="btn-round"
                                     color="primary"
                                     type="submit"
@@ -72,7 +72,7 @@ function GestionPrestamosReservasActivos() {
                                     onClick={() => setMostrarModal(!mostrarModal)}
                                 >
                                     Agregar libro
-                                </Button>
+                                </Button>*/}
                             </CardHeader>
                             <CardBody>
                                 <Table responsive>
