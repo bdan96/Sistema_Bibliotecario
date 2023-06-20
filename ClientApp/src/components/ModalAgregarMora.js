@@ -7,7 +7,7 @@ const modeloMora = {
     idPrestamo: "",
     dias: "",
     totalMora: "",
-    pagoMora: "",   
+    pagoMora: ""   
 }
 const ModalAgregarMora = ({ mostrarModal, setMostrarModal, guardarMora, editar, setEditar, editarMora }) => {
 

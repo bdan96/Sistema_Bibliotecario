@@ -30,6 +30,7 @@ import GestionMora from "views/GestionMora.js";
 import GestionPrestamosReservasActivos from "views/GestionPrestamosReservasAct"
 import Login from "views/Login.js";
 import Registrar from "views/Registrar.js";
+import GestionUser from "views/GestionUser";
 
 
 var routes = [
@@ -65,7 +66,7 @@ var routes = [
         path: "/user-page",
         name: "User Profile",
         icon: "nc-icon nc-single-02",
-        component: <UserPage />,
+        component: <GestionUser />,
         layout: "/admin",
     },
     /*{

@@ -1,4 +1,4 @@
-﻿import ModalAgregarMora from "components/ModalAgregarMora";
+﻿import ModalAgregarUsuario from "components/ModalAgregarUsuario";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -9,93 +9,86 @@ import {
     Row, Table
 } from "reactstrap";
 
-
-function GestionMora() {
+function GestionUser() {
 
     const [instanciaLibros, setInstanciaLibro] = useState([])
 
-    const [moras, setMoras] = useState([])
+    const [usuarios, setUsuarios] = useState([])
 
-    const [moraNueva, setMoraNueva] = useState([])
-
-    const mostrarMoras = async () => {
-        axios.get('http://localhost:5006/api/mora/lista')
+    const mostrarUsuarios = async () => {
+        axios.get('http://localhost:5006/api/hacerusuario/lista')
             .then(response => {
-                setMoras(response.data)
+                setUsuarios(response.data)
             })
             .catch(error => console.error(error));
 
     }
 
-    /*const calcularMorasUsuario = async () => {
-        axios.get('http://localhost:5006/api/mora/calcular')
-            .then(response => {
-                setMoraNueva(response.data)
-            })
-            .catch(error => console.error(error));
-    }*/
-
-
-
-
     const [editar, setEditar] = useState(null)
 
 
     useEffect(() => {
-        mostrarMoras();
+        mostrarUsuarios();
 
     }, [])
 
 
     const [mostrarModal, setMostrarModal] = useState(false);
 
-    const guardarMora = async (mora) => {
-        const response = await fetch("http://localhost:5006/api/mora/guardar", {
+    const guardarUser = async (user) => {
+        const response = await fetch("http://localhost:5006/api/instancialibro/guardar", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(mora)
+            body: JSON.stringify(user)
         })
         if (response.ok) {
             setMostrarModal(!mostrarModal);
 
         }
-        mostrarMoras();
+        mostrarUsuarios();
     }
 
-    const editarMora = async (mora) => {
-        const response = await fetch("http://localhost:5006/api/mora/editar", {
+    const editarUsuarios = async (user) => {
+        const response = await fetch("http://localhost:5006/api/instancialibro/Editar", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(mora)
+            body: JSON.stringify(user)
         })
         if (response.ok) {
             setMostrarModal(!mostrarModal);
 
         }
-        mostrarMoras();
+        mostrarUsuarios();
     }
 
-    const eliminarMora = async (id) => {
-        var respuesta = window.confirm("Desea eliminar la Mora?")
+    const eliminarUser = async (id) => {
+        var respuesta = window.confirm("Desea eliminar el Usuario?")
         if (!respuesta) {
             return
         }
-        const response = await fetch("http://localhost:5006/api/mora/eliminar/" + id, {
+        const response = await fetch("http://localhost:5006/api/instancialibro/Eliminar/" + id, {
             method: 'DELETE',
         })
         if (response.ok) {
 
         }
-        mostrarMoras();
+        mostrarUsuarios();
     }
 
-    const enviarDatos = (mora) => {
-        setEditar(mora)
+    const enviarDatos = (user) => {
+        setEditar(user)
         setMostrarModal(!mostrarModal)
+    }
+
+    const formatDate = (string) => {
+        let options = { year: 'numeric', month: 'long', day: 'numeric' };
+        let fecha = new Date(string).toLocaleDateString("es-PE", options);
+        let hora = new Date(string).toLocaleTimeString();
+        return fecha + " | " + hora
     }
 
 
@@ -106,7 +99,7 @@ function GestionMora() {
                     <Col md="12">
                         <Card>
                             <CardHeader>
-                                <CardTitle tag="h4">Gestion de Moras</CardTitle>
+                                <CardTitle tag="h4">Gestion de Usuarios</CardTitle>
                                 <Button
                                     className="btn-round"
                                     color="primary"
@@ -114,42 +107,39 @@ function GestionMora() {
                                     size="lg"
                                     onClick={() => setMostrarModal(!mostrarModal)}
                                 >
-                                    Agregar Mora
+                                    Agregar Usuario
                                 </Button>
-                                <br></br>
-                                <br></br>
                             </CardHeader>
                             <CardBody>
                                 <Table responsive>
                                     <thead className="text-primary">
                                         <tr style={{ textAlign: "center" }}>
                                             <th>ID</th>
+                                            <th>TIPO USER</th>
+                                            <th>USER</th>
                                             <th>NOMBRE</th>
                                             <th>APELLIDOS</th>
-                                            <th>DIAS</th>
-                                            <th>FECHA PRESTAMO</th>
-                                            <th>PAGO MORA</th>
-                                            <th>TOTAL MORA</th>
+                                            <th>FECHA NACIMIENTO</th>
+                                            <th>CORREO</th>
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody style={{ textAlign: "center" }}>
                                         {
                                             (
-                                                moras.map((item) => (
-                                                    <tr key={item.idMora}>
-                                                        <td>{item.idMora}</td>
-                                                        <td>{item.idPrestamoNavigation.idUsuarioNavigation.nombres}</td>
-                                                        <td>{item.idPrestamoNavigation.idUsuarioNavigation.apellidos}</td>
-                                                        <td>{item.dias}</td>
-                                                        <td>{item.idPrestamoNavigation.fechaPrestamo}</td>
-                                                        <td>{item.pagoMora}</td>
-                                                        <td>{item.totalMora}</td>
+                                                usuarios.map((item) => (
+                                                    <tr key={item.idUsuario}>
+                                                        <td>{item.idUsuario}</td>
+                                                        <td>{item.idTipoUsuario}</td>
+                                                        <td>{item.nombreUsuario}</td>
+                                                        <td>{item.nombres}</td>
+                                                        <td>{item.apellidos}</td>
+                                                        <td>{formatDate(item.fechaNacimiento)}</td>
+                                                        <td>{item.correo}</td>
 
 
                                                         <td><Button color="primary" onClick={() => enviarDatos(item)}>Editar</Button>{"   "}
-                                                            <Button color="danger" onClick={() => eliminarMora(item.idMora)}>Eliminar</Button> {"   "}
-                                                            <Button color="success" >Calcular</Button>
+                                                            <Button color="danger" onClick={() => eliminarUser(item.idUsuario)}>Eliminar</Button>
                                                         </td>
                                                     </tr>
                                                 ))
@@ -163,16 +153,16 @@ function GestionMora() {
                         </Card>
                     </Col>
                 </Row>
-                <ModalAgregarMora
+                <ModalAgregarUsuario
                     mostrarModal={mostrarModal}
                     setMostrarModal={setMostrarModal}
-                    guardarMora={guardarMora}
+                    guardarUser={guardarUser}
                     editar={editar}
                     setEditar={setEditar}
-                    editarMora={editarMora} />
+                    editarUsuarios={editarUsuarios} />
             </div>
         </>
     );
 }
 
-export default GestionMora;
+export default GestionUser;

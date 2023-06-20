@@ -18,6 +18,12 @@ namespace Sistema_Bibliotecario.Controllers
 
     public class MoraController : ControllerBase
     {
+
+        public class TagViewModel
+        {
+            public int usuario { set; get; }
+            public int prestamo { set; get; }
+        }
         private readonly BDBibliotecaContext _dbcontext;
 
         public MoraController(BDBibliotecaContext context)
@@ -35,30 +41,46 @@ namespace Sistema_Bibliotecario.Controllers
 
         }
 
-        [Route("calcular")]
-
-        [HttpGet]
-        public IEnumerable getCalcularMora()
+        /*[HttpPost]
+        public string Post([FromBody] TagViewModel variable)
         {
-            SqlConnection cnn = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = cnn;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "insertMora";
-            cnn.Open();
-            SqlDataAdapter adapter2 = new SqlDataAdapter(cmd);
-            DataTable dt2 = new DataTable();
-            dt2.Clear();
-            adapter2.Fill(dt2);
-            cnn.Close();
+
+            //revisar credenciales porque no me funcionan
+            //SqlConnection conexion = new SqlConnection("Server=DESKTOP-HOIS6DM\\SQLEXPRESS;Database=BDBiblioteca;Trusted_Connection=True;MultipleActiveResultSets=true");
+            SqlConnection conexion = new SqlConnection("Data Source = localhost; Initial Catalog = BDBiblioteca; Integrated Security = True; Trusted_Connection = True");
+            SqlCommand sentencia = new SqlCommand();
+
+            //revisar nombres
+            sentencia.Connection = conexion;
+            sentencia.CommandType = System.Data.CommandType.StoredProcedure;
+            sentencia.CommandText = "insertMora";
 
 
+            sentencia.Parameters.Add("@prestamo", SqlDbType.Int);
+            sentencia.Parameters["@prestamo"].Value = variable.prestamo;
 
-            //DataTableSystemTextJson(dt);
-            return DataTableSystemTextJson(dt2);
+            sentencia.Parameters.Add("@usuario", SqlDbType.Int);
+            sentencia.Parameters["@usuario"].Value = variable.usuario;
 
+            conexion.Open();
 
-        }
+            SqlDataAdapter adapter = new SqlDataAdapter(sentencia);
+
+            DataTable dt1 = new DataTable();
+            dt1.Clear();
+
+            adapter.Fill(dt1);
+
+            conexion.Close();
+
+            if (dt1.Rows.Count < 1)
+            {
+
+                return "error";
+            }
+
+            return "exito";
+        }*/
 
 
 
@@ -74,7 +96,7 @@ namespace Sistema_Bibliotecario.Controllers
         }
 
         [HttpPut]
-        [Route("Editar")]
+        [Route("editar")]
         public async Task<IActionResult> Editar([FromBody] Mora request)
         {
             _dbcontext.Moras.Update(request);
@@ -84,7 +106,7 @@ namespace Sistema_Bibliotecario.Controllers
         }
 
         [HttpDelete]
-        [Route("Eliminar/{id:int}")]
+        [Route("eliminar/{id:int}")]
         public async Task<IActionResult> Eliminar(int id)
         {
             Mora mora1 = _dbcontext.Moras.Find(id);
