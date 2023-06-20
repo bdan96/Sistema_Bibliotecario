@@ -18,7 +18,7 @@ const CardCatalogoLibro = (props) => {
             <Card className="text-center" onClick={toggle} >
                 <CardImg
                     alt="Card image cap"
-                    src={libro.LogoLibro}
+                    src={libro.logoLibro}
                     style={{
                         height: 400
                     }}
@@ -28,7 +28,7 @@ const CardCatalogoLibro = (props) => {
                 />
                 <CardBody>
                     <CardTitle tag="h5">
-                        {libro.TituloLibro}
+                        {libro.tituloLibro}
                     </CardTitle>
                    
                 </CardBody>

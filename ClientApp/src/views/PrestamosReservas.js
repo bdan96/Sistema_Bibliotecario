@@ -15,7 +15,7 @@ function User() {
     const [reservas, setReservas] = useState([])
 
     const mostrarPrestamos = async () => {
-        axios.get('http://localhost:5006/api/prestamo/lista')
+        axios.get('http://localhost:5006/api/prestamoview/lista')
             .then(response => {
                 setPrestamos(response.data)
             })
@@ -44,7 +44,7 @@ function User() {
                         <Card>
                             <CardHeader>
                                 <CardTitle tag="h4">Prestamos</CardTitle>
-                               
+
                             </CardHeader>
                             <CardBody>
                                 <Table responsive>
@@ -115,7 +115,7 @@ function User() {
                             </CardBody>
                         </Card>
                     </Col>
-                </Row>  
+                </Row>
             </div>
         </>
     )

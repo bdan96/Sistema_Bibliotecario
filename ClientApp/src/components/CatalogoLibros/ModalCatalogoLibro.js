@@ -10,12 +10,12 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
 
     let existencias = '';
     let color = 0;
-    if (libro.CantidadInstanciaLibro === 0) {
+    if (libro.cantidadInstanciaLibro === 0) {
         existencias = '  No hay copias disponibles'
         color = 1
     }
     else {
-        existencias = libro.CantidadInstanciaLibro
+        existencias = libro.cantidadInstanciaLibro
         color = 0;
     }
 
@@ -75,7 +75,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                     <Row >
                         <Col
                             xs="6">
-                            <img className="img-fluid shadow-4 mx-auto d-block " src={libro.LogoLibro} alt="logo libro" width="65%" style={{
+                            <img className="img-fluid shadow-4 mx-auto d-block " src={libro.logoLibro} alt="logo libro" width="65%" style={{
                                 height: 400,
                                 alignContent: "center"
                             }}  ></img>
@@ -86,20 +86,20 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                             <br></br>
                             <Card body>
                                 <CardTitle tag="h5">
-                                    Titulo: {libro.TituloLibro}
+                                    Titulo: {libro.tituloLibro}
                                 </CardTitle>
                                 <ListGroup flush>
                                     <ListGroupItem>
-                                        Autor: {libro.AutorLibro}
+                                        Autor: {libro.autorLibro}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        Idiomas: {idiomas[libro.IdIdioma]}
+                                        Idiomas: {idiomas[libro.idIdioma]}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        categorias: {categorias[libro.IdGenero]}
+                                        categorias: {categorias[libro.idGenero]}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        ISBN: {libro.Isbn}
+                                        ISBN: {libro.isbn}
                                     </ListGroupItem>
                                     <ListGroupItem >
                                         Copias disponible: &nbsp;
