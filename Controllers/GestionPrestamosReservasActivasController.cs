@@ -24,7 +24,7 @@ namespace Sistema_Bibliotecario.Controllers
         [Route("lista")]
         public async Task<ActionResult<List<Prestamo>>> Lista()
         {
-            List<Prestamo> lista = await _dbcontext.Prestamos.Include(m => m.IdInvInstNavigation).ThenInclude(lo=>lo.IdInstLibroNavigation).Include(m => m.IdUsuarioNavigation).OrderBy(c => c.IdPrestamo).ToListAsync();
+            List<Prestamo> lista = await _dbcontext.Prestamos.Include(m => m.IdInvInstNavigation).ThenInclude(lo=>lo.IdInstLibroNavigation).Include(m => m.IdUsuarioNavigation).OrderByDescending(c => c.IdPrestamo).ToListAsync();
             return lista;
 
         }

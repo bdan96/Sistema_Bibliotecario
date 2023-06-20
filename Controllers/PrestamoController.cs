@@ -30,7 +30,8 @@ namespace Sistema_Bibliotecario.Controllers
 
         /*[EnableCors ("Policy1")]*/
         [HttpPost]
-        public string Post([FromBody] TagViewModel variable) {
+        public string Post([FromBody] TagViewModel variable)
+        {
 
             //revisar credenciales porque no me funcionan
             //SqlConnection conexion = new SqlConnection("Server=DESKTOP-HOIS6DM\\SQLEXPRESS;Database=BDBiblioteca;Trusted_Connection=True;MultipleActiveResultSets=true");
@@ -46,7 +47,7 @@ namespace Sistema_Bibliotecario.Controllers
             sentencia.Parameters["@usuario"].Value = variable.usuario;
 
             sentencia.Parameters.Add("@libro", SqlDbType.Int);
-            sentencia.Parameters["@libro"].Value = 5;
+            sentencia.Parameters["@libro"].Value = variable.libro;
 
             conexion.Open();
 
@@ -59,7 +60,8 @@ namespace Sistema_Bibliotecario.Controllers
 
             conexion.Close();
 
-            if (dt1.Rows.Count < 1) {
+            if (dt1.Rows.Count < 1)
+            {
 
                 return "error";
             }
