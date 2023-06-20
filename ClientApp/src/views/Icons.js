@@ -22,7 +22,7 @@ function Icons() {
 
     const mostrarInstanciaLibros = async () => {
         axios.get('http://localhost:5006/api/instancialibro/lista')
-            .then(response => {   
+            .then(response => {
                 console.log(response.data)
                 setLibros(response.data)
                 setLibrosCard(response.data)
@@ -96,7 +96,7 @@ function Icons() {
 
     useEffect(() => {
         //returnLibros()
-        
+
         mostrarInstanciaLibros()
     }, [])
 
@@ -169,7 +169,7 @@ function Icons() {
                         <CardGroup>
 
                             {libros.map((item) => (
-                                <Col md="4">
+                                <Col md="3">
                                     <CardCatalogoLibro libro={item}></CardCatalogoLibro>
                                 </Col>
                             ))}
