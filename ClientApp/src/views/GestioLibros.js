@@ -106,7 +106,7 @@ function User() {
                             <CardBody>
                                 <Table responsive>
                                     <thead className="text-primary">
-                                        <tr>
+                                        <tr style={{ textAlign: "center" }}>
                                             <th>ID</th>
                                             <th>TITULO</th>
                                             <th>AUTOR</th>
@@ -117,7 +117,7 @@ function User() {
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ textAlign: "center" }}>
                                         {
                                             (
                                                 libros.map((item) => (

@@ -36,6 +36,14 @@ function User() {
     }, [])
 
 
+    const formatDate = (string) => {
+        let options = { year: 'numeric', month: 'long', day: 'numeric' };
+        let fecha = new Date(string).toLocaleDateString("es-PE", options);
+        let hora = new Date(string).toLocaleTimeString();
+        return fecha + " | " + hora
+    }
+
+
     return (
         <>
             <div className="content">
@@ -49,17 +57,17 @@ function User() {
                             <CardBody>
                                 <Table responsive>
                                     <thead className="text-primary">
-                                        <tr>
+                                        <tr style={{ textAlign: "center" }}>
                                             <th>ID</th>
                                             <th>USUARIO</th>
                                             <th>LIBRO</th>
-                                            <th>RESERVA</th>
-                                            <th>FECHA DE ENTREGA</th>
+                                            
                                             <th>FECHA DE PRESTAMO</th>
+                                            <th>FECHA DE ENTREGA</th>
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ textAlign: "center" }}>
                                         {
                                             (
                                                 prestamos.map((item) => (
@@ -67,9 +75,9 @@ function User() {
                                                         <td>{item.idPrestamo}</td>
                                                         <td>{item.idUsuario}</td>
                                                         <td>{item.idInvInst}</td>
-                                                        <td>{item.idreservalibro}</td>
-                                                        <td>{item.fechaEntrega}</td>
-                                                        <td>{item.fechaPrestamo}</td>
+                                                        <td>{formatDate(item.fechaPrestamo)}</td>
+                                                        <td>{formatDate(item.fechaEntrega)}</td>
+                                                        
                                                         <td><Button color="primary" >Editar</Button>{"   "}
                                                         </td>
                                                     </tr>
@@ -87,7 +95,7 @@ function User() {
                             <CardBody>
                                 <Table responsive>
                                     <thead className="text-primary">
-                                        <tr>
+                                        <tr style={{ textAlign: "center" }}>
                                             <th>ID</th>
                                             <th>USUARIO</th>
                                             <th>LIBRO</th>
@@ -95,7 +103,7 @@ function User() {
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style={{ textAlign: "center" }}>
                                         {
                                             (
                                                 reservas.map((item) => (

@@ -36,9 +36,7 @@ function GestionPrestamosReservasActivos() {
 
     }
 
-    const newDevolverLibro = ( item ) => {
-
-        console.log(item);
+    const newDevolverLibro = (item) => {
 
         let prestamo = { usuario: item.idUsuario, id: item.idPrestamo }
 
@@ -59,15 +57,15 @@ function GestionPrestamosReservasActivos() {
             );
     }
 
-    /*const newReserva = () => {
+    const newReservaAPrestamo = (item) => {
 
-        let reserva = { usuario: 1, libro: libro.idInstLibro }
+        let rese = { usuario: item.idUsuario, reserva: item.idreservalibro }
 
-        axios.post('http://localhost:5006/api/reserva', reserva)
+        axios.post('http://localhost:5006/api/reservaaprestamo', rese)
             .then(response => {
                 Swal.fire(
                     response.data,
-                    'La reserva se ha realizado con exito',
+                    'Se ha convertido en prestamo',
                     'success'
                 )
             })
@@ -75,10 +73,10 @@ function GestionPrestamosReservasActivos() {
                 Swal.fire({
                     icon: error,
                     title: 'Oops...',
-                    text: 'No se pudo realizar el prestamo',
+                    text: 'No se pudo realizar el cambio',
                 })
             );
-    }*/
+    }
 
 
     const [editar, setEditar] = useState(null)
@@ -150,8 +148,7 @@ function GestionPrestamosReservasActivos() {
                                                         <td>{formatDate(item.fechaEntrega)}</td>
 
 
-                                                        <td><Button color="primary" onClick={() =>
-                                                        {
+                                                        <td><Button color="primary" onClick={() => {
                                                             newDevolverLibro(item)
                                                         }
                                                         }
@@ -174,15 +171,6 @@ function GestionPrestamosReservasActivos() {
                         <Card>
                             <CardHeader>
                                 <CardTitle tag="h4">Reservas activas</CardTitle>
-                                {/*<Button
-                                    className="btn-round"
-                                    color="primary"
-                                    type="submit"
-                                    size="lg"
-                                    onClick={() => setMostrarModal(!mostrarModal)}
-                                >
-                                    Agregar libro
-                                </Button>*/}
                             </CardHeader>
                             <CardBody>
                                 <Table responsive>
@@ -208,7 +196,10 @@ function GestionPrestamosReservasActivos() {
                                                         <td>{item.idUsuarioNavigation.correo}</td>
                                                         <td>{formatDate(item.fechaVencimientoreserva)}</td>
 
-                                                        <td><Button color="primary" >Entregar</Button>{"   "}
+                                                        <td><Button color="primary" onClick={() => {
+                                                            newReservaAPrestamo(item)
+                                                        }
+                                                        }>Entregar</Button>{"   "}
 
                                                         </td>
                                                     </tr>

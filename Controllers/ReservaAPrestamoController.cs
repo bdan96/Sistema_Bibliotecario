@@ -11,40 +11,21 @@ namespace Sistema_Bibliotecario.Controllers
     [ApiController]
     [Route("api/[controller]")]
 
-    public class GestionPrestamosReservasActivasController : ControllerBase
+    public class ReservaAPrestamoController : ControllerBase
 
     {
         public class TagViewModel
         {
             public int usuario { set; get; }
-            public int id { set; get; }
+            public int reserva { set; get; }
         }
 
 
         private readonly BDBibliotecaContext _dbcontext;
 
-        public GestionPrestamosReservasActivasController(BDBibliotecaContext context)
+        public ReservaAPrestamoController(BDBibliotecaContext context)
         {
             _dbcontext = context;
-        }
-
-        [HttpGet]
-        [Route("lista")]
-        public async Task<ActionResult<List<Prestamo>>> Lista()
-        {
-            List<Prestamo> lista = await _dbcontext.Prestamos.Include(m => m.IdInvInstNavigation).ThenInclude(lo => lo.IdInstLibroNavigation).Include(m => m.IdUsuarioNavigation).OrderByDescending(c => c.IdPrestamo).ToListAsync();
-            return lista;
-
-        }
-
-
-        [HttpGet]
-        [Route("listaReserva")]
-        public async Task<ActionResult<List<ReservaLibro>>> ListaRer()
-        {
-            List<ReservaLibro> lista = await _dbcontext.ReservaLibros.Include(m => m.IdUsuarioNavigation).OrderByDescending(c => c.Idreservalibro).ToListAsync();
-            return lista;
-
         }
 
         [HttpPost]
@@ -59,16 +40,13 @@ namespace Sistema_Bibliotecario.Controllers
             //revisar nombres
             sentencia.Connection = conexion;
             sentencia.CommandType = System.Data.CommandType.StoredProcedure;
-            sentencia.CommandText = "devolverLibro";
+            sentencia.CommandText = "pasarReservaAPrestamo";
 
+            sentencia.Parameters.Add("@reserva", SqlDbType.Int);
+            sentencia.Parameters["@reserva"].Value = variable.reserva;
 
             sentencia.Parameters.Add("@usuario", SqlDbType.Int);
             sentencia.Parameters["@usuario"].Value = variable.usuario;
-
-            sentencia.Parameters.Add("@id", SqlDbType.Int);
-            sentencia.Parameters["@id"].Value = variable.id;
-
-
 
             conexion.Open();
 
