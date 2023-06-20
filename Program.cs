@@ -31,6 +31,8 @@ options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<Sistema_Bibliotecario.Models.BDBibliotecaContext>();
 
+
+
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 /*builder.Services.AddDefaultIdentity<Usuario>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -48,6 +50,21 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
     var app = builder.Build();
+if(args.Length == 1 && args[0].ToLower() == "seedusuarios")//se usa el comando dotnet run seedusuarios
+{
+    UsuariosSeeder(app);
+}
+
+void UsuariosSeeder(IHost app)
+{
+    var scopeFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopeFactory.CreateScope())
+    {
+        var seeder = scope.ServiceProvider.GetService<UsuariosSeeder>();
+        seeder.seed();
+    }
+}
+
 
 // Configure the HTTP request pipeline.
 // Configure the HTTP request pipeline.
@@ -59,6 +76,15 @@ builder.Services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerO
         options.AllowAnyMethod();
         options.AllowAnyHeader();
     });
+
+app.UseCors(options =>
+{
+    options.WithOrigins("http://localhost:44436");
+    options.WithOrigins("http://localhost:3000");
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+});
+
 
 app.UseStaticFiles();
 app.UseRouting();

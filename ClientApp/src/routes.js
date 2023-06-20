@@ -28,6 +28,8 @@ import GestionLibro from "views/GestioLibros.js";
 import PrestamosReservas from "views/PrestamosReservas";
 import GestionMora from "views/GestionMora.js";
 import GestionPrestamosReservasActivos from "views/GestionPrestamosReservasAct"
+import Login from "views/Login.js";
+import Registrar from "views/Registrar.js";
 
 
 var routes = [
@@ -40,7 +42,7 @@ var routes = [
     },
     {
         path: "/icons",
-        name: "Icons",
+        name: "Catalogo",
         icon: "nc-icon nc-diamond",
         component: <Icons />,
         layout: "/admin",
@@ -116,5 +118,17 @@ var routes = [
         component: <PrestamosReservas />,
         layout: "/admin",
     },
+    {
+      path: "/",
+      name: "Iniciar Sesion",
+      icon: "nc-icon nc-single-02",
+      component: <Login />,
+      },
+      {
+      path: "/registrar",
+      name: "Registrar",
+      icon: "nc-icon nc-single-02",
+      component: <Registrar />,
+      },
 ];
 export default routes;
