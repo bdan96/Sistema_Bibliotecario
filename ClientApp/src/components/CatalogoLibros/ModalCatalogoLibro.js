@@ -47,7 +47,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
 
     const newReserva = () => {
 
-        let reserva = { usuario: 1, libro: 3 }
+        let reserva = { usuario: 1, libro: libro.idInstLibro }
 
         axios.post('http://localhost:5006/api/reserva', reserva)
             .then(response => {
@@ -128,16 +128,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                         margin: "5px"
                     }} color="primary" outline
                         onClick={newReserva}
-                        onClick={() => {
-                            toast.success("Se ha reservado el libro", {
 
-                                style: {
-                                    borderRadius: '10px',
-                                    background: '#333',
-                                    color: '#fff',
-                                },
-                            })
-                        }}
                     >
                         Reservar
                     </Button>
