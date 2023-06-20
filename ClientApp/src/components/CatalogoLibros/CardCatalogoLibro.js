@@ -18,11 +18,9 @@ const CardCatalogoLibro = (props) => {
             <Card className="text-center" onClick={toggle} >
                 <CardImg
                     alt="Card image cap"
-                    src={libro.logoLibro}
-                    style={{
-                        height: 400
-                    }}
-                    width="100%"
+                    src={libro.logoLibro}                  
+                    height="500"
+                    width="370"
 
 
                 />
