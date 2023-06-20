@@ -152,11 +152,14 @@ function Icons() {
                                     <Col
                                         sm="4"
                                     >
-                                        <Label tag="h6">Filtrado por categorias</Label>
+                                        <Label tag="h6">Filtrado por genero</Label>
                                         <Input type="select" value={opcionFilter} onChange={handleChangeFilter}>
-                                            <option value="">Filtrar por categorias</option>
-                                            <option value="0">Fantasia</option>
-                                            <option value="1">Suspenso</option>
+                                            <option value="">Filtrar por genero</option>
+                                            <option value="1">Novela historica</option>
+                                            <option value="2">Ciencia ficcion</option>
+                                            <option value="3">Realismo magico lat</option>
+                                            <option value="4">No-ficcion</option>
+                                            <option value="5">Programacion</option>
                                         </Input>
                                     </Col>
                                 </Row>

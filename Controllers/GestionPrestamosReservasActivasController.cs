@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Sistema_Bibliotecario.Models;
 using System.Data;
-using static Sistema_Bibliotecario.Controllers.PrestamoController;
+
 
 namespace Sistema_Bibliotecario.Controllers
 {
@@ -12,7 +12,15 @@ namespace Sistema_Bibliotecario.Controllers
     [Route("api/[controller]")]
 
     public class GestionPrestamosReservasActivasController : ControllerBase
+
     {
+        public class TagViewModel
+        {
+            public int usuario { set; get; }
+            public int id { set; get; }
+        }
+
+
         private readonly BDBibliotecaContext _dbcontext;
 
         public GestionPrestamosReservasActivasController(BDBibliotecaContext context)
@@ -58,7 +66,7 @@ namespace Sistema_Bibliotecario.Controllers
             sentencia.Parameters["@usuario"].Value = variable.usuario;
 
             sentencia.Parameters.Add("@id", SqlDbType.Int);
-            sentencia.Parameters["@id"].Value = variable.libro;
+            sentencia.Parameters["@id"].Value = variable.id;
 
 
 

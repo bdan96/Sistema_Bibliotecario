@@ -3,26 +3,31 @@
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Card, CardBody, CardFooter, CardHeader, CardText, CardTitle, ListGroup, ListGroupItem, Tooltip, Label } from 'reactstrap';
 import axios from 'axios'
 import Swal from 'sweetalert2';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 
 function ModalCatalogoLibro({ toggle, modal, libro }) {
 
-    let existencias = '';
+    const [existencia, setExistencia] = useState('');
     let color = 0;
-    if (libro.cantidadInstanciaLibro === 0) {
-        existencias = '  No hay copias disponibles'
-        color = 1
-    }
-    else {
-        existencias = libro.cantidadInstanciaLibro
-        color = 0;
-    }
+    useEffect(() => {
+
+        if (libro.cantidadInstanciaLibro === 0) {
+            setExistencia('No hay copias disponibles')
+            color = 1
+        }
+        else {
+            setExistencia(libro.cantidadInstanciaLibro)
+            color = 0;
+        }
+    }, [])
+
+
 
 
 
     const idiomas = ['Ingles', 'Español']
-    const categorias = ['Fantasia', 'Suspenso']
+    const categorias = ['', 'Novela historica', 'Ciencia ficcion', 'Realismo magico lat', 'No-ficcion', 'Programacion']
 
     const newPrestamo = () => {
 
@@ -35,6 +40,7 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                     'El prestamo se ha realizado con exito',
                     'success'
                 )
+                setExistencia(existencia - 1)
             })
             .catch(error =>
                 Swal.fire({
@@ -96,15 +102,15 @@ function ModalCatalogoLibro({ toggle, modal, libro }) {
                                         Idiomas: {idiomas[libro.idIdioma]}
                                     </ListGroupItem>
                                     <ListGroupItem>
-                                        categorias: {categorias[libro.idGenero]}
+                                        Genero: {categorias[libro.idGenero]}
                                     </ListGroupItem>
                                     <ListGroupItem>
                                         ISBN: {libro.isbn}
                                     </ListGroupItem>
-                                    <ListGroupItem >
+                                    <ListGroupItem>
                                         Copias disponible: &nbsp;
                                         <Label style={{ color: color ? 'red' : 'black' }}>
-                                            {existencias}
+                                            {existencia}
                                         </Label>
                                     </ListGroupItem>
                                 </ListGroup>

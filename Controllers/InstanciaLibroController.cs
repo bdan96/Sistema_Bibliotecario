@@ -7,9 +7,11 @@ namespace Sistema_Bibliotecario.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class InstanciaLibroController : ControllerBase
+
     {
+
         private readonly BDBibliotecaContext _dbcontext;
 
         public InstanciaLibroController(BDBibliotecaContext context)
@@ -30,8 +32,20 @@ namespace Sistema_Bibliotecario.Controllers
         [Route("guardar")]
         public async Task<IActionResult> Guardar([FromBody] InstanciaLibro request)
         {
-            await _dbcontext.InstanciaLibros.AddAsync(request);
-            await _dbcontext.SaveChangesAsync();
+
+
+            _dbcontext.InstanciaLibros.Add(request);
+            _dbcontext.SaveChanges();
+
+            for (int i = 0; i < request.CantidadInstanciaLibro; i++)
+            {
+                InvInstLibro Inventario = new InvInstLibro();
+                Inventario.IdInstLibroNavigation = request;
+                Inventario.Prestado = false;
+                _dbcontext.InvInstLibros.Add(Inventario);
+            }
+
+             _dbcontext.SaveChanges();
 
             return StatusCode(StatusCodes.Status200OK, "ok");
         }

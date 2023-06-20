@@ -36,11 +36,11 @@ function GestionPrestamosReservasActivos() {
 
     }
 
-    const newDevolverLibro = ({ item }) => {
+    const newDevolverLibro = ( item ) => {
 
-        const libro10 = { item }
+        console.log(item);
 
-        let prestamo = { usuario: 1, id: libro10.idPrestamo }
+        let prestamo = { usuario: item.idUsuario, id: item.idPrestamo }
 
         axios.post('http://localhost:5006/api/gestionprestamosreservasactivas', prestamo)
             .then(response => {
@@ -150,7 +150,13 @@ function GestionPrestamosReservasActivos() {
                                                         <td>{formatDate(item.fechaEntrega)}</td>
 
 
-                                                        <td><Button color="primary" onClick={newDevolverLibro}>Devolver</Button>{"   "}
+                                                        <td><Button color="primary" onClick={() =>
+                                                        {
+                                                            newDevolverLibro(item)
+                                                        }
+                                                        }
+
+                                                        >Devolver</Button>{"   "}
 
                                                         </td>
                                                     </tr>
