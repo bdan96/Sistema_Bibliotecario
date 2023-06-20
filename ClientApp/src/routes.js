@@ -22,9 +22,10 @@ import Icons from "views/Icons.js";
 import Typography from "views/Typography.js";
 import TableList from "views/Tables.js";
 import Maps from "views/Map.js";
-import UserPage from "views/User.js";
+import Usuarios from "views/User.js";
 import Login from "views/Login.js";
 import Registrar from "views/Registrar.js";
+
 
 var routes = [
   {
@@ -56,10 +57,10 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/user-page",
-    name: "User Profile",
+    path: "/usuarios",
+    name: "Usuarios",
     icon: "nc-icon nc-single-02",
-    component: <UserPage />,
+    component: <Usuarios />,
     layout: "/admin",
   },
   {
@@ -75,17 +76,15 @@ var routes = [
     icon: "nc-icon nc-caps-small",
     component: <Typography />,
     layout: "/admin",
-  },
+    },
   {
     path: "/",
     name: "Iniciar Sesion",
-    icon: "nc-icon nc-single-02",
     component: <Login />,
     },
     {
     path: "/registrar",
     name: "Registrar",
-    icon: "nc-icon nc-single-02",
     component: <Registrar />,
     },
 ];
